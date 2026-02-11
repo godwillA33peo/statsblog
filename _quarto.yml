@@ -1,0 +1,77 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Stats Beneath"
+  description: "Statistics simplified — the foundations beneath AI and machine learning"
+  site-url: https://statsbeneath.com
+  favicon: images/favicon.png
+  
+  # Open Graph / social sharing
+  open-graph: true
+  twitter-card:
+    creator: "@YOUR_HANDLE"
+    site: "@statsbeneath"
+  
+  navbar:
+    background: "#1a1a2e"
+    foreground: "#e0e0e0"
+    logo: images/logo.png
+    left:
+      - href: index.qmd
+        text: Home
+      - href: archive.qmd
+        text: Articles
+      - href: learning-path.qmd
+        text: "Learning Path"
+      - href: cheatsheets.qmd
+        text: "Cheat Sheets"
+      - href: did-you-know.qmd
+        text: "Did You Know?"
+      - href: resources.qmd
+        text: Resources
+      - href: about.qmd
+        text: About
+    right:
+      - icon: github
+        href: https://github.com/YOUR_USERNAME/stats-beneath
+      - icon: twitter
+        href: https://twitter.com/YOUR_HANDLE
+      - icon: linkedin
+        href: https://linkedin.com/in/YOUR_PROFILE
+      - icon: rss
+        href: index.xml
+
+  page-footer:
+    left: "© 2026 Stats Beneath"
+    center: "Built with [Quarto](https://quarto.org) & R"
+    right: 
+      - icon: envelope
+        href: mailto:hello@statsbeneath.com
+      - icon: twitter
+        href: https://twitter.com/YOUR_HANDLE
+    background: "#1a1a2e"
+
+  search: true
+  
+  sidebar:
+    style: floating
+    collapse-level: 2
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: styles.css
+    toc: true
+    toc-title: "On this page"
+    toc-depth: 3
+    code-fold: true
+    code-tools: true
+    highlight-style: monokai
+    smooth-scroll: true
+
+author: "Godwil"
+date-format: "MMMM D, YYYY"

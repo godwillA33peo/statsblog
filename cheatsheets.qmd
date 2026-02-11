@@ -1,0 +1,89 @@
+---
+title: "Cheat Sheets"
+subtitle: "Quick reference cards for the concepts that matter most"
+toc: false
+page-layout: article
+---
+
+Bookmark this page. When you forget what a p-value means at 2am before a deadline, these one-page summaries will save you.
+
+*Each cheat sheet maps to an article in the [Learning Path](learning-path.qmd). New sheets are added as articles are published.*
+
+::: {.cheatsheet-grid}
+
+::: {.cheatsheet-card}
+::: {.cheatsheet-icon}
+📊
+:::
+### Descriptive Statistics
+Mean, median, mode, variance, standard deviation — the essential summary numbers and when to use each.
+
+*Coming with Week 3 article*
+:::
+
+::: {.cheatsheet-card}
+::: {.cheatsheet-icon}
+🔔
+:::
+### Distributions
+Normal, binomial, Poisson, uniform — what they look like, when they appear, and their key properties.
+
+*Coming with Week 5 article*
+:::
+
+::: {.cheatsheet-card}
+::: {.cheatsheet-icon}
+🎲
+:::
+### Probability Rules
+Addition rule, multiplication rule, conditional probability, Bayes' theorem — all on one page.
+
+*Coming with Week 6 article*
+:::
+
+::: {.cheatsheet-card}
+::: {.cheatsheet-icon}
+🧪
+:::
+### Hypothesis Testing
+Null vs alternative, Type I & II errors, p-values, confidence intervals — the decision framework.
+
+*Coming with Week 8 article*
+:::
+
+::: {.cheatsheet-card}
+::: {.cheatsheet-icon}
+📈
+:::
+### Regression
+Simple & multiple linear regression, coefficients, R-squared, residuals, assumptions — the essentials.
+
+*Coming with Week 10 article*
+:::
+
+::: {.cheatsheet-card}
+::: {.cheatsheet-icon}
+🧮
+:::
+### Matrix Operations
+Transpose, multiplication, inverse, determinant — the linear algebra operations that power ML.
+
+*Coming with Week 11 article*
+:::
+
+:::
+
+---
+
+### How to Use These
+
+Each cheat sheet is designed to be **printed on a single page** or saved as a PDF. They're intentionally minimal — if you need the full explanation, click through to the linked article.
+
+::: {.callout-tip}
+## Suggestion
+Save these to your phone or pin them above your desk. The best reference is the one you can access in 3 seconds.
+:::
+
+---
+
+*Want a cheat sheet on a specific topic? [Let us know](about.qmd).*

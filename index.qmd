@@ -1,0 +1,85 @@
+---
+title: "Stats Beneath"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  feed: true
+  page-size: 5
+page-layout: full
+title-block-banner: false
+toc: false
+---
+
+::: {.hero-banner}
+
+# Stats Beneath
+
+::: {.subtitle}
+Statistics simplified — understanding the foundations that power AI, machine learning, and data science.
+:::
+
+::: {.tagline}
+New article every week
+:::
+
+:::
+
+::: {.fun-fact-card}
+::: {.fact-label}
+Did you know?
+:::
+80% of a data scientist's time is spent cleaning and organising data — not building models. The glamorous algorithm stuff? That's just the tip of the iceberg. The real skill is in understanding your data first.
+:::
+
+::: {.stat-grid}
+
+::: {.stat-card}
+::: {.stat-number}
+149 ZB
+:::
+::: {.stat-label}
+Data created globally in 2024 — and growing fast
+:::
+:::
+
+::: {.stat-card}
+::: {.stat-number}
+1763
+:::
+::: {.stat-label}
+Year Bayes' Theorem was published — still powering AI today
+:::
+:::
+
+::: {.stat-card}
+::: {.stat-number}
+70%
+:::
+::: {.stat-label}
+Of data science projects fail — often from poor statistical foundations
+:::
+:::
+
+::: {.stat-card}
+::: {.stat-number}
+37 sec
+:::
+::: {.stat-label}
+Average time a reader spends on a blog post — we'll make yours count
+:::
+:::
+
+:::
+
+## Latest Articles
+
+Each week, we break down one statistical concept with real-world analogies, clear visuals, and optional R code. No jargon walls. No assumptions about your background.
+
+::: {.newsletter-box}
+### Stay in the loop
+One email per week. One concept explained simply. No spam, no fluff.
+
+[Subscribe →](#){.btn-subscribe}
+:::

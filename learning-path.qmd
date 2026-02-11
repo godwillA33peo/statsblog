@@ -1,0 +1,195 @@
+---
+title: "Learning Path"
+subtitle: "Your guided journey from zero to statistical fluency"
+toc: false
+page-layout: article
+---
+
+Not sure where to start? Follow this path. Each step builds on the last, and by the end you'll have the statistical foundations to truly understand machine learning and AI — not just run the code.
+
+::: {.fun-fact-card}
+::: {.fact-label}
+Pro tip
+:::
+You don't need to read them in order — but if you're new to stats, this sequence will build your intuition naturally.
+:::
+
+## Phase 1: The Basics
+
+*What every data-curious person should know.*
+
+::: {.learning-path}
+
+::: {.path-step data-step="1"}
+::: {.step-week}
+Week 1
+:::
+::: {.step-title}
+[Why Statistics Matters Before You Touch ML](posts/01-why-stats-matter/index.qmd)
+:::
+::: {.step-desc}
+The case for learning foundations first. Why the best ML engineers are closet statisticians.
+:::
+:::
+
+::: {.path-step data-step="2"}
+::: {.step-week}
+Week 2
+:::
+::: {.step-title}
+What Data Actually Is
+:::
+::: {.step-desc}
+Types, distributions, and why the shape of your data matters more than the algorithm you pick. *Coming soon.*
+:::
+:::
+
+::: {.path-step data-step="3"}
+::: {.step-week}
+Week 3
+:::
+::: {.step-title}
+Mean, Median, Mode — When Averages Lie
+:::
+::: {.step-desc}
+The three ways to measure "the middle" and when each one deceives you. *Coming soon.*
+:::
+:::
+
+::: {.path-step data-step="4"}
+::: {.step-week}
+Week 4
+:::
+::: {.step-title}
+Variance & Standard Deviation
+:::
+::: {.step-desc}
+Measuring spread — why "close to the average" means nothing without context. *Coming soon.*
+:::
+:::
+
+:::
+
+## Phase 2: Probability & Distributions
+
+*The language of uncertainty that every model speaks.*
+
+::: {.learning-path}
+
+::: {.path-step data-step="5"}
+::: {.step-week}
+Week 5
+:::
+::: {.step-title}
+The Normal Distribution
+:::
+::: {.step-desc}
+Why the bell curve shows up everywhere — from exam scores to stock prices. *Coming soon.*
+:::
+:::
+
+::: {.path-step data-step="6"}
+::: {.step-week}
+Week 6
+:::
+::: {.step-title}
+Probability Basics
+:::
+::: {.step-desc}
+Conditional probability, Bayes' theorem, and why your intuition about probability is almost always wrong. *Coming soon.*
+:::
+:::
+
+:::
+
+## Phase 3: Inference & Testing
+
+*Making conclusions from incomplete data — the heart of statistics.*
+
+::: {.learning-path}
+
+::: {.path-step data-step="7"}
+::: {.step-week}
+Week 7
+:::
+::: {.step-title}
+Sampling & Why Your Sample Isn't the Population
+:::
+::: {.step-desc}
+Why polls get elections wrong and what that teaches us about data. *Coming soon.*
+:::
+:::
+
+::: {.path-step data-step="8"}
+::: {.step-week}
+Week 8
+:::
+::: {.step-title}
+Hypothesis Testing & P-Values
+:::
+::: {.step-desc}
+The most misunderstood concept in all of science, explained properly. *Coming soon.*
+:::
+:::
+
+:::
+
+## Phase 4: Relationships & Models
+
+*From understanding data to predicting with it.*
+
+::: {.learning-path}
+
+::: {.path-step data-step="9"}
+::: {.step-week}
+Week 9
+:::
+::: {.step-title}
+Correlation ≠ Causation
+:::
+::: {.step-desc}
+What correlation actually measures, why ice cream doesn't cause drowning, and how to think about relationships in data. *Coming soon.*
+:::
+:::
+
+::: {.path-step data-step="10"}
+::: {.step-week}
+Week 10
+:::
+::: {.step-title}
+Linear Regression Explained
+:::
+::: {.step-desc}
+Fitting a line through data — the single most important technique in all of statistics. *Coming soon.*
+:::
+:::
+
+::: {.path-step data-step="11"}
+::: {.step-week}
+Week 11
+:::
+::: {.step-title}
+Matrices — Why They Power Everything
+:::
+::: {.step-desc}
+Linear algebra for humans. How your data becomes a matrix and why that matters. *Coming soon.*
+:::
+:::
+
+::: {.path-step data-step="12"}
+::: {.step-week}
+Week 12
+:::
+::: {.step-title}
+From Regression to Machine Learning
+:::
+::: {.step-desc}
+Connecting the dots — how everything you've learned maps directly to ML algorithms. *Coming soon.*
+:::
+:::
+
+:::
+
+---
+
+*New articles published weekly. Links will become active as each post goes live.*

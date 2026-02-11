@@ -1,0 +1,150 @@
+---
+title: "Did You Know?"
+subtitle: "Surprising facts about statistics, data science, and the numbers that shape our world"
+toc: false
+page-layout: article
+---
+
+Statistics isn't dry — it's full of wild, counterintuitive, and fascinating stories. Here are some of our favourites. We add new ones regularly.
+
+---
+
+## Mind-Bending Stats
+
+::: {.fun-fact-card}
+::: {.fact-label}
+The Birthday Paradox
+:::
+In a room of just **23 people**, there's a 50% chance two of them share a birthday. With 70 people, the probability jumps to **99.9%**. Our brains are terrible at probability — and that's exactly why we need statistics.
+:::
+
+::: {.fun-fact-card}
+::: {.fact-label}
+Survivorship Bias
+:::
+During WWII, the military wanted to add armour to bomber planes. They studied returning planes and saw bullet holes clustered on the wings and fuselage. Mathematician Abraham Wald said: **"Armour the places with NO holes."** The planes hit there never came back. This is survivorship bias — we only see the data that survived.
+:::
+
+::: {.fun-fact-card}
+::: {.fact-label}
+Simpson's Paradox
+:::
+A trend that appears in several groups of data can **reverse** when the groups are combined. UC Berkeley was once sued for gender discrimination in admissions. Overall, fewer women were admitted. But department by department, women were admitted at equal or higher rates. The "bias" was that women applied to more competitive departments.
+:::
+
+::: {.fun-fact-card}
+::: {.fact-label}
+The Monty Hall Problem
+:::
+You're on a game show with 3 doors. Behind one is a car. You pick door 1. The host opens door 3 (a goat). Should you switch? **Yes — switching gives you a 2/3 chance of winning.** Even Paul Erdős, one of the greatest mathematicians ever, refused to believe this until he saw a computer simulation.
+:::
+
+---
+
+## Data Science by the Numbers
+
+::: {.stat-grid}
+
+::: {.stat-card}
+::: {.stat-number}
+80%
+:::
+::: {.stat-label}
+Of a data scientist's time is spent on data cleaning and preparation
+:::
+:::
+
+::: {.stat-card}
+::: {.stat-number}
+1.1T MB
+:::
+::: {.stat-label}
+Of data generated daily worldwide
+:::
+:::
+
+::: {.stat-card}
+::: {.stat-number}
+70%
+:::
+::: {.stat-label}
+Of data science projects never make it to production
+:::
+:::
+
+::: {.stat-card}
+::: {.stat-number}
+1763
+:::
+::: {.stat-label}
+Year Bayes published his theorem — now powering spam filters and medical AI
+:::
+:::
+
+::: {.stat-card}
+::: {.stat-number}
+90%
+:::
+::: {.stat-label}
+Of the world's data was created in the last two years
+:::
+:::
+
+::: {.stat-card}
+::: {.stat-number}
+$100K+
+:::
+::: {.stat-label}
+Average data scientist salary (USD) — one of the highest-paid tech roles
+:::
+:::
+
+:::
+
+---
+
+## Quotes Worth Remembering
+
+> **"All models are wrong, but some are useful."**
+> — George Box, statistician
+
+> **"Without data, you're just another person with an opinion."**
+> — W. Edwards Deming
+
+> **"The best thing about being a statistician is that you get to play in everyone's backyard."**
+> — John Tukey
+
+> **"Far better an approximate answer to the right question, which is often vague, than an exact answer to the wrong question."**
+> — John Tukey
+
+> **"Torture the data, and it will confess to anything."**
+> — Ronald Coase, economist
+
+---
+
+## Historical Firsts
+
+::: {.fun-fact-card}
+::: {.fact-label}
+The First Dataset
+:::
+John Graunt published the first known statistical analysis in **1662** — "Natural and Political Observations Made upon the Bills of Mortality." He analysed London death records to estimate population, life expectancy, and disease patterns. Data science before computers existed.
+:::
+
+::: {.fun-fact-card}
+::: {.fact-label}
+Florence Nightingale — Data Viz Pioneer
+:::
+Before she was known for nursing, Florence Nightingale was a **statistician**. Her polar area diagrams (a type of pie chart she invented) convinced the British government that more soldiers were dying from poor hospital conditions than from battle wounds. Data visualisation literally saved lives.
+:::
+
+::: {.fun-fact-card}
+::: {.fact-label}
+The Term "Data Scientist"
+:::
+The term "data scientist" was coined in **2008** by DJ Patil and Jeff Hammerbacher, who were building data teams at LinkedIn and Facebook. But the work — applying statistics to real problems — has been happening for centuries.
+:::
+
+---
+
+*Know a great stats fact? [Get in touch](about.qmd) — we'd love to feature it.*

@@ -1,0 +1,54 @@
+---
+title: "ARTICLE TITLE"
+author: "Godwil"
+date: "YYYY-MM-DD"
+categories: [CATEGORY1, CATEGORY2]
+description: "One-line hook that makes people want to read this."
+image: "thumbnail.png"
+draft: true
+---
+
+## The real-world hook
+
+::: {.fun-fact-card}
+::: {.fact-label}
+Did you know?
+:::
+A surprising, memorable fact related to this week's topic. Keep it to 2-3 sentences.
+:::
+
+*Start with a story, analogy, or question that connects this concept to something your reader already understands. No jargon here — just curiosity.*
+
+## The intuition
+
+*Explain the concept in plain language. Use analogies. Imagine explaining this to a smart friend who hasn't studied stats. Aim for 3-5 paragraphs.*
+
+## See it in action
+
+*A plot, diagram, or visual that makes the concept click.*
+
+```{r}
+#| label: fig-main-visual
+#| fig-cap: "Caption describing what the reader should notice"
+#| code-fold: true
+#| warning: false
+
+# Your R visualisation code here
+```
+
+## Why this matters for ML/AI
+
+*Connect the concept back to machine learning or AI. 2-3 paragraphs.*
+
+::: {.callout-tip}
+## Key Takeaway
+*One sentence. If the reader remembers nothing else, they remember this.*
+:::
+
+## Coming next week
+
+*Tease the next article.*
+
+---
+
+*Found this useful? Share it with someone learning data science. New articles every week at [statsbeneath.com](https://statsbeneath.com).*

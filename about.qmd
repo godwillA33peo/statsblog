@@ -6,33 +6,33 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com/in/YOUR_PROFILE
+      href: https://www.linkedin.com/in/godwill-zulu/
     - icon: github
       text: GitHub
-      href: https://github.com/YOUR_USERNAME
+      href: https://github.com/godwillA33peo
     - icon: envelope
       text: Email
       href: mailto:your.email@example.com
 ---
 
-## Hi, I'm Godwil
+## Hi, I'm Godwill
 
 I'm a Health Data Science MSc student at the University of Galway, with a background in Operations Research and Statistics. I've worked as a Monitoring & Evaluation Specialist in public health and currently spend my days fitting Bayesian models and wrangling survey data.
 
 ### Why this blog?
 
-I've noticed something in the rush toward AI and machine learning: people want to run the algorithms but skip understanding *why* they work. The matrix algebra, the probability theory, the regression foundations — these aren't just academic hurdles. They're the difference between someone who uses tools and someone who understands them.
+I've noticed something in the rush toward AI and machine learning: people want to run the algorithms but skip understanding *why* they work. The matrix algebra, the probability theory, the regression foundations, these aren't just academic hurdles. They're the difference between someone who uses tools and someone who understands them.
 
-**Stats Beneath** is my attempt to bridge that gap. Each week, I take one statistical concept and explain it the way I wish it had been explained to me — with real-world analogies, clear visuals, and zero unnecessary jargon.
+**Stats Beneath** is my attempt to bridge that gap. Each week, I take one statistical concept and explain it the way I wish it had been explained to me, with real-world analogies, clear visuals, and zero unnecessary jargon.
 
 ### My approach
 
 Every article follows a simple structure:
 
-1. **The real-world hook** — why should you care?
-2. **The intuition** — what's actually going on, in plain language
-3. **The visual** — a plot or diagram that makes it click
-4. **The code** (optional) — simple R examples for those who want hands-on practice
-5. **The takeaway** — one sentence you'll remember
+1. **The real-world hook** - why should you care?
+2. **The intuition** - what's actually going on, in plain language
+3. **The visual** - a plot or diagram that makes it click
+4. **The code** (optional) - simple R examples for those who want hands-on practice
+5. **The takeaway** - one sentence you'll remember
 
 If you find these useful, share them with someone who thinks statistics is scary. It doesn't have to be.

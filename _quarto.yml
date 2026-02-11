@@ -11,7 +11,7 @@ website:
   # Open Graph / social sharing
   open-graph: true
   twitter-card:
-    creator: "@YOUR_HANDLE"
+    creator: "@drpeo404"
     site: "@statsbeneath"
   
   navbar:
@@ -35,11 +35,11 @@ website:
         text: About
     right:
       - icon: github
-        href: https://github.com/YOUR_USERNAME/stats-beneath
+        href: https://github.com/godwillA33peo/
       - icon: twitter
-        href: https://twitter.com/YOUR_HANDLE
+        href: https://x.com/drpeo404
       - icon: linkedin
-        href: https://linkedin.com/in/YOUR_PROFILE
+        href: https://www.linkedin.com/in/godwill-zulu/
       - icon: rss
         href: index.xml
 
@@ -50,7 +50,7 @@ website:
       - icon: envelope
         href: mailto:hello@statsbeneath.com
       - icon: twitter
-        href: https://twitter.com/YOUR_HANDLE
+        href: https://x.com/drpeo404
     background: "#1a1a2e"
 
   search: true
@@ -73,5 +73,5 @@ format:
     highlight-style: monokai
     smooth-scroll: true
 
-author: "Godwil"
+author: "Godwill"
 date-format: "MMMM D, YYYY"

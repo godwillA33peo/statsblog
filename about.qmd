@@ -12,7 +12,7 @@ about:
       href: https://github.com/godwillA33peo
     - icon: envelope
       text: Email
-      href: mailto:your.email@example.com
+      href: mailto:godwillzulu51@gmail.com
 ---
 
 ## Hi, I'm Godwill

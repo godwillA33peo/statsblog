@@ -48,7 +48,7 @@ website:
     center: "Built with [Quarto](https://quarto.org) & R"
     right: 
       - icon: envelope
-        href: mailto:hello@statsbeneath.com
+        href: mailto:godwillzulu51@gmail.com
       - icon: twitter
         href: https://x.com/drpeo404
     background: "#1a1a2e"
@@ -68,10 +68,9 @@ format:
     toc: true
     toc-title: "On this page"
     toc-depth: 3
-    code-fold: true
-    code-tools: true
     highlight-style: monokai
     smooth-scroll: true
+    include-in-header: google-analytics.html
 
 author: "Godwill"
 date-format: "MMMM D, YYYY"

@@ -18,9 +18,9 @@ But here's the question almost nobody stops to ask: **where did those numbers co
 
 Not "which API" or "which database." I mean: what *process* generated them? Is each row independent of the others? Could the values have turned out differently if you'd collected data on a different day? If you collected more data tomorrow, would the new rows look like the old ones?
 
-These aren't philosophical questions. They're statistical ones. And your answers to them --- whether you state them explicitly or not --- determine whether your model's predictions mean anything at all.
+These aren't philosophical questions. They're statistical ones. And your answers to them,whether you state them explicitly or not,determine whether your model's predictions mean anything at all.
 
-The language for thinking about this clearly is **random variables** and **probability distributions.** If you've seen these terms in a textbook and moved on, I'd like to show you why they're not abstract theory --- they're the precise description of what your data *is* and what your model is *trying to learn*.
+The language for thinking about this clearly is **random variables** and **probability distributions.** If you've seen these terms in a textbook and moved on, I'd like to show you why they're not abstract theory,they're the precise description of what your data *is* and what your model is *trying to learn*.
 
 ## A random variable is a question, not an answer
 
@@ -34,7 +34,7 @@ Before you observe your data, you don't know what values you'll get. Will this p
 
 That's what a random variable captures: the space of possible values and their relative likelihoods, *before* you observe anything.
 
-Once you observe a value --- once the patient's blood pressure reads 132 --- that's no longer a random variable. It's a **realisation**. A data point. One draw from the underlying random process.
+Once you observe a value,once the patient's blood pressure reads 132,that's no longer a random variable. It's a **realisation**. A data point. One draw from the underlying random process.
 
 **Your entire dataset is a collection of realisations.** Each row in your DataFrame was, before you observed it, a random variable. Now it's a fixed number. But the process that generated it is still out there, and it could generate different numbers tomorrow.
 
@@ -71,13 +71,13 @@ with two rules: every probability is between 0 and 1, and they all add up to 1.
 
 $$X \sim \text{Bernoulli}(p), \quad P(X=1) = p, \quad P(X=0) = 1-p$$
 
-Every binary classification target in your dataset follows a Bernoulli distribution. When your logistic regression outputs $\hat{p} = 0.73$, it's estimating the parameter of a Bernoulli distribution. That's literally what it's doing --- fitting $p$.
+Every binary classification target in your dataset follows a Bernoulli distribution. When your logistic regression outputs $\hat{p} = 0.73$, it's estimating the parameter of a Bernoulli distribution. That's literally what it's doing,fitting $p$.
 
 **The Binomial distribution** counts the number of successes in $n$ independent Bernoulli trials:
 
 $$X \sim \text{Binomial}(n, p), \quad P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$$
 
-If you flip a coin 100 times, the number of heads is Binomial. If you classify 100 samples and count the correct ones, the number correct is Binomial (under independence). This is why your model's accuracy has a sampling distribution --- it's not a fixed number, it's a draw from a Binomial.
+If you flip a coin 100 times, the number of heads is Binomial. If you classify 100 samples and count the correct ones, the number correct is Binomial (under independence). This is why your model's accuracy has a sampling distribution,it's not a fixed number, it's a draw from a Binomial.
 
 **The Poisson distribution** models the count of events in a fixed interval when events happen at a constant average rate:
 
@@ -85,21 +85,27 @@ $$X \sim \text{Poisson}(\lambda), \quad P(X = k) = \frac{\lambda^k e^{-\lambda}}
 
 Server requests per minute. Customer complaints per day. Gene mutations per chromosome. Any time you're modelling "how many times does something happen," you're probably looking at Poisson data.
 
+### These distributions are a family
+
+You might have noticed something. The Bernoulli is a single yes/no trial. The Binomial counts how many yes's you get across $n$ independent Bernoulli trials. The Poisson emerges when $n$ gets very large and $p$ gets very small, but the expected count $np = \lambda$ stays fixed, it's the limiting case of the Binomial for rare events. These aren't three unrelated distributions. They're connected, each one building on the last.
+
+It goes deeper than that. The Normal distribution also connects to the Binomial, as $n$ grows, the Binomial converges to a Normal (that's the Central Limit Theorem at work). And all of these distributions, Bernoulli, Binomial, Poisson, Normal, and several others, belong to a single mathematical family called the **exponential family**, which turns out to be the foundation of generalised linear models (GLMs). We'll explore these connections properly in a future article. For now, just know that when you learn one distribution, you're not learning an isolated fact, you're learning a node in a network.
+
 ### Continuous distributions: measuring on a continuum
 
-A **continuous** random variable takes values on the real line (or an interval). You can't list all possible values, so you can't assign a probability to any single value --- $P(X = 1.23456789...) = 0$ for any specific number.
+A **continuous** random variable takes values on the real line (or an interval). You can't list all possible values, so you can't assign a probability to any single value,$P(X = 1.23456789...) = 0$ for any specific number.
 
 Instead, you describe probabilities over *intervals* using a **probability density function (PDF)**:
 
 $$P(a \leq X \leq b) = \int_a^b f(x)\,dx$$
 
-The PDF $f(x)$ tells you how densely the probability is packed around each value. It's not a probability itself --- it can be greater than 1 --- but the area under the curve over any interval gives you a probability.
+The PDF $f(x)$ tells you how densely the probability is packed around each value. It's not a probability itself,it can be greater than 1,but the area under the curve over any interval gives you a probability.
 
 **The Normal (Gaussian) distribution** is the one you know:
 
 $$X \sim \mathcal{N}(\mu, \sigma^2), \quad f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)$$
 
-Two parameters: $\mu$ (the centre) and $\sigma^2$ (the spread). It shows up everywhere, and there's a deep reason for that --- the Central Limit Theorem, which we'll cover in a future article.
+Two parameters: $\mu$ (the centre) and $\sigma^2$ (the spread). It shows up everywhere, and there's a deep reason for that,the Central Limit Theorem, which we'll cover in a future article.
 
 But here's what matters for ML: **when you assume your regression errors are normally distributed, you're saying the residuals follow this specific shape.** That's not a trivial assumption. It determines your loss function (MSE corresponds to Gaussian errors), your confidence intervals, and your hypothesis tests. If the assumption is wrong, all of those break.
 
@@ -141,7 +147,7 @@ For Poisson regression:
 
 $$Y \mid X \sim \text{Poisson}(\exp(X\beta))$$
 
-In each case, $X$ (the features) determine the *parameters* of the distribution, and $Y$ (the target) is a random draw from that distribution. The model doesn't predict $Y$ directly --- it predicts the *distribution* of $Y$, and the point prediction is just a summary (usually the mean).
+In each case, $X$ (the features) determine the *parameters* of the distribution, and $Y$ (the target) is a random draw from that distribution. The model doesn't predict $Y$ directly,it predicts the *distribution* of $Y$, and the point prediction is just a summary (usually the mean).
 
 This is why understanding distributions isn't optional for ML. You're fitting them whether you know it or not. `sklearn` just hides it from you.
 
@@ -154,11 +160,11 @@ This connection goes even deeper. Your choice of loss function implicitly assume
 | Mean Squared Error | Normal (Gaussian) | Identity |
 | Cross-Entropy | Bernoulli / Categorical | Logit / Softmax |
 | Poisson Deviance | Poisson | Log |
-| Huber Loss | A compromise: Normal near 0, Laplace in the tails | --- |
+| Huber Loss | A compromise: Normal near 0, Laplace in the tails |,|
 
 When you minimise MSE, you're doing maximum likelihood estimation under the assumption that your errors are Gaussian. When you minimise cross-entropy, you're doing MLE under the assumption that your targets are Bernoulli. 
 
-If you've ever wondered "why MSE for regression and cross-entropy for classification?" --- this is the answer. It's not arbitrary. Each loss function is *derived from* a distributional assumption about the target variable. We'll make this precise when we cover likelihood in a future article.
+If you've ever wondered "why MSE for regression and cross-entropy for classification?",this is the answer. It's not arbitrary. Each loss function is *derived from* a distributional assumption about the target variable. We'll make this precise when we cover likelihood in a future article.
 
 ## What this means in practice
 
@@ -180,7 +186,7 @@ Here's the shift I want you to make:
 
 That second framing is what statistics gives you. It's more precise, more honest, and it leads to better models.
 
-Next week, we'll build on this foundation. You now know that your data comes from distributions and your models estimate distributions. But what exactly are you estimating when you compute a mean, a variance, or a loss? That's the world of **expected values** --- and it turns out your loss function is one.
+Next week, we'll build on this foundation. You now know that your data comes from distributions and your models estimate distributions. But what exactly are you estimating when you compute a mean, a variance, or a loss? That's the world of **expected values**,and it turns out your loss function is one.
 
 ---
 

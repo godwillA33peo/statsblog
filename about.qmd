@@ -22,7 +22,7 @@ I'm a Health Data Science MSc student at the University of Galway, originally fr
 
 In 2023, I was selected for the Ireland Fellows Programme, which brought me to Ireland to pursue advanced studies in health data science. My journey through operations research, public health program evaluation, and now Bayesian statistical modelling has taught me that the real power of data science lies not in knowing which algorithm to run, but in understanding *why* it works.
 
-I created **Stats Beneath** because I've seen too many talented engineers and data scientists skip over the statistical foundations that make machine learning actually work. This blog is my attempt to bridge that gap — explaining one statistical concept at a time, with clarity, intuition, and real-world context.
+I created **Stats Beneath** because I've seen too many talented engineers and data scientists skip over the statistical foundations that make machine learning actually work. This blog is my attempt to bridge that gap, explaining one statistical concept at a time, with clarity, intuition, and real-world context.
 
 ## What I'm working on
 
@@ -43,9 +43,9 @@ My approach is tool-agnostic but principles-first: I believe understanding the s
 I'm always interested in connecting with people working at the intersection of statistics, machine learning, and public health.
 
 ::: {.connect-links}
-- [GitHub](https://github.com/godwillA33peo) — code, projects, and open-source contributions
-- [LinkedIn](https://www.linkedin.com/in/godwill-zulu/) — professional background and updates
-- [Email](mailto:godwillzulu51@gmail.com) — reach out directly
+- [GitHub](https://github.com/godwillA33peo), code, projects, and open-source contributions
+- [LinkedIn](https://www.linkedin.com/in/godwill-zulu/), professional background and updates
+- [Email](mailto:godwillzulu51@gmail.com), reach out directly
 :::
 
 ---

@@ -20,7 +20,7 @@ sidebar: false
 # The statistical [*why*]{.hero-accent} behind every ML algorithm
 
 For ML engineers and data scientists who want to understand the mathematics
-driving their models — not just tune the hyperparameters. Intuition first, code second.
+driving their models, not just tune the hyperparameters. Intuition first, code second.
 
 [New article every week.]{.hero-cadence}
 

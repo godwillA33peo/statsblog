@@ -1,6 +1,6 @@
 # Stats Beneath 🔍
 
-**Statistics simplified — the foundations beneath AI and machine learning.**
+**Statistics simplified,the foundations beneath AI and machine learning.**
 
 A weekly blog explaining statistical concepts in plain language, built with [Quarto](https://quarto.org).
 
@@ -60,7 +60,7 @@ stats-beneath/
 |------|---------|
 | **Home** | Hero banner, fun fact, stats counters, latest articles |
 | **Articles** | Searchable archive of all posts |
-| **Learning Path** | 12-week visual timeline — guided curriculum |
+| **Learning Path** | 12-week visual timeline,guided curriculum |
 | **Cheat Sheets** | One-page reference cards per topic |
 | **Did You Know?** | Fun facts, paradoxes, quotes, data science stats |
 | **Resources** | Books, courses, tools, communities, datasets |
@@ -71,7 +71,7 @@ stats-beneath/
 |------|-------|----------|
 | 1 | Why Statistics Matters Before ML | foundations |
 | 2 | What Data Actually Is | foundations |
-| 3 | Mean, Median, Mode — When Averages Lie | descriptive-stats |
+| 3 | Mean, Median, Mode,When Averages Lie | descriptive-stats |
 | 4 | Variance & Standard Deviation | descriptive-stats |
 | 5 | The Normal Distribution | distributions |
 | 6 | Probability Basics | probability |

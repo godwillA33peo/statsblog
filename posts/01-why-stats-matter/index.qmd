@@ -3,7 +3,7 @@ title: "Why Statistics Matters Before You Touch Machine Learning"
 author: "Godwil"
 date: "2026-02-10"
 categories: [foundations, machine-learning]
-description: "Everyone wants to build AI. But the real superpower isn't knowing which algorithm to use — it's understanding why it works."
+description: "Everyone wants to build AI. But the real superpower isn't knowing which algorithm to use,it's understanding why it works."
 image: "thumbnail.png"
 draft: false
 ---
@@ -14,14 +14,14 @@ draft: false
 ::: {.fact-label}
 Did you know?
 :::
-The term "regression" comes from Francis Galton's 1886 study on the heights of parents and children. He noticed that tall parents tended to have slightly shorter children, and short parents had slightly taller ones — they "regressed" toward the average. The name stuck, even though modern regression has nothing to do with shrinking.
+The term "regression" comes from Francis Galton's 1886 study on the heights of parents and children. He noticed that tall parents tended to have slightly shorter children, and short parents had slightly taller ones,they "regressed" toward the average. The name stuck, even though modern regression has nothing to do with shrinking.
 :::
 
 There's a pattern I see everywhere. Someone discovers machine learning, gets excited, installs scikit-learn or tidymodels, runs a random forest on a dataset, and gets 94% accuracy. Amazing! Ship it!
 
 But then someone asks: *"Why did your model predict that?"* And the answer is... silence.
 
-This is what happens when we skip the foundation. Machine learning is not magic — it's statistics at scale. And if you don't understand the statistics beneath the algorithm, you're building on sand.
+This is what happens when we skip the foundation. Machine learning is not magic,it's statistics at scale. And if you don't understand the statistics beneath the algorithm, you're building on sand.
 
 ## What "beneath" actually means
 
@@ -41,13 +41,13 @@ The "AI revolution" isn't new math. It's old math with new computers.
 
 Let's say you want to predict house prices. A machine learning tutorial might tell you to throw your data into XGBoost. But what's XGBoost actually doing?
 
-At its core, it's fitting a sequence of simple models (like decision trees) where each new model tries to fix the mistakes of the previous ones. The "mistakes" are measured using a **loss function** — which is a statistical concept. The way it finds the best split in a tree? **Variance reduction** — another statistical concept.
+At its core, it's fitting a sequence of simple models (like decision trees) where each new model tries to fix the mistakes of the previous ones. The "mistakes" are measured using a **loss function**,which is a statistical concept. The way it finds the best split in a tree? **Variance reduction**,another statistical concept.
 
-Let's see this with the simplest possible model — a straight line:
+Let's see this with the simplest possible model,a straight line:
 
 ```{r}
 #| label: fig-simple-regression
-#| fig-cap: "A simple linear regression — the foundation beneath complex models"
+#| fig-cap: "A simple linear regression,the foundation beneath complex models"
 #| code-fold: true
 #| warning: false
 
@@ -71,7 +71,7 @@ abline(model$coefficients[1] / 1000, model$coefficients[2] / 1000,
        col = "#e94560", lwd = 3)
 ```
 
-That red line? That's `y = mx + b` — something you learned in school. It's also the building block of neural networks with millions of parameters. The only difference is scale.
+That red line? That's `y = mx + b`,something you learned in school. It's also the building block of neural networks with millions of parameters. The only difference is scale.
 
 ## What this blog will cover
 
@@ -83,13 +83,13 @@ Over the coming weeks, we'll build your statistical intuition from the ground up
 
 ::: {.callout-tip}
 ## Key Takeaway
-Machine learning is statistics at scale. Understanding the foundations doesn't slow you down — it's what separates someone who uses tools from someone who builds with them.
+Machine learning is statistics at scale. Understanding the foundations doesn't slow you down,it's what separates someone who uses tools from someone who builds with them.
 :::
 
 ## Coming next week
 
-**What Data Actually Is** — types, distributions, and why the shape of your data matters more than the algorithm you choose.
+**What Data Actually Is**,types, distributions, and why the shape of your data matters more than the algorithm you choose.
 
 ---
 
-*Found this useful? Share it with someone who's jumping into ML without the foundations. And follow along — we publish every week.*
+*Found this useful? Share it with someone who's jumping into ML without the foundations. And follow along,we publish every week.*

@@ -79,7 +79,7 @@ G
 ::: {.custom-footer}
 © 2026 Stats Beneath · Built with Quarto & R
 
-[GitHub](https://github.com/godwillA33peo/){.footer-link} · [LinkedIn](https://www.linkedin.com/in/godwill-zulu/){.footer-link}
+[GitHub](https://github.com/godwillA33peo){.footer-link} · [LinkedIn](https://www.linkedin.com/in/godwill-zulu/){.footer-link}
 :::
 
 :::

@@ -10,9 +10,6 @@ website:
   
   # Open Graph / social sharing
   open-graph: true
-  twitter-card:
-    creator: "@drpeo404"
-    site: "@statsbeneath"
   
   navbar:
     background: "#1a1a2e"
@@ -29,9 +26,7 @@ website:
         text: Subscribe
     right:
       - icon: github
-        href: https://github.com/godwillA33peo/
-      - icon: twitter
-        href: https://x.com/drpeo404
+        href: https://github.com/godwillA33peo
       - icon: linkedin
         href: https://www.linkedin.com/in/godwill-zulu/
       - icon: rss
@@ -40,11 +35,9 @@ website:
   page-footer:
     left: "© 2026 Stats Beneath"
     center: "Built with [Quarto](https://quarto.org) & R"
-    right: 
+    right:
       - icon: envelope
         href: mailto:godwillzulu51@gmail.com
-      - icon: twitter
-        href: https://x.com/drpeo404
     background: "#1a1a2e"
 
   search: true

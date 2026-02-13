@@ -43,7 +43,7 @@ My approach is tool-agnostic but principles-first: I believe understanding the s
 I'm always interested in connecting with people working at the intersection of statistics, machine learning, and public health.
 
 ::: {.connect-links}
-- [GitHub](https://github.com/godwillA33peo/) — code, projects, and open-source contributions
+- [GitHub](https://github.com/godwillA33peo) — code, projects, and open-source contributions
 - [LinkedIn](https://www.linkedin.com/in/godwill-zulu/) — professional background and updates
 - [Email](mailto:godwillzulu51@gmail.com) — reach out directly
 :::

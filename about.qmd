@@ -20,7 +20,7 @@ MSc Health Data Science · Bayesian Modelling · Statistical Foundations for ML
 
 I'm a Health Data Science MSc student at the University of Galway, originally from Zimbabwe. I hold a First Class Honours degree in Operations Research and Statistics, and have spent years working as a Monitoring & Evaluation Specialist in the health sector, where I developed a deep appreciation for rigorous data analysis and evidence-based decision making.
 
-In 2023, I was selected for the Ireland Fellows Programme, which brought me to Ireland to pursue advanced studies in health data science. My journey through operations research, public health program evaluation, and now Bayesian statistical modelling has taught me that the real power of data science lies not in knowing which algorithm to run, but in understanding *why* it works.
+In 2025, I was selected for the Ireland Fellows Programme, which brought me to Ireland to pursue advanced studies in health data science. My journey through operations research, public health program evaluation, and now Bayesian statistical modelling has taught me that the real power of data science lies not in knowing which algorithm to run, but in understanding *why* it works.
 
 I created **Stats Beneath** because I've seen too many talented engineers and data scientists skip over the statistical foundations that make machine learning actually work. This blog is my attempt to bridge that gap, explaining one statistical concept at a time, with clarity, intuition, and real-world context.
 

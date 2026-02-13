@@ -1,85 +1,84 @@
 ---
-title: "Stats Beneath"
-page-layout: full
+pagetitle: "Stats Beneath"
 title-block-banner: false
-toc: false
 listing:
-  - id: articles-listing
-    contents: posts
-    sort: "date desc"
-    type: default
-    max-items: 6
-    categories: true
-    fields: [date, title, description, categories]
-    filter-ui: false
-    sort-ui: false
+  id: articles-listing
+  contents: posts
+  sort: "date desc"
+  type: default
+  max-items: 6
+  categories: false
+  fields: [date, title, description, categories]
+  date-format: "MMM D, YYYY"
+page-layout: full
+toc: false
+sidebar: false
 ---
 
 ::: {.hero-section}
-# The statistical *why* behind every ML algorithm
 
-::: {.hero-subtitle}
-For ML engineers and data scientists who want to understand the mathematics driving their models — not just tune the hyperparameters. Intuition first, code second.
+# The statistical [*why*]{.hero-accent} behind every ML algorithm
+
+For ML engineers and data scientists who want to understand the mathematics
+driving their models — not just tune the hyperparameters. Intuition first, code second.
+
+[New article every week.]{.hero-cadence}
+
+::: {.hero-buttons}
+[Browse Articles](archive.html){.btn-primary}
+[Subscribe](#newsletter){.btn-secondary}
 :::
 
-::: {.hero-meta}
-New article every week.
-:::
 :::
 
-::: {.content-wrapper}
+::: {.articles-section}
 
 ## Latest Articles
 
 ::: {#articles-listing}
 :::
 
+:::
+
 ::: {.topics-section}
-## Topics we're building toward
+
+#### Topics we're building toward
 
 ::: {.topic-pills}
-<span class="topic-pill">Bias-Variance Tradeoff</span>
-<span class="topic-pill">PCA & Eigendecomposition</span>
-<span class="topic-pill">Maximum Likelihood</span>
-<span class="topic-pill">Bayesian Inference</span>
-<span class="topic-pill">Hypothesis Testing for ML</span>
-<span class="topic-pill">GLMs</span>
-<span class="topic-pill">Causal Inference</span>
+[Likelihood & MLE]{.topic-pill}
+[Bias-Variance Tradeoff]{.topic-pill}
+[Regularisation as Prior]{.topic-pill}
+[Hypothesis Testing for ML]{.topic-pill}
+[Bayesian Inference]{.topic-pill}
+[PCA & Eigendecomposition]{.topic-pill}
+[GLMs]{.topic-pill}
+[Causal Inference]{.topic-pill}
 :::
+
 :::
 
 ::: {#newsletter .newsletter-section}
-## One statistical concept, explained clearly, every week
+
+### One statistical concept, explained clearly, every week
 
 Join ML engineers and data scientists building the mathematical intuition their bootcamp skipped.
 
 ::: {.newsletter-form}
-<form action="#" method="post" class="subscribe-form">
-  <input type="email" placeholder="Your email address" required class="email-input">
-  <button type="submit" class="subscribe-button">Subscribe</button>
-</form>
-<p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+[Subscribe →](mailto:statsbeneath@gmail.com){.btn-subscribe}
 :::
+
+[No spam. Unsubscribe anytime.]{.newsletter-note}
+
 :::
 
 ::: {.about-teaser}
-::: {.about-teaser-content}
-::: {.avatar-placeholder}
+
+::: {.about-avatar}
 G
 :::
 
 ::: {.about-text}
-**Written by Godwil.** MSc Health Data Science at University of Galway. Background in operations research, Bayesian modelling, and years of applied M&E work. I believe the future of AI depends on engineers who understand the statistics beneath the algorithms.
-
-[Learn more about me →](about.qmd){.about-link}
-:::
-:::
-:::
-
-::: {.custom-footer}
-© 2026 Stats Beneath · Built with Quarto & R
-
-[GitHub](https://github.com/godwillA33peo){.footer-link} · [LinkedIn](https://www.linkedin.com/in/godwill-zulu/){.footer-link}
+**Written by Godwil.** MSc Health Data Science at University of Galway. Background in operations research, Bayesian modelling, and years of applied M&E work in health systems. I believe the future of AI depends on engineers who understand the statistics beneath the algorithms. [More about me →](about.html)
 :::
 
 :::

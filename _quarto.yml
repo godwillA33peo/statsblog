@@ -29,8 +29,8 @@ website:
         href: https://github.com/godwillA33peo
       - icon: linkedin
         href: https://www.linkedin.com/in/godwill-zulu/
-      - icon: rss
-        href: index.xml
+      - text: ""
+        icon: search
 
   page-footer:
     left: "© 2026 Stats Beneath"
@@ -51,7 +51,9 @@ format:
     theme:
       light: cosmo
       dark: darkly
-    css: styles.css
+    css:
+      - styles.css
+      - homepage.css
     toc: true
     toc-title: "On this page"
     toc-depth: 3

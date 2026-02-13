@@ -1,6 +1,6 @@
 ---
 title: "ARTICLE TITLE"
-author: "Godwil"
+author: "Godwill"
 date: "YYYY-MM-DD"
 categories: [CATEGORY1, CATEGORY2]
 description: "One-line hook that makes people want to read this."

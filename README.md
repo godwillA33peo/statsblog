@@ -83,4 +83,4 @@ stats-beneath/
 | 12 | From Regression to ML | machine-learning |
 
 ## License
-Content © 2026 Godwil. Code examples are MIT licensed.
+Content © 2026 Godwill. Code examples are MIT licensed.

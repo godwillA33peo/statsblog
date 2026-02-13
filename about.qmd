@@ -9,7 +9,7 @@ toc: false
 G
 :::
 
-# Godwil Zulu
+# Godwill Zulu
 
 ::: {.about-tagline}
 MSc Health Data Science · Bayesian Modelling · Statistical Foundations for ML

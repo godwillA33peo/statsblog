@@ -1,6 +1,6 @@
 ---
 title: "Why Statistics Matters Before You Touch Machine Learning"
-author: "Godwil"
+author: "Godwill"
 date: "2026-02-10"
 categories: [foundations, machine-learning]
 description: "Everyone wants to build AI. But the real superpower isn't knowing which algorithm to use,it's understanding why it works."

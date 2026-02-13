@@ -78,7 +78,7 @@ G
 :::
 
 ::: {.about-text}
-**Written by Godwil.** MSc Health Data Science at University of Galway. Background in operations research, Bayesian modelling, and years of applied M&E work in health systems. I believe the future of AI depends on engineers who understand the statistics beneath the algorithms. [More about me →](about.html)
+**Written by Godwill.** MSc Health Data Science at University of Galway. Background in operations research, Bayesian modelling, and years of applied M&E work in health systems. I believe the future of AI depends on engineers who understand the statistics beneath the algorithms. [More about me →](about.html)
 :::
 
 :::

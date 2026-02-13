@@ -23,16 +23,10 @@ website:
         text: Home
       - href: archive.qmd
         text: Articles
-      - href: learning-path.qmd
-        text: "Learning Path"
-      - href: cheatsheets.qmd
-        text: "Cheat Sheets"
-      - href: did-you-know.qmd
-        text: "Did You Know?"
-      - href: resources.qmd
-        text: Resources
       - href: about.qmd
         text: About
+      - href: "#newsletter"
+        text: Subscribe
     right:
       - icon: github
         href: https://github.com/godwillA33peo/

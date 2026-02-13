@@ -1,0 +1,187 @@
+---
+title: "Random Variables and Distributions: What Your Data Actually Is"
+description: "Your dataset isn't just numbers in a CSV. It's a realisation of random variables drawn from an unknown distribution. Until you understand that, every model you build is a guess about a process you haven't described."
+author: "Godwill"
+date: "2026-02-13"
+categories: [foundations, probability]
+image: "thumbnail.png"
+draft: false
+---
+
+## Your data has a secret life
+
+Open any ML tutorial. Step one is always the same: load the data. `pd.read_csv('data.csv')`. You get a DataFrame. Rows and columns. Numbers.
+
+And then you do things to those numbers. Scale them. Split them. Feed them to a model. Tune hyperparameters. Evaluate. Ship.
+
+But here's the question almost nobody stops to ask: **where did those numbers come from?**
+
+Not "which API" or "which database." I mean: what *process* generated them? Is each row independent of the others? Could the values have turned out differently if you'd collected data on a different day? If you collected more data tomorrow, would the new rows look like the old ones?
+
+These aren't philosophical questions. They're statistical ones. And your answers to them --- whether you state them explicitly or not --- determine whether your model's predictions mean anything at all.
+
+The language for thinking about this clearly is **random variables** and **probability distributions.** If you've seen these terms in a textbook and moved on, I'd like to show you why they're not abstract theory --- they're the precise description of what your data *is* and what your model is *trying to learn*.
+
+## A random variable is a question, not an answer
+
+Here's the definition you'll find everywhere: *a random variable is a function that maps outcomes from a sample space to real numbers.* 
+
+That's technically correct and practically useless. Let me give you a better one.
+
+**A random variable is a numerical quantity whose value hasn't been determined yet.**
+
+Before you observe your data, you don't know what values you'll get. Will this patient's blood pressure be 120 or 145? Will this customer churn or stay? Will this image contain a cat? You don't know. But you know the *kind* of values that are possible, and you may have beliefs about which values are more likely.
+
+That's what a random variable captures: the space of possible values and their relative likelihoods, *before* you observe anything.
+
+Once you observe a value --- once the patient's blood pressure reads 132 --- that's no longer a random variable. It's a **realisation**. A data point. One draw from the underlying random process.
+
+**Your entire dataset is a collection of realisations.** Each row in your DataFrame was, before you observed it, a random variable. Now it's a fixed number. But the process that generated it is still out there, and it could generate different numbers tomorrow.
+
+This is why it matters: your model isn't trying to memorise your specific 10,000 rows. It's trying to learn the *process* that generated them, so it can make predictions about rows it hasn't seen yet. You can't do that without thinking about your data as draws from something larger.
+
+### The notation
+
+Statisticians use uppercase letters for random variables and lowercase for their observed values:
+
+- $X$ = the random variable (the question: "what will this patient's blood pressure be?")
+- $x$ = an observed value, a realisation (the answer: 132)
+
+When we write $X = x$, we mean "the random variable $X$ took the value $x$." When we write $P(X = x)$, we mean "the probability that $X$ takes the value $x$."
+
+This isn't pedantry. The distinction between $X$ and $x$ is the distinction between the process and the data. Confusing them is how you end up overfitting.
+
+## Distributions: the shape of uncertainty
+
+If a random variable describes *what could happen*, a probability distribution describes *how likely each possibility is.*
+
+Think of it as a contract. Before you observe any data, the distribution tells you: "Here are all the possible values, and here's the relative chance of each one."
+
+There are two flavours, depending on whether the random variable takes countable values or values on a continuum.
+
+### Discrete distributions: counting outcomes
+
+A **discrete** random variable takes values you can list: 0, 1, 2, 3, ... or {cat, dog, bird}. The probability of each value is given by a **probability mass function (PMF)**:
+
+$$P(X = x) = p(x)$$
+
+with two rules: every probability is between 0 and 1, and they all add up to 1.
+
+**The Bernoulli distribution** is the simplest possible distribution. A single trial. Two outcomes. Probability $p$ of success, $1-p$ of failure.
+
+$$X \sim \text{Bernoulli}(p), \quad P(X=1) = p, \quad P(X=0) = 1-p$$
+
+Every binary classification target in your dataset follows a Bernoulli distribution. When your logistic regression outputs $\hat{p} = 0.73$, it's estimating the parameter of a Bernoulli distribution. That's literally what it's doing --- fitting $p$.
+
+**The Binomial distribution** counts the number of successes in $n$ independent Bernoulli trials:
+
+$$X \sim \text{Binomial}(n, p), \quad P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}$$
+
+If you flip a coin 100 times, the number of heads is Binomial. If you classify 100 samples and count the correct ones, the number correct is Binomial (under independence). This is why your model's accuracy has a sampling distribution --- it's not a fixed number, it's a draw from a Binomial.
+
+**The Poisson distribution** models the count of events in a fixed interval when events happen at a constant average rate:
+
+$$X \sim \text{Poisson}(\lambda), \quad P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}$$
+
+Server requests per minute. Customer complaints per day. Gene mutations per chromosome. Any time you're modelling "how many times does something happen," you're probably looking at Poisson data.
+
+### Continuous distributions: measuring on a continuum
+
+A **continuous** random variable takes values on the real line (or an interval). You can't list all possible values, so you can't assign a probability to any single value --- $P(X = 1.23456789...) = 0$ for any specific number.
+
+Instead, you describe probabilities over *intervals* using a **probability density function (PDF)**:
+
+$$P(a \leq X \leq b) = \int_a^b f(x)\,dx$$
+
+The PDF $f(x)$ tells you how densely the probability is packed around each value. It's not a probability itself --- it can be greater than 1 --- but the area under the curve over any interval gives you a probability.
+
+**The Normal (Gaussian) distribution** is the one you know:
+
+$$X \sim \mathcal{N}(\mu, \sigma^2), \quad f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)$$
+
+Two parameters: $\mu$ (the centre) and $\sigma^2$ (the spread). It shows up everywhere, and there's a deep reason for that --- the Central Limit Theorem, which we'll cover in a future article.
+
+But here's what matters for ML: **when you assume your regression errors are normally distributed, you're saying the residuals follow this specific shape.** That's not a trivial assumption. It determines your loss function (MSE corresponds to Gaussian errors), your confidence intervals, and your hypothesis tests. If the assumption is wrong, all of those break.
+
+**The Uniform distribution** assigns equal probability to all values in an interval:
+
+$$X \sim \text{Uniform}(a, b), \quad f(x) = \frac{1}{b-a} \quad \text{for } a \leq x \leq b$$
+
+This is the distribution of "I have no idea what value to expect." When you initialise neural network weights uniformly, you're sampling from this distribution. When you use random search for hyperparameter tuning, you're drawing from it. It's the mathematical formalisation of ignorance.
+
+## The CDF: the cumulative view
+
+The **cumulative distribution function (CDF)** gives the probability that $X$ is less than or equal to a value:
+
+$$F(x) = P(X \leq x)$$
+
+For discrete random variables, the CDF is a step function. For continuous ones, it's a smooth curve from 0 to 1. The CDF always exists, even when the PDF doesn't (for discrete variables), which makes it the more fundamental object.
+
+Why should you care? Because when you compute a percentile, a quantile, or a p-value, you're using the CDF. When you say "this patient's blood pressure is in the 95th percentile," you're saying $F(x) = 0.95$.
+
+## The connection to ML you probably missed
+
+Here's where everything clicks.
+
+**Every supervised learning problem is an attempt to learn a conditional distribution.**
+
+When you fit a regression model, you're estimating:
+
+$$P(Y \mid X) = \text{some distribution parameterised by } X$$
+
+For linear regression with Gaussian errors, this is:
+
+$$Y \mid X \sim \mathcal{N}(X\beta, \sigma^2)$$
+
+For logistic regression:
+
+$$Y \mid X \sim \text{Bernoulli}(\sigma(X\beta))$$
+
+For Poisson regression:
+
+$$Y \mid X \sim \text{Poisson}(\exp(X\beta))$$
+
+In each case, $X$ (the features) determine the *parameters* of the distribution, and $Y$ (the target) is a random draw from that distribution. The model doesn't predict $Y$ directly --- it predicts the *distribution* of $Y$, and the point prediction is just a summary (usually the mean).
+
+This is why understanding distributions isn't optional for ML. You're fitting them whether you know it or not. `sklearn` just hides it from you.
+
+### The loss function is the distribution
+
+This connection goes even deeper. Your choice of loss function implicitly assumes a distribution:
+
+| Loss Function | Implicit Distribution | Link |
+|:--|:--|:--|
+| Mean Squared Error | Normal (Gaussian) | Identity |
+| Cross-Entropy | Bernoulli / Categorical | Logit / Softmax |
+| Poisson Deviance | Poisson | Log |
+| Huber Loss | A compromise: Normal near 0, Laplace in the tails | --- |
+
+When you minimise MSE, you're doing maximum likelihood estimation under the assumption that your errors are Gaussian. When you minimise cross-entropy, you're doing MLE under the assumption that your targets are Bernoulli. 
+
+If you've ever wondered "why MSE for regression and cross-entropy for classification?" --- this is the answer. It's not arbitrary. Each loss function is *derived from* a distributional assumption about the target variable. We'll make this precise when we cover likelihood in a future article.
+
+## What this means in practice
+
+Understanding random variables and distributions gives you three practical superpowers:
+
+**1. You can diagnose model failures.** If your regression residuals aren't approximately normal, MSE might not be the right loss. If your count data has more zeros than Poisson allows, you need a zero-inflated model. If your binary classifier's predicted probabilities don't match observed frequencies, it's miscalibrated. All of these diagnoses require understanding the distributional assumptions you've made.
+
+**2. You can quantify uncertainty.** A prediction of $\hat{y} = 42$ is useless without knowing how confident you are. If you know the distribution, you can compute prediction intervals, confidence intervals, and posterior distributions. Without it, you're flying blind.
+
+**3. You can choose the right model.** Gaussian targets → linear regression (or ridge, lasso). Binary targets → logistic regression. Count targets → Poisson regression. Skewed positive targets → Gamma regression. Bounded proportions → Beta regression. The distribution of your target variable *tells you* which model family to use.
+
+## The mental model to take away
+
+Here's the shift I want you to make:
+
+**Before:** "I have data in a CSV. I'll fit a model to it."
+
+**After:** "My data is a sample of realisations from an unknown data-generating process. My model is a hypothesis about what that process looks like. Training is estimating the parameters of that process. Evaluation is checking whether my hypothesis is consistent with new realisations."
+
+That second framing is what statistics gives you. It's more precise, more honest, and it leads to better models.
+
+Next week, we'll build on this foundation. You now know that your data comes from distributions and your models estimate distributions. But what exactly are you estimating when you compute a mean, a variance, or a loss? That's the world of **expected values** --- and it turns out your loss function is one.
+
+---
+
+*This is article 2 of [Stats Beneath](https://statsbeneath.com), a weekly series on the statistical foundations of machine learning. [Subscribe](/) to get each article when it's published.*

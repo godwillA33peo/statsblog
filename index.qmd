@@ -1,85 +1,85 @@
 ---
 title: "Stats Beneath"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  feed: true
-  page-size: 5
 page-layout: full
 title-block-banner: false
 toc: false
+listing:
+  - id: articles-listing
+    contents: posts
+    sort: "date desc"
+    type: default
+    max-items: 6
+    categories: true
+    fields: [date, title, description, categories]
+    filter-ui: false
+    sort-ui: false
 ---
 
-::: {.hero-banner}
+::: {.hero-section}
+# The statistical *why* behind every ML algorithm
 
-# Stats Beneath
-
-::: {.subtitle}
-Statistics simplified — understanding the foundations that power AI, machine learning, and data science.
+::: {.hero-subtitle}
+For ML engineers and data scientists who want to understand the mathematics driving their models — not just tune the hyperparameters. Intuition first, code second.
 :::
 
-::: {.tagline}
-New article every week
-:::
-
-:::
-
-::: {.fun-fact-card}
-::: {.fact-label}
-Did you know?
-:::
-80% of a data scientist's time is spent cleaning and organising data — not building models. The glamorous algorithm stuff? That's just the tip of the iceberg. The real skill is in understanding your data first.
-:::
-
-::: {.stat-grid}
-
-::: {.stat-card}
-::: {.stat-number}
-149 ZB
-:::
-::: {.stat-label}
-Data created globally in 2024 — and growing fast
+::: {.hero-meta}
+New article every week.
 :::
 :::
 
-::: {.stat-card}
-::: {.stat-number}
-1763
-:::
-::: {.stat-label}
-Year Bayes' Theorem was published — still powering AI today
-:::
-:::
-
-::: {.stat-card}
-::: {.stat-number}
-70%
-:::
-::: {.stat-label}
-Of data science projects fail — often from poor statistical foundations
-:::
-:::
-
-::: {.stat-card}
-::: {.stat-number}
-37 sec
-:::
-::: {.stat-label}
-Average time a reader spends on a blog post — we'll make yours count
-:::
-:::
-
-:::
+::: {.content-wrapper}
 
 ## Latest Articles
 
-Each week, we break down one statistical concept with real-world analogies, clear visuals, and optional R code. No jargon walls. No assumptions about your background.
+::: {#articles-listing}
+:::
 
-::: {.newsletter-box}
-### Stay in the loop
-One email per week. One concept explained simply. No spam, no fluff.
+::: {.topics-section}
+## Topics we're building toward
 
-[Subscribe →](#){.btn-subscribe}
+::: {.topic-pills}
+<span class="topic-pill">Bias-Variance Tradeoff</span>
+<span class="topic-pill">PCA & Eigendecomposition</span>
+<span class="topic-pill">Maximum Likelihood</span>
+<span class="topic-pill">Bayesian Inference</span>
+<span class="topic-pill">Hypothesis Testing for ML</span>
+<span class="topic-pill">GLMs</span>
+<span class="topic-pill">Causal Inference</span>
+:::
+:::
+
+::: {#newsletter .newsletter-section}
+## One statistical concept, explained clearly, every week
+
+Join ML engineers and data scientists building the mathematical intuition their bootcamp skipped.
+
+::: {.newsletter-form}
+<form action="#" method="post" class="subscribe-form">
+  <input type="email" placeholder="Your email address" required class="email-input">
+  <button type="submit" class="subscribe-button">Subscribe</button>
+</form>
+<p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+:::
+:::
+
+::: {.about-teaser}
+::: {.about-teaser-content}
+::: {.avatar-placeholder}
+G
+:::
+
+::: {.about-text}
+**Written by Godwil.** MSc Health Data Science at University of Galway. Background in operations research, Bayesian modelling, and years of applied M&E work. I believe the future of AI depends on engineers who understand the statistics beneath the algorithms.
+
+[Learn more about me →](about.qmd){.about-link}
+:::
+:::
+:::
+
+::: {.custom-footer}
+© 2026 Stats Beneath · Built with Quarto & R
+
+[GitHub](https://github.com/godwillA33peo/){.footer-link} · [LinkedIn](https://www.linkedin.com/in/godwill-zulu/){.footer-link}
+:::
+
 :::

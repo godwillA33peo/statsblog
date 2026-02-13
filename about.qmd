@@ -1,38 +1,53 @@
 ---
 title: "About"
-image: images/profile.jpg
-about:
-  template: jolla
-  links:
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/godwill-zulu/
-    - icon: github
-      text: GitHub
-      href: https://github.com/godwillA33peo
-    - icon: envelope
-      text: Email
-      href: mailto:godwillzulu51@gmail.com
+page-layout: article
+toc: false
 ---
 
-## Hi, I'm Godwill
+::: {.about-header}
+::: {.about-avatar}
+G
+:::
 
-I'm a Health Data Science MSc student at the University of Galway, with a background in Operations Research and Statistics. I've worked as a Monitoring & Evaluation Specialist in public health and currently spend my days fitting Bayesian models and wrangling survey data.
+# Godwil Zulu
 
-### Why this blog?
+::: {.about-tagline}
+MSc Health Data Science · Bayesian Modelling · Statistical Foundations for ML
+:::
+:::
 
-I've noticed something in the rush toward AI and machine learning: people want to run the algorithms but skip understanding *why* they work. The matrix algebra, the probability theory, the regression foundations, these aren't just academic hurdles. They're the difference between someone who uses tools and someone who understands them.
+## About me
 
-**Stats Beneath** is my attempt to bridge that gap. Each week, I take one statistical concept and explain it the way I wish it had been explained to me, with real-world analogies, clear visuals, and zero unnecessary jargon.
+I'm a Health Data Science MSc student at the University of Galway, originally from Zimbabwe. I hold a First Class Honours degree in Operations Research and Statistics, and have spent years working as a Monitoring & Evaluation Specialist in the health sector, where I developed a deep appreciation for rigorous data analysis and evidence-based decision making.
 
-### My approach
+In 2023, I was selected for the Ireland Fellows Programme, which brought me to Ireland to pursue advanced studies in health data science. My journey through operations research, public health program evaluation, and now Bayesian statistical modelling has taught me that the real power of data science lies not in knowing which algorithm to run, but in understanding *why* it works.
 
-Every article follows a simple structure:
+I created **Stats Beneath** because I've seen too many talented engineers and data scientists skip over the statistical foundations that make machine learning actually work. This blog is my attempt to bridge that gap — explaining one statistical concept at a time, with clarity, intuition, and real-world context.
 
-1. **The real-world hook** - why should you care?
-2. **The intuition** - what's actually going on, in plain language
-3. **The visual** - a plot or diagram that makes it click
-4. **The code** (optional) - simple R examples for those who want hands-on practice
-5. **The takeaway** - one sentence you'll remember
+## What I'm working on
 
-If you find these useful, share them with someone who thinks statistics is scary. It doesn't have to be.
+**MSc Thesis**: I'm currently working on small area estimation for malaria prevalence in Ghana using Bayesian hierarchical models. Specifically, I'm implementing BYM2 and ICAR spatial models in Stan to produce district-level prevalence estimates from survey data. This work combines my interests in public health, spatial statistics, and Bayesian inference.
+
+**Stats Beneath**: This blog, where I publish weekly deep dives into the statistical concepts that power machine learning and AI. Each article starts with intuition, builds to mathematical understanding, and ends with practical takeaways.
+
+**Bayesian Explorer**: An interactive Shiny application I built to help students and practitioners develop intuition for Bayesian concepts. It visualizes prior-likelihood-posterior relationships and lets you explore how different priors affect inference in real-time. [Try it here →](https://godwil.shinyapps.io/bayesian-explorer/)
+
+## Technical skills
+
+I work primarily in **R** for statistical analysis and modeling, using **Stan** and **JAGS** for Bayesian inference. I build interactive tools with **Shiny**, write and publish technical content with **Quarto**, and handle version control with **Git**. I also use **Python** for machine learning workflows and have experience with geospatial analysis (spatial statistics, mapping, GIS workflows).
+
+My approach is tool-agnostic but principles-first: I believe understanding the statistical foundations makes you better at choosing the right tool for the job.
+
+## Connect
+
+I'm always interested in connecting with people working at the intersection of statistics, machine learning, and public health.
+
+::: {.connect-links}
+- [GitHub](https://github.com/godwillA33peo/) — code, projects, and open-source contributions
+- [LinkedIn](https://www.linkedin.com/in/godwill-zulu/) — professional background and updates
+- [Email](mailto:godwillzulu51@gmail.com) — reach out directly
+:::
+
+---
+
+*This site is built with [Quarto](https://quarto.org) and deployed on GitHub Pages. All content is written in R Markdown and rendered to HTML. The source code is available on GitHub.*

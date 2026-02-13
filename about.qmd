@@ -30,7 +30,7 @@ I created **Stats Beneath** because I've seen too many talented engineers and da
 
 **Stats Beneath**: This blog, where I publish weekly deep dives into the statistical concepts that power machine learning and AI. Each article starts with intuition, builds to mathematical understanding, and ends with practical takeaways.
 
-**Bayesian Explorer**: An interactive Shiny application I built to help students and practitioners develop intuition for Bayesian concepts. It visualizes prior-likelihood-posterior relationships and lets you explore how different priors affect inference in real-time. [Try it here →](https://godwil.shinyapps.io/bayesian-explorer/)
+**Bayesian Explorer**: An interactive Shiny application I built to help students and practitioners develop intuition for Bayesian concepts. It visualizes prior-likelihood-posterior relationships and lets you explore how different priors affect inference in real-time. [Try it here →](https://ckisxn-godwill-zulu.shinyapps.io/bayesian-explorer/)
 
 ## Technical skills
 

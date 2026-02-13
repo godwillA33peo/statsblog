@@ -1,143 +1,73 @@
 [
   {
-    "objectID": "updates/INSTRUCTIONS.html",
-    "href": "updates/INSTRUCTIONS.html",
-    "title": "Stats Beneath Homepage Redesign — Instructions",
+    "objectID": "posts/02-random-variables-distributions/index.html",
+    "href": "posts/02-random-variables-distributions/index.html",
+    "title": "Random Variables and Distributions: What Your Data Actually Is",
     "section": "",
-    "text": "You have 2 files to apply from the updates folder:\n\nindex.qmd — Replaces your current homepage. Uses page-layout: full and sidebar: false to suppress the default Quarto title block, author label, and categories sidebar. The hero section is the first thing visitors see.\nhomepage.css — Custom styles for the hero, articles listing, topics pills, newsletter CTA, and about teaser. Designed to work with your existing dark theme.\n\n\n\n\n\n\ncp index.qmd index.qmd.bak\n\n\n\nCopy the new index.qmd into your project root, replacing the existing one.\n\n\n\nCopy homepage.css into your project root (or wherever your other CSS files live).\n\n\n\nIn your _quarto.yml, under format: html:, add homepage.css to your css list. For example, if you currently have:\nformat:\n  html:\n    theme: darkly  # or whatever theme you use\n    css: styles.css\nChange it to:\nformat:\n  html:\n    theme: darkly\n    css:\n      - styles.css\n      - homepage.css\nIf you don’t have a css field yet, just add one.\n\n\n\nIn _quarto.yml, under website: navbar:, reduce the right-side icons to just GitHub, LinkedIn, and the search tool. Remove Twitter, RSS, and the eye/preview icon.\nExample:\nwebsite:\n  navbar:\n    right:\n      - icon: github\n        href: https://github.com/godwillA33peo\n      - icon: linkedin\n        href: ttps://www.linkedin.com/in/godwill-zulu/ \n      - text: \"\"\n        icon: search\n\n\n\nquarto preview\n\n\n\nquarto render\ngit add -A\ngit commit -m \"Homepage redesign: hero-first, no sidebar/counters\"\ngit push\n\n\n\n\n\n\n\n\n\n\n\nBefore\nAfter\n\n\n\n\n“Stats Beneath” title + “AUTHOR: Godwill” above hero\nSuppressed — site name is already in nav\n\n\nCategories sidebar (right column)\nRemoved — not useful with &lt;5 articles\n\n\nStats counters (149 ZB, 1763, etc.)\nRemoved\n\n\n“Did You Know?” section\nRemoved\n\n\nArticle listing below lots of decoration\nArticle listing directly after hero\n\n\n6 social icons in nav\n3 (GitHub, LinkedIn, Search)\n\n\nGreen hero banner below wasted space\nGreen hero banner is first content element\n\n\n\n\n\n\nCategories sidebar still shows: Make sure sidebar: false and categories: false are in the YAML front matter. Also check that homepage.css is loaded (the CSS has display: none !important rules for sidebar elements as a fallback).\nTitle block still shows: The title-block-banner: false and absence of a title: field (we use pagetitle: instead) should suppress it. If it still appears, add this to your _quarto.yml under the page or format section:\ntitle-block-style: none\nListing shows no articles: Make sure your posts are in a /posts directory and each has draft: false (or no draft field) in the YAML front matter.\nCSS not applying: Check the browser dev tools console for 404 errors on homepage.css. Make sure the path in _quarto.yml matches where you placed the file."
+    "text": "Open any ML tutorial. Step one is always the same: load the data. pd.read_csv('data.csv'). You get a DataFrame. Rows and columns. Numbers.\nAnd then you do things to those numbers. Scale them. Split them. Feed them to a model. Tune hyperparameters. Evaluate. Ship.\nBut here’s the question almost nobody stops to ask: where did those numbers come from?\nNot “which API” or “which database.” I mean: what process generated them? Is each row independent of the others? Could the values have turned out differently if you’d collected data on a different day? If you collected more data tomorrow, would the new rows look like the old ones?\nThese aren’t philosophical questions. They’re statistical ones. And your answers to them,whether you state them explicitly or not,determine whether your model’s predictions mean anything at all.\nThe language for thinking about this clearly is random variables and probability distributions. If you’ve seen these terms in a textbook and moved on, I’d like to show you why they’re not abstract theory,they’re the precise description of what your data is and what your model is trying to learn."
   },
   {
-    "objectID": "updates/INSTRUCTIONS.html#what-these-files-do",
-    "href": "updates/INSTRUCTIONS.html#what-these-files-do",
-    "title": "Stats Beneath Homepage Redesign — Instructions",
+    "objectID": "posts/02-random-variables-distributions/index.html#your-data-has-a-secret-life",
+    "href": "posts/02-random-variables-distributions/index.html#your-data-has-a-secret-life",
+    "title": "Random Variables and Distributions: What Your Data Actually Is",
     "section": "",
-    "text": "You have 2 files to apply from the updates folder:\n\nindex.qmd — Replaces your current homepage. Uses page-layout: full and sidebar: false to suppress the default Quarto title block, author label, and categories sidebar. The hero section is the first thing visitors see.\nhomepage.css — Custom styles for the hero, articles listing, topics pills, newsletter CTA, and about teaser. Designed to work with your existing dark theme."
+    "text": "Open any ML tutorial. Step one is always the same: load the data. pd.read_csv('data.csv'). You get a DataFrame. Rows and columns. Numbers.\nAnd then you do things to those numbers. Scale them. Split them. Feed them to a model. Tune hyperparameters. Evaluate. Ship.\nBut here’s the question almost nobody stops to ask: where did those numbers come from?\nNot “which API” or “which database.” I mean: what process generated them? Is each row independent of the others? Could the values have turned out differently if you’d collected data on a different day? If you collected more data tomorrow, would the new rows look like the old ones?\nThese aren’t philosophical questions. They’re statistical ones. And your answers to them,whether you state them explicitly or not,determine whether your model’s predictions mean anything at all.\nThe language for thinking about this clearly is random variables and probability distributions. If you’ve seen these terms in a textbook and moved on, I’d like to show you why they’re not abstract theory,they’re the precise description of what your data is and what your model is trying to learn."
   },
   {
-    "objectID": "updates/INSTRUCTIONS.html#step-by-step",
-    "href": "updates/INSTRUCTIONS.html#step-by-step",
-    "title": "Stats Beneath Homepage Redesign — Instructions",
-    "section": "",
-    "text": "cp index.qmd index.qmd.bak\n\n\n\nCopy the new index.qmd into your project root, replacing the existing one.\n\n\n\nCopy homepage.css into your project root (or wherever your other CSS files live).\n\n\n\nIn your _quarto.yml, under format: html:, add homepage.css to your css list. For example, if you currently have:\nformat:\n  html:\n    theme: darkly  # or whatever theme you use\n    css: styles.css\nChange it to:\nformat:\n  html:\n    theme: darkly\n    css:\n      - styles.css\n      - homepage.css\nIf you don’t have a css field yet, just add one.\n\n\n\nIn _quarto.yml, under website: navbar:, reduce the right-side icons to just GitHub, LinkedIn, and the search tool. Remove Twitter, RSS, and the eye/preview icon.\nExample:\nwebsite:\n  navbar:\n    right:\n      - icon: github\n        href: https://github.com/godwillA33peo\n      - icon: linkedin\n        href: ttps://www.linkedin.com/in/godwill-zulu/ \n      - text: \"\"\n        icon: search\n\n\n\nquarto preview\n\n\n\nquarto render\ngit add -A\ngit commit -m \"Homepage redesign: hero-first, no sidebar/counters\"\ngit push"
+    "objectID": "posts/02-random-variables-distributions/index.html#a-random-variable-is-a-question-not-an-answer",
+    "href": "posts/02-random-variables-distributions/index.html#a-random-variable-is-a-question-not-an-answer",
+    "title": "Random Variables and Distributions: What Your Data Actually Is",
+    "section": "A random variable is a question, not an answer",
+    "text": "A random variable is a question, not an answer\nHere’s the definition you’ll find everywhere: a random variable is a function that maps outcomes from a sample space to real numbers.\nThat’s technically correct and practically useless. Let me give you a better one.\nA random variable is a numerical quantity whose value hasn’t been determined yet.\nBefore you observe your data, you don’t know what values you’ll get. Will this patient’s blood pressure be 120 or 145? Will this customer churn or stay? Will this image contain a cat? You don’t know. But you know the kind of values that are possible, and you may have beliefs about which values are more likely.\nThat’s what a random variable captures: the space of possible values and their relative likelihoods, before you observe anything.\nOnce you observe a value,once the patient’s blood pressure reads 132,that’s no longer a random variable. It’s a realisation. A data point. One draw from the underlying random process.\nYour entire dataset is a collection of realisations. Each row in your DataFrame was, before you observed it, a random variable. Now it’s a fixed number. But the process that generated it is still out there, and it could generate different numbers tomorrow.\nThis is why it matters: your model isn’t trying to memorise your specific 10,000 rows. It’s trying to learn the process that generated them, so it can make predictions about rows it hasn’t seen yet. You can’t do that without thinking about your data as draws from something larger.\n\nThe notation\nStatisticians use uppercase letters for random variables and lowercase for their observed values:\n\n\\(X\\) = the random variable (the question: “what will this patient’s blood pressure be?”)\n\\(x\\) = an observed value, a realisation (the answer: 132)\n\nWhen we write \\(X = x\\), we mean “the random variable \\(X\\) took the value \\(x\\).” When we write \\(P(X = x)\\), we mean “the probability that \\(X\\) takes the value \\(x\\).”\nThis isn’t pedantry. The distinction between \\(X\\) and \\(x\\) is the distinction between the process and the data. Confusing them is how you end up overfitting."
   },
   {
-    "objectID": "updates/INSTRUCTIONS.html#what-changed-vs.-the-old-homepage",
-    "href": "updates/INSTRUCTIONS.html#what-changed-vs.-the-old-homepage",
-    "title": "Stats Beneath Homepage Redesign — Instructions",
-    "section": "",
-    "text": "Before\nAfter\n\n\n\n\n“Stats Beneath” title + “AUTHOR: Godwill” above hero\nSuppressed — site name is already in nav\n\n\nCategories sidebar (right column)\nRemoved — not useful with &lt;5 articles\n\n\nStats counters (149 ZB, 1763, etc.)\nRemoved\n\n\n“Did You Know?” section\nRemoved\n\n\nArticle listing below lots of decoration\nArticle listing directly after hero\n\n\n6 social icons in nav\n3 (GitHub, LinkedIn, Search)\n\n\nGreen hero banner below wasted space\nGreen hero banner is first content element"
+    "objectID": "posts/02-random-variables-distributions/index.html#distributions-the-shape-of-uncertainty",
+    "href": "posts/02-random-variables-distributions/index.html#distributions-the-shape-of-uncertainty",
+    "title": "Random Variables and Distributions: What Your Data Actually Is",
+    "section": "Distributions: the shape of uncertainty",
+    "text": "Distributions: the shape of uncertainty\nIf a random variable describes what could happen, a probability distribution describes how likely each possibility is.\nThink of it as a contract. Before you observe any data, the distribution tells you: “Here are all the possible values, and here’s the relative chance of each one.”\nThere are two flavours, depending on whether the random variable takes countable values or values on a continuum.\n\nDiscrete distributions: counting outcomes\nA discrete random variable takes values you can list: 0, 1, 2, 3, … or {cat, dog, bird}. The probability of each value is given by a probability mass function (PMF):\n\\[P(X = x) = p(x)\\]\nwith two rules: every probability is between 0 and 1, and they all add up to 1.\nThe Bernoulli distribution is the simplest possible distribution. A single trial. Two outcomes. Probability \\(p\\) of success, \\(1-p\\) of failure.\n\\[X \\sim \\text{Bernoulli}(p), \\quad P(X=1) = p, \\quad P(X=0) = 1-p\\]\nEvery binary classification target in your dataset follows a Bernoulli distribution. When your logistic regression outputs \\(\\hat{p} = 0.73\\), it’s estimating the parameter of a Bernoulli distribution. That’s literally what it’s doing,fitting \\(p\\).\nThe Binomial distribution counts the number of successes in \\(n\\) independent Bernoulli trials:\n\\[X \\sim \\text{Binomial}(n, p), \\quad P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}\\]\nIf you flip a coin 100 times, the number of heads is Binomial. If you classify 100 samples and count the correct ones, the number correct is Binomial (under independence). This is why your model’s accuracy has a sampling distribution,it’s not a fixed number, it’s a draw from a Binomial.\nThe Poisson distribution models the count of events in a fixed interval when events happen at a constant average rate:\n\\[X \\sim \\text{Poisson}(\\lambda), \\quad P(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}\\]\nServer requests per minute. Customer complaints per day. Gene mutations per chromosome. Any time you’re modelling “how many times does something happen,” you’re probably looking at Poisson data.\n\n\nThese distributions are a family\nYou might have noticed something. The Bernoulli is a single yes/no trial. The Binomial counts how many yes’s you get across \\(n\\) independent Bernoulli trials. The Poisson emerges when \\(n\\) gets very large and \\(p\\) gets very small, but the expected count \\(np = \\lambda\\) stays fixed, it’s the limiting case of the Binomial for rare events. These aren’t three unrelated distributions. They’re connected, each one building on the last.\nIt goes deeper than that. The Normal distribution also connects to the Binomial, as \\(n\\) grows, the Binomial converges to a Normal (that’s the Central Limit Theorem at work). And all of these distributions, Bernoulli, Binomial, Poisson, Normal, and several others, belong to a single mathematical family called the exponential family, which turns out to be the foundation of generalised linear models (GLMs). We’ll explore these connections properly in a future article. For now, just know that when you learn one distribution, you’re not learning an isolated fact, you’re learning a node in a network.\n\n\nContinuous distributions: measuring on a continuum\nA continuous random variable takes values on the real line (or an interval). You can’t list all possible values, so you can’t assign a probability to any single value,\\(P(X = 1.23456789...) = 0\\) for any specific number.\nInstead, you describe probabilities over intervals using a probability density function (PDF):\n\\[P(a \\leq X \\leq b) = \\int_a^b f(x)\\,dx\\]\nThe PDF \\(f(x)\\) tells you how densely the probability is packed around each value. It’s not a probability itself,it can be greater than 1,but the area under the curve over any interval gives you a probability.\nThe Normal (Gaussian) distribution is the one you know:\n\\[X \\sim \\mathcal{N}(\\mu, \\sigma^2), \\quad f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\\left(-\\frac{(x - \\mu)^2}{2\\sigma^2}\\right)\\]\nTwo parameters: \\(\\mu\\) (the centre) and \\(\\sigma^2\\) (the spread). It shows up everywhere, and there’s a deep reason for that,the Central Limit Theorem, which we’ll cover in a future article.\nBut here’s what matters for ML: when you assume your regression errors are normally distributed, you’re saying the residuals follow this specific shape. That’s not a trivial assumption. It determines your loss function (MSE corresponds to Gaussian errors), your confidence intervals, and your hypothesis tests. If the assumption is wrong, all of those break.\nThe Uniform distribution assigns equal probability to all values in an interval:\n\\[X \\sim \\text{Uniform}(a, b), \\quad f(x) = \\frac{1}{b-a} \\quad \\text{for } a \\leq x \\leq b\\]\nThis is the distribution of “I have no idea what value to expect.” When you initialise neural network weights uniformly, you’re sampling from this distribution. When you use random search for hyperparameter tuning, you’re drawing from it. It’s the mathematical formalisation of ignorance."
   },
   {
-    "objectID": "updates/INSTRUCTIONS.html#troubleshooting",
-    "href": "updates/INSTRUCTIONS.html#troubleshooting",
-    "title": "Stats Beneath Homepage Redesign — Instructions",
-    "section": "",
-    "text": "Categories sidebar still shows: Make sure sidebar: false and categories: false are in the YAML front matter. Also check that homepage.css is loaded (the CSS has display: none !important rules for sidebar elements as a fallback).\nTitle block still shows: The title-block-banner: false and absence of a title: field (we use pagetitle: instead) should suppress it. If it still appears, add this to your _quarto.yml under the page or format section:\ntitle-block-style: none\nListing shows no articles: Make sure your posts are in a /posts directory and each has draft: false (or no draft field) in the YAML front matter.\nCSS not applying: Check the browser dev tools console for 404 errors on homepage.css. Make sure the path in _quarto.yml matches where you placed the file."
+    "objectID": "posts/02-random-variables-distributions/index.html#the-cdf-the-cumulative-view",
+    "href": "posts/02-random-variables-distributions/index.html#the-cdf-the-cumulative-view",
+    "title": "Random Variables and Distributions: What Your Data Actually Is",
+    "section": "The CDF: the cumulative view",
+    "text": "The CDF: the cumulative view\nThe cumulative distribution function (CDF) gives the probability that \\(X\\) is less than or equal to a value:\n\\[F(x) = P(X \\leq x)\\]\nFor discrete random variables, the CDF is a step function. For continuous ones, it’s a smooth curve from 0 to 1. The CDF always exists, even when the PDF doesn’t (for discrete variables), which makes it the more fundamental object.\nWhy should you care? Because when you compute a percentile, a quantile, or a p-value, you’re using the CDF. When you say “this patient’s blood pressure is in the 95th percentile,” you’re saying \\(F(x) = 0.95\\)."
   },
   {
-    "objectID": "resources.html",
-    "href": "resources.html",
-    "title": "Resources",
-    "section": "",
-    "text": "Everything here is something I’ve personally used, read, or can vouch for. No affiliate links — just resources I genuinely think are worth your time."
+    "objectID": "posts/02-random-variables-distributions/index.html#the-connection-to-ml-you-probably-missed",
+    "href": "posts/02-random-variables-distributions/index.html#the-connection-to-ml-you-probably-missed",
+    "title": "Random Variables and Distributions: What Your Data Actually Is",
+    "section": "The connection to ML you probably missed",
+    "text": "The connection to ML you probably missed\nHere’s where everything clicks.\nEvery supervised learning problem is an attempt to learn a conditional distribution.\nWhen you fit a regression model, you’re estimating:\n\\[P(Y \\mid X) = \\text{some distribution parameterised by } X\\]\nFor linear regression with Gaussian errors, this is:\n\\[Y \\mid X \\sim \\mathcal{N}(X\\beta, \\sigma^2)\\]\nFor logistic regression:\n\\[Y \\mid X \\sim \\text{Bernoulli}(\\sigma(X\\beta))\\]\nFor Poisson regression:\n\\[Y \\mid X \\sim \\text{Poisson}(\\exp(X\\beta))\\]\nIn each case, \\(X\\) (the features) determine the parameters of the distribution, and \\(Y\\) (the target) is a random draw from that distribution. The model doesn’t predict \\(Y\\) directly,it predicts the distribution of \\(Y\\), and the point prediction is just a summary (usually the mean).\nThis is why understanding distributions isn’t optional for ML. You’re fitting them whether you know it or not. sklearn just hides it from you.\n\nThe loss function is the distribution\nThis connection goes even deeper. Your choice of loss function implicitly assumes a distribution:\n\n\n\nLoss Function\nImplicit Distribution\nLink\n\n\n\n\nMean Squared Error\nNormal (Gaussian)\nIdentity\n\n\nCross-Entropy\nBernoulli / Categorical\nLogit / Softmax\n\n\nPoisson Deviance\nPoisson\nLog\n\n\nHuber Loss\nA compromise: Normal near 0, Laplace in the tails\n,\n\n\n\nWhen you minimise MSE, you’re doing maximum likelihood estimation under the assumption that your errors are Gaussian. When you minimise cross-entropy, you’re doing MLE under the assumption that your targets are Bernoulli.\nIf you’ve ever wondered “why MSE for regression and cross-entropy for classification?”,this is the answer. It’s not arbitrary. Each loss function is derived from a distributional assumption about the target variable. We’ll make this precise when we cover likelihood in a future article."
   },
   {
-    "objectID": "resources.html#books",
-    "href": "resources.html#books",
-    "title": "Resources",
-    "section": "Books",
-    "text": "Books\n\n\n📕 The Art of Statistics — David Spiegelhalter\nThe best “stats for everyone” book. Spiegelhalter uses real stories to explain statistical thinking without equations. Start here if you’re brand new.\n\n\n📗 Naked Statistics — Charles Wheelan\nFunny, accessible, and packed with real-world examples. Great for understanding why statistics matters in everyday life.\n\n\n📘 An Introduction to Statistical Learning (ISLR) — James, Witten, Hastie, Tibshirani\nThe bridge between statistics and machine learning. Free PDF available at statlearning.com. The R labs are excellent.\n\n\n📙 Statistical Rethinking — Richard McElreath\nIf you want to understand Bayesian statistics properly, this is the gold standard. Challenging but rewarding, with amazing R and Stan code examples."
+    "objectID": "posts/02-random-variables-distributions/index.html#what-this-means-in-practice",
+    "href": "posts/02-random-variables-distributions/index.html#what-this-means-in-practice",
+    "title": "Random Variables and Distributions: What Your Data Actually Is",
+    "section": "What this means in practice",
+    "text": "What this means in practice\nUnderstanding random variables and distributions gives you three practical superpowers:\n1. You can diagnose model failures. If your regression residuals aren’t approximately normal, MSE might not be the right loss. If your count data has more zeros than Poisson allows, you need a zero-inflated model. If your binary classifier’s predicted probabilities don’t match observed frequencies, it’s miscalibrated. All of these diagnoses require understanding the distributional assumptions you’ve made.\n2. You can quantify uncertainty. A prediction of \\(\\hat{y} = 42\\) is useless without knowing how confident you are. If you know the distribution, you can compute prediction intervals, confidence intervals, and posterior distributions. Without it, you’re flying blind.\n3. You can choose the right model. Gaussian targets → linear regression (or ridge, lasso). Binary targets → logistic regression. Count targets → Poisson regression. Skewed positive targets → Gamma regression. Bounded proportions → Beta regression. The distribution of your target variable tells you which model family to use."
   },
   {
-    "objectID": "resources.html#free-courses",
-    "href": "resources.html#free-courses",
-    "title": "Resources",
-    "section": "Free Courses",
-    "text": "Free Courses\n\n\n🎓 Khan Academy — Statistics & Probability\nVisit →\nThe best free foundation. Clear videos, practice exercises, covers everything from basics to inference.\n\n\n🎓 StatQuest (YouTube)\nVisit →\nJosh Starmer explains statistics and ML with simple visuals and catchy jingles. Surprisingly effective.\n\n\n🎓 Harvard CS109 — Data Science\nVisit →\nFull Harvard course with lectures, labs, and assignments. Bridges stats and practical data science beautifully.\n\n\n🎓 Seeing Theory\nVisit →\nInteractive visualisations of probability and statistics concepts. Built by Brown University. Beautiful and educational."
-  },
-  {
-    "objectID": "resources.html#tools-we-use",
-    "href": "resources.html#tools-we-use",
-    "title": "Resources",
-    "section": "Tools We Use",
-    "text": "Tools We Use\n\n\n🔧 R & Positron\nposit.co/positron\nOur language and IDE of choice. R is unmatched for statistical computing, and Positron is a modern, fast editor built for data science.\n\n\n🔧 Quarto\nquarto.org\nWhat this site is built with. Write documents, blogs, and presentations that mix text, code, and output.\n\n\n🔧 Stan\nmc-stan.org\nThe gold standard for Bayesian modeling. Steep learning curve, but incredibly powerful for serious statistical work.\n\n\n🔧 Shiny\nshiny.posit.co\nBuild interactive web apps from R. Great for creating data explorations and teaching tools."
-  },
-  {
-    "objectID": "resources.html#communities",
-    "href": "resources.html#communities",
-    "title": "Resources",
-    "section": "Communities",
-    "text": "Communities\n\n\n💬 Cross Validated (Stack Exchange)\nVisit →\nThe best Q&A site for statistics. Search before you ask — most common questions have excellent answers already.\n\n\n💬 R-bloggers\nVisit →\nAggregated blog posts from hundreds of R users. Great for discovering tutorials and new packages.\n\n\n💬 Stan Forums\nVisit →\nIncredibly helpful community for Bayesian modelling questions. The developers themselves answer questions.\n\n\n💬 Posit Community\nVisit →\nFor R, Shiny, Quarto, and Positron questions. Friendly and welcoming to beginners."
-  },
-  {
-    "objectID": "resources.html#datasets-for-practice",
-    "href": "resources.html#datasets-for-practice",
-    "title": "Resources",
-    "section": "Datasets for Practice",
-    "text": "Datasets for Practice\n\n\n📦 Tidy Tuesday\nVisit →\nWeekly datasets released for the R community. Great for practice with real, messy data.\n\n\n📦 Kaggle Datasets\nVisit →\nThousands of datasets across every domain. Filter by “beginner friendly” to start.\n\n\n📦 UCI Machine Learning Repository\nVisit →\nClassic benchmark datasets used in academic research. The Iris and Wine datasets live here.\n\n\n📦 Our World in Data\nVisit →\nBeautiful, well-documented global datasets on health, economics, education, and more. Perfect for practice with real-world context.\n\n\n\n\n\n\n\n\n\nTipSuggest a Resource\n\n\n\nKnow something that belongs here? Get in touch — we’re always looking for quality recommendations."
-  },
-  {
-    "objectID": "posts/01-why-stats-matter/index.html",
-    "href": "posts/01-why-stats-matter/index.html",
-    "title": "Why Statistics Matters Before You Touch Machine Learning",
-    "section": "",
-    "text": "Did you know?\n\nThe term “regression” comes from Francis Galton’s 1886 study on the heights of parents and children. He noticed that tall parents tended to have slightly shorter children, and short parents had slightly taller ones — they “regressed” toward the average. The name stuck, even though modern regression has nothing to do with shrinking.\n\nThere’s a pattern I see everywhere. Someone discovers machine learning, gets excited, installs scikit-learn or tidymodels, runs a random forest on a dataset, and gets 94% accuracy. Amazing! Ship it!\nBut then someone asks: “Why did your model predict that?” And the answer is… silence.\nThis is what happens when we skip the foundation. Machine learning is not magic — it’s statistics at scale. And if you don’t understand the statistics beneath the algorithm, you’re building on sand."
-  },
-  {
-    "objectID": "posts/01-why-stats-matter/index.html#the-rush-to-the-algorithm",
-    "href": "posts/01-why-stats-matter/index.html#the-rush-to-the-algorithm",
-    "title": "Why Statistics Matters Before You Touch Machine Learning",
-    "section": "",
-    "text": "Did you know?\n\nThe term “regression” comes from Francis Galton’s 1886 study on the heights of parents and children. He noticed that tall parents tended to have slightly shorter children, and short parents had slightly taller ones — they “regressed” toward the average. The name stuck, even though modern regression has nothing to do with shrinking.\n\nThere’s a pattern I see everywhere. Someone discovers machine learning, gets excited, installs scikit-learn or tidymodels, runs a random forest on a dataset, and gets 94% accuracy. Amazing! Ship it!\nBut then someone asks: “Why did your model predict that?” And the answer is… silence.\nThis is what happens when we skip the foundation. Machine learning is not magic — it’s statistics at scale. And if you don’t understand the statistics beneath the algorithm, you’re building on sand."
-  },
-  {
-    "objectID": "posts/01-why-stats-matter/index.html#what-beneath-actually-means",
-    "href": "posts/01-why-stats-matter/index.html#what-beneath-actually-means",
-    "title": "Why Statistics Matters Before You Touch Machine Learning",
-    "section": "What “beneath” actually means",
-    "text": "What “beneath” actually means\nEvery machine learning model you’ve ever heard of is built on statistical concepts that have existed for decades:\nLinear regression (1800s) → Neural networks are layers of linear regressions with activation functions stacked on top.\nBayes’ theorem (1763) → The entire field of Bayesian machine learning, spam filters, and medical diagnosis models.\nMatrix multiplication (1850s) → Literally how your data flows through every neural network.\nProbability distributions (1700s) → How models quantify uncertainty, make predictions, and learn from data.\nThe “AI revolution” isn’t new math. It’s old math with new computers."
-  },
-  {
-    "objectID": "posts/01-why-stats-matter/index.html#a-simple-example",
-    "href": "posts/01-why-stats-matter/index.html#a-simple-example",
-    "title": "Why Statistics Matters Before You Touch Machine Learning",
-    "section": "A simple example",
-    "text": "A simple example\nLet’s say you want to predict house prices. A machine learning tutorial might tell you to throw your data into XGBoost. But what’s XGBoost actually doing?\nAt its core, it’s fitting a sequence of simple models (like decision trees) where each new model tries to fix the mistakes of the previous ones. The “mistakes” are measured using a loss function — which is a statistical concept. The way it finds the best split in a tree? Variance reduction — another statistical concept.\nLet’s see this with the simplest possible model — a straight line:\n\n\nCode\n# Generate some example data\nset.seed(42)\nn &lt;- 50\nsquare_metres &lt;- runif(n, 40, 200)\nprice &lt;- 50000 + 2500 * square_metres + rnorm(n, 0, 25000)\n\n# Fit the simplest model\nmodel &lt;- lm(price ~ square_metres)\n\n# Plot\nplot(square_metres, price / 1000,\n     pch = 19, col = \"#1a1a2e90\",\n     xlab = \"Size (square metres)\",\n     ylab = \"Price (€ thousands)\",\n     main = \"House Prices: One Line Explains a Lot\",\n     family = \"sans\", cex.main = 1.2)\nabline(model$coefficients[1] / 1000, model$coefficients[2] / 1000,\n       col = \"#e94560\", lwd = 3)\n\n\n\n\n\n\n\n\nFigure 1: A simple linear regression — the foundation beneath complex models\n\n\n\n\n\nThat red line? That’s y = mx + b — something you learned in school. It’s also the building block of neural networks with millions of parameters. The only difference is scale."
-  },
-  {
-    "objectID": "posts/01-why-stats-matter/index.html#what-this-blog-will-cover",
-    "href": "posts/01-why-stats-matter/index.html#what-this-blog-will-cover",
-    "title": "Why Statistics Matters Before You Touch Machine Learning",
-    "section": "What this blog will cover",
-    "text": "What this blog will cover\nOver the coming weeks, we’ll build your statistical intuition from the ground up. Each post will focus on one concept, explained so that:\n\nYou understand the why, not just the how\nYou can explain it to someone at a dinner party\nYou see how it connects to the AI/ML topics you care about\n\n\n\n\n\n\n\nTipKey Takeaway\n\n\n\nMachine learning is statistics at scale. Understanding the foundations doesn’t slow you down — it’s what separates someone who uses tools from someone who builds with them."
-  },
-  {
-    "objectID": "posts/01-why-stats-matter/index.html#coming-next-week",
-    "href": "posts/01-why-stats-matter/index.html#coming-next-week",
-    "title": "Why Statistics Matters Before You Touch Machine Learning",
-    "section": "Coming next week",
-    "text": "Coming next week\nWhat Data Actually Is — types, distributions, and why the shape of your data matters more than the algorithm you choose.\n\nFound this useful? Share it with someone who’s jumping into ML without the foundations. And follow along — we publish every week."
+    "objectID": "posts/02-random-variables-distributions/index.html#the-mental-model-to-take-away",
+    "href": "posts/02-random-variables-distributions/index.html#the-mental-model-to-take-away",
+    "title": "Random Variables and Distributions: What Your Data Actually Is",
+    "section": "The mental model to take away",
+    "text": "The mental model to take away\nHere’s the shift I want you to make:\nBefore: “I have data in a CSV. I’ll fit a model to it.”\nAfter: “My data is a sample of realisations from an unknown data-generating process. My model is a hypothesis about what that process looks like. Training is estimating the parameters of that process. Evaluation is checking whether my hypothesis is consistent with new realisations.”\nThat second framing is what statistics gives you. It’s more precise, more honest, and it leads to better models.\nNext week, we’ll build on this foundation. You now know that your data comes from distributions and your models estimate distributions. But what exactly are you estimating when you compute a mean, a variance, or a loss? That’s the world of expected values,and it turns out your loss function is one.\n\nThis is article 2 of Stats Beneath, a weekly series on the statistical foundations of machine learning. Subscribe to get each article when it’s published."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "The statistical why behind every ML algorithm",
     "section": "",
-    "text": "For ML engineers and data scientists who want to understand the mathematics driving their models — not just tune the hyperparameters. Intuition first, code second.\nNew article every week.\n\nBrowse Articles Subscribe"
+    "text": "For ML engineers and data scientists who want to understand the mathematics driving their models, not just tune the hyperparameters. Intuition first, code second.\nNew article every week.\n\nBrowse Articles Subscribe"
   },
   {
     "objectID": "index.html#latest-articles",
     "href": "index.html#latest-articles",
     "title": "The statistical why behind every ML algorithm",
     "section": "Latest Articles",
-    "text": "Latest Articles\n\n\n\n\n\nRandom Variables and Distributions: What Your Data Actually Is\n\n\n\nfoundations\n\nprobability\n\n\n\nYour dataset isn’t just numbers in a CSV. It’s a realisation of random variables drawn from an unknown distribution. Until you understand that, every model you build is a guess about a process you haven’t described.\n\n\n\n\n\nFeb 13, 2026\n\n\n\n\n\n\n\nWhy Statistics Matters Before You Touch Machine Learning\n\n\n\nfoundations\n\nmachine-learning\n\n\n\nEveryone wants to build AI. But the real superpower isn’t knowing which algorithm to use — it’s understanding why it works.\n\n\n\n\n\nFeb 10, 2026\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "cheatsheets.html",
-    "href": "cheatsheets.html",
-    "title": "Cheat Sheets",
-    "section": "",
-    "text": "Bookmark this page. When you forget what a p-value means at 2am before a deadline, these one-page summaries will save you.\nEach cheat sheet maps to an article in the Learning Path. New sheets are added as articles are published.\n\n\n\n📊\n\n\nDescriptive Statistics\nMean, median, mode, variance, standard deviation — the essential summary numbers and when to use each.\nComing with Week 3 article\n\n\n\n\n🔔\n\n\nDistributions\nNormal, binomial, Poisson, uniform — what they look like, when they appear, and their key properties.\nComing with Week 5 article\n\n\n\n\n🎲\n\n\nProbability Rules\nAddition rule, multiplication rule, conditional probability, Bayes’ theorem — all on one page.\nComing with Week 6 article\n\n\n\n\n🧪\n\n\nHypothesis Testing\nNull vs alternative, Type I & II errors, p-values, confidence intervals — the decision framework.\nComing with Week 8 article\n\n\n\n\n📈\n\n\nRegression\nSimple & multiple linear regression, coefficients, R-squared, residuals, assumptions — the essentials.\nComing with Week 10 article\n\n\n\n\n🧮\n\n\nMatrix Operations\nTranspose, multiplication, inverse, determinant — the linear algebra operations that power ML.\nComing with Week 11 article\n\n\n\n\n\nHow to Use These\nEach cheat sheet is designed to be printed on a single page or saved as a PDF. They’re intentionally minimal — if you need the full explanation, click through to the linked article.\n\n\n\n\n\n\nTipSuggestion\n\n\n\nSave these to your phone or pin them above your desk. The best reference is the one you can access in 3 seconds.\n\n\n\nWant a cheat sheet on a specific topic? Let us know."
+    "text": "Latest Articles\n\n\n\n\n\nRandom Variables and Distributions: What Your Data Actually Is\n\n\n\nfoundations\n\nprobability\n\n\n\nYour dataset isn’t just numbers in a CSV. It’s a realisation of random variables drawn from an unknown distribution. Until you understand that, every model you build is a guess about a process you haven’t described.\n\n\n\n\n\nFeb 13, 2026\n\n\n\n\n\n\n\nWhy Statistics Matters Before You Touch Machine Learning\n\n\n\nfoundations\n\nmachine-learning\n\n\n\nEveryone wants to build AI. But the real superpower isn’t knowing which algorithm to use,it’s understanding why it works.\n\n\n\n\n\nFeb 10, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -151,7 +81,7 @@
     "href": "about.html#about-me",
     "title": "About",
     "section": "About me",
-    "text": "About me\nI’m a Health Data Science MSc student at the University of Galway, originally from Zimbabwe. I hold a First Class Honours degree in Operations Research and Statistics, and have spent years working as a Monitoring & Evaluation Specialist in the health sector, where I developed a deep appreciation for rigorous data analysis and evidence-based decision making.\nIn 2023, I was selected for the Ireland Fellows Programme, which brought me to Ireland to pursue advanced studies in health data science. My journey through operations research, public health program evaluation, and now Bayesian statistical modelling has taught me that the real power of data science lies not in knowing which algorithm to run, but in understanding why it works.\nI created Stats Beneath because I’ve seen too many talented engineers and data scientists skip over the statistical foundations that make machine learning actually work. This blog is my attempt to bridge that gap — explaining one statistical concept at a time, with clarity, intuition, and real-world context."
+    "text": "About me\nI’m a Health Data Science MSc student at the University of Galway, originally from Zimbabwe. I hold a First Class Honours degree in Operations Research and Statistics, and have spent years working as a Monitoring & Evaluation Specialist in the health sector, where I developed a deep appreciation for rigorous data analysis and evidence-based decision making.\nIn 2023, I was selected for the Ireland Fellows Programme, which brought me to Ireland to pursue advanced studies in health data science. My journey through operations research, public health program evaluation, and now Bayesian statistical modelling has taught me that the real power of data science lies not in knowing which algorithm to run, but in understanding why it works.\nI created Stats Beneath because I’ve seen too many talented engineers and data scientists skip over the statistical foundations that make machine learning actually work. This blog is my attempt to bridge that gap, explaining one statistical concept at a time, with clarity, intuition, and real-world context."
   },
   {
     "objectID": "about.html#what-im-working-on",
@@ -172,7 +102,7 @@
     "href": "about.html#connect",
     "title": "About",
     "section": "Connect",
-    "text": "Connect\nI’m always interested in connecting with people working at the intersection of statistics, machine learning, and public health.\n\n\nGitHub — code, projects, and open-source contributions\nLinkedIn — professional background and updates\nEmail — reach out directly\n\n\n\nThis site is built with Quarto and deployed on GitHub Pages. All content is written in R Markdown and rendered to HTML. The source code is available on GitHub."
+    "text": "Connect\nI’m always interested in connecting with people working at the intersection of statistics, machine learning, and public health.\n\n\nGitHub, code, projects, and open-source contributions\nLinkedIn, professional background and updates\nEmail, reach out directly\n\n\n\nThis site is built with Quarto and deployed on GitHub Pages. All content is written in R Markdown and rendered to HTML. The source code is available on GitHub."
   },
   {
     "objectID": "archive.html",
@@ -182,143 +112,45 @@
     "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\n\nTitle\n\n\n\nCategories\n\n\n\nReading Time\n\n\n\n\n\n\n\n\nFebruary 13, 2026\n\n\nRandom Variables and Distributions: What Your Data Actually Is\n\n\nfoundations, probability\n\n\n10 min\n\n\n\n\n\n\nFebruary 10, 2026\n\n\nWhy Statistics Matters Before You Touch Machine Learning\n\n\nfoundations, machine-learning\n\n\n3 min\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "did-you-know.html",
-    "href": "did-you-know.html",
-    "title": "Did You Know?",
+    "objectID": "posts/01-why-stats-matter/index.html",
+    "href": "posts/01-why-stats-matter/index.html",
+    "title": "Why Statistics Matters Before You Touch Machine Learning",
     "section": "",
-    "text": "Statistics isn’t dry — it’s full of wild, counterintuitive, and fascinating stories. Here are some of our favourites. We add new ones regularly."
+    "text": "Did you know?\n\nThe term “regression” comes from Francis Galton’s 1886 study on the heights of parents and children. He noticed that tall parents tended to have slightly shorter children, and short parents had slightly taller ones,they “regressed” toward the average. The name stuck, even though modern regression has nothing to do with shrinking.\n\nThere’s a pattern I see everywhere. Someone discovers machine learning, gets excited, installs scikit-learn or tidymodels, runs a random forest on a dataset, and gets 94% accuracy. Amazing! Ship it!\nBut then someone asks: “Why did your model predict that?” And the answer is… silence.\nThis is what happens when we skip the foundation. Machine learning is not magic,it’s statistics at scale. And if you don’t understand the statistics beneath the algorithm, you’re building on sand."
   },
   {
-    "objectID": "did-you-know.html#mind-bending-stats",
-    "href": "did-you-know.html#mind-bending-stats",
-    "title": "Did You Know?",
-    "section": "Mind-Bending Stats",
-    "text": "Mind-Bending Stats\n\n\nThe Birthday Paradox\n\nIn a room of just 23 people, there’s a 50% chance two of them share a birthday. With 70 people, the probability jumps to 99.9%. Our brains are terrible at probability — and that’s exactly why we need statistics.\n\n\n\nSurvivorship Bias\n\nDuring WWII, the military wanted to add armour to bomber planes. They studied returning planes and saw bullet holes clustered on the wings and fuselage. Mathematician Abraham Wald said: “Armour the places with NO holes.” The planes hit there never came back. This is survivorship bias — we only see the data that survived.\n\n\n\nSimpson’s Paradox\n\nA trend that appears in several groups of data can reverse when the groups are combined. UC Berkeley was once sued for gender discrimination in admissions. Overall, fewer women were admitted. But department by department, women were admitted at equal or higher rates. The “bias” was that women applied to more competitive departments.\n\n\n\nThe Monty Hall Problem\n\nYou’re on a game show with 3 doors. Behind one is a car. You pick door 1. The host opens door 3 (a goat). Should you switch? Yes — switching gives you a 2/3 chance of winning. Even Paul Erdős, one of the greatest mathematicians ever, refused to believe this until he saw a computer simulation."
-  },
-  {
-    "objectID": "did-you-know.html#data-science-by-the-numbers",
-    "href": "did-you-know.html#data-science-by-the-numbers",
-    "title": "Did You Know?",
-    "section": "Data Science by the Numbers",
-    "text": "Data Science by the Numbers\n\n\n\n80%\n\n\nOf a data scientist’s time is spent on data cleaning and preparation\n\n\n\n\n1.1T MB\n\n\nOf data generated daily worldwide\n\n\n\n\n70%\n\n\nOf data science projects never make it to production\n\n\n\n\n1763\n\n\nYear Bayes published his theorem — now powering spam filters and medical AI\n\n\n\n\n90%\n\n\nOf the world’s data was created in the last two years\n\n\n\n\n$100K+\n\n\nAverage data scientist salary (USD) — one of the highest-paid tech roles"
-  },
-  {
-    "objectID": "did-you-know.html#quotes-worth-remembering",
-    "href": "did-you-know.html#quotes-worth-remembering",
-    "title": "Did You Know?",
-    "section": "Quotes Worth Remembering",
-    "text": "Quotes Worth Remembering\n\n“All models are wrong, but some are useful.” — George Box, statistician\n\n\n“Without data, you’re just another person with an opinion.” — W. Edwards Deming\n\n\n“The best thing about being a statistician is that you get to play in everyone’s backyard.” — John Tukey\n\n\n“Far better an approximate answer to the right question, which is often vague, than an exact answer to the wrong question.” — John Tukey\n\n\n“Torture the data, and it will confess to anything.” — Ronald Coase, economist"
-  },
-  {
-    "objectID": "did-you-know.html#historical-firsts",
-    "href": "did-you-know.html#historical-firsts",
-    "title": "Did You Know?",
-    "section": "Historical Firsts",
-    "text": "Historical Firsts\n\n\nThe First Dataset\n\nJohn Graunt published the first known statistical analysis in 1662 — “Natural and Political Observations Made upon the Bills of Mortality.” He analysed London death records to estimate population, life expectancy, and disease patterns. Data science before computers existed.\n\n\n\nFlorence Nightingale — Data Viz Pioneer\n\nBefore she was known for nursing, Florence Nightingale was a statistician. Her polar area diagrams (a type of pie chart she invented) convinced the British government that more soldiers were dying from poor hospital conditions than from battle wounds. Data visualisation literally saved lives.\n\n\n\nThe Term “Data Scientist”\n\nThe term “data scientist” was coined in 2008 by DJ Patil and Jeff Hammerbacher, who were building data teams at LinkedIn and Facebook. But the work — applying statistics to real problems — has been happening for centuries.\n\n\nKnow a great stats fact? Get in touch — we’d love to feature it."
-  },
-  {
-    "objectID": "learning-path.html",
-    "href": "learning-path.html",
-    "title": "Learning Path",
+    "objectID": "posts/01-why-stats-matter/index.html#the-rush-to-the-algorithm",
+    "href": "posts/01-why-stats-matter/index.html#the-rush-to-the-algorithm",
+    "title": "Why Statistics Matters Before You Touch Machine Learning",
     "section": "",
-    "text": "Not sure where to start? Follow this path. Each step builds on the last, and by the end you’ll have the statistical foundations to truly understand machine learning and AI — not just run the code."
+    "text": "Did you know?\n\nThe term “regression” comes from Francis Galton’s 1886 study on the heights of parents and children. He noticed that tall parents tended to have slightly shorter children, and short parents had slightly taller ones,they “regressed” toward the average. The name stuck, even though modern regression has nothing to do with shrinking.\n\nThere’s a pattern I see everywhere. Someone discovers machine learning, gets excited, installs scikit-learn or tidymodels, runs a random forest on a dataset, and gets 94% accuracy. Amazing! Ship it!\nBut then someone asks: “Why did your model predict that?” And the answer is… silence.\nThis is what happens when we skip the foundation. Machine learning is not magic,it’s statistics at scale. And if you don’t understand the statistics beneath the algorithm, you’re building on sand."
   },
   {
-    "objectID": "learning-path.html#phase-1-the-basics",
-    "href": "learning-path.html#phase-1-the-basics",
-    "title": "Learning Path",
-    "section": "Phase 1: The Basics",
-    "text": "Phase 1: The Basics\nWhat every data-curious person should know.\n\n\n\nWeek 1\n\n\nWhy Statistics Matters Before You Touch ML\n\n\nThe case for learning foundations first. Why the best ML engineers are closet statisticians.\n\n\n\n\nWeek 2\n\n\nWhat Data Actually Is\n\n\nTypes, distributions, and why the shape of your data matters more than the algorithm you pick. Coming soon.\n\n\n\n\nWeek 3\n\n\nMean, Median, Mode — When Averages Lie\n\n\nThe three ways to measure “the middle” and when each one deceives you. Coming soon.\n\n\n\n\nWeek 4\n\n\nVariance & Standard Deviation\n\n\nMeasuring spread — why “close to the average” means nothing without context. Coming soon."
+    "objectID": "posts/01-why-stats-matter/index.html#what-beneath-actually-means",
+    "href": "posts/01-why-stats-matter/index.html#what-beneath-actually-means",
+    "title": "Why Statistics Matters Before You Touch Machine Learning",
+    "section": "What “beneath” actually means",
+    "text": "What “beneath” actually means\nEvery machine learning model you’ve ever heard of is built on statistical concepts that have existed for decades:\nLinear regression (1800s) → Neural networks are layers of linear regressions with activation functions stacked on top.\nBayes’ theorem (1763) → The entire field of Bayesian machine learning, spam filters, and medical diagnosis models.\nMatrix multiplication (1850s) → Literally how your data flows through every neural network.\nProbability distributions (1700s) → How models quantify uncertainty, make predictions, and learn from data.\nThe “AI revolution” isn’t new math. It’s old math with new computers."
   },
   {
-    "objectID": "learning-path.html#phase-2-probability-distributions",
-    "href": "learning-path.html#phase-2-probability-distributions",
-    "title": "Learning Path",
-    "section": "Phase 2: Probability & Distributions",
-    "text": "Phase 2: Probability & Distributions\nThe language of uncertainty that every model speaks.\n\n\n\nWeek 5\n\n\nThe Normal Distribution\n\n\nWhy the bell curve shows up everywhere — from exam scores to stock prices. Coming soon.\n\n\n\n\nWeek 6\n\n\nProbability Basics\n\n\nConditional probability, Bayes’ theorem, and why your intuition about probability is almost always wrong. Coming soon."
+    "objectID": "posts/01-why-stats-matter/index.html#a-simple-example",
+    "href": "posts/01-why-stats-matter/index.html#a-simple-example",
+    "title": "Why Statistics Matters Before You Touch Machine Learning",
+    "section": "A simple example",
+    "text": "A simple example\nLet’s say you want to predict house prices. A machine learning tutorial might tell you to throw your data into XGBoost. But what’s XGBoost actually doing?\nAt its core, it’s fitting a sequence of simple models (like decision trees) where each new model tries to fix the mistakes of the previous ones. The “mistakes” are measured using a loss function,which is a statistical concept. The way it finds the best split in a tree? Variance reduction,another statistical concept.\nLet’s see this with the simplest possible model,a straight line:\n\n\nCode\n# Generate some example data\nset.seed(42)\nn &lt;- 50\nsquare_metres &lt;- runif(n, 40, 200)\nprice &lt;- 50000 + 2500 * square_metres + rnorm(n, 0, 25000)\n\n# Fit the simplest model\nmodel &lt;- lm(price ~ square_metres)\n\n# Plot\nplot(square_metres, price / 1000,\n     pch = 19, col = \"#1a1a2e90\",\n     xlab = \"Size (square metres)\",\n     ylab = \"Price (€ thousands)\",\n     main = \"House Prices: One Line Explains a Lot\",\n     family = \"sans\", cex.main = 1.2)\nabline(model$coefficients[1] / 1000, model$coefficients[2] / 1000,\n       col = \"#e94560\", lwd = 3)\n\n\n\n\n\n\n\n\nFigure 1: A simple linear regression,the foundation beneath complex models\n\n\n\n\n\nThat red line? That’s y = mx + b,something you learned in school. It’s also the building block of neural networks with millions of parameters. The only difference is scale."
   },
   {
-    "objectID": "learning-path.html#phase-3-inference-testing",
-    "href": "learning-path.html#phase-3-inference-testing",
-    "title": "Learning Path",
-    "section": "Phase 3: Inference & Testing",
-    "text": "Phase 3: Inference & Testing\nMaking conclusions from incomplete data — the heart of statistics.\n\n\n\nWeek 7\n\n\nSampling & Why Your Sample Isn’t the Population\n\n\nWhy polls get elections wrong and what that teaches us about data. Coming soon.\n\n\n\n\nWeek 8\n\n\nHypothesis Testing & P-Values\n\n\nThe most misunderstood concept in all of science, explained properly. Coming soon."
+    "objectID": "posts/01-why-stats-matter/index.html#what-this-blog-will-cover",
+    "href": "posts/01-why-stats-matter/index.html#what-this-blog-will-cover",
+    "title": "Why Statistics Matters Before You Touch Machine Learning",
+    "section": "What this blog will cover",
+    "text": "What this blog will cover\nOver the coming weeks, we’ll build your statistical intuition from the ground up. Each post will focus on one concept, explained so that:\n\nYou understand the why, not just the how\nYou can explain it to someone at a dinner party\nYou see how it connects to the AI/ML topics you care about\n\n\n\n\n\n\n\nTipKey Takeaway\n\n\n\nMachine learning is statistics at scale. Understanding the foundations doesn’t slow you down,it’s what separates someone who uses tools from someone who builds with them."
   },
   {
-    "objectID": "learning-path.html#phase-4-relationships-models",
-    "href": "learning-path.html#phase-4-relationships-models",
-    "title": "Learning Path",
-    "section": "Phase 4: Relationships & Models",
-    "text": "Phase 4: Relationships & Models\nFrom understanding data to predicting with it.\n\n\n\nWeek 9\n\n\nCorrelation ≠ Causation\n\n\nWhat correlation actually measures, why ice cream doesn’t cause drowning, and how to think about relationships in data. Coming soon.\n\n\n\n\nWeek 10\n\n\nLinear Regression Explained\n\n\nFitting a line through data — the single most important technique in all of statistics. Coming soon.\n\n\n\n\nWeek 11\n\n\nMatrices — Why They Power Everything\n\n\nLinear algebra for humans. How your data becomes a matrix and why that matters. Coming soon.\n\n\n\n\nWeek 12\n\n\nFrom Regression to Machine Learning\n\n\nConnecting the dots — how everything you’ve learned maps directly to ML algorithms. Coming soon.\n\n\n\n\nNew articles published weekly. Links will become active as each post goes live."
-  },
-  {
-    "objectID": "posts/02-random-variables-distributions/index.html",
-    "href": "posts/02-random-variables-distributions/index.html",
-    "title": "Random Variables and Distributions: What Your Data Actually Is",
-    "section": "",
-    "text": "Open any ML tutorial. Step one is always the same: load the data. pd.read_csv('data.csv'). You get a DataFrame. Rows and columns. Numbers.\nAnd then you do things to those numbers. Scale them. Split them. Feed them to a model. Tune hyperparameters. Evaluate. Ship.\nBut here’s the question almost nobody stops to ask: where did those numbers come from?\nNot “which API” or “which database.” I mean: what process generated them? Is each row independent of the others? Could the values have turned out differently if you’d collected data on a different day? If you collected more data tomorrow, would the new rows look like the old ones?\nThese aren’t philosophical questions. They’re statistical ones. And your answers to them — whether you state them explicitly or not — determine whether your model’s predictions mean anything at all.\nThe language for thinking about this clearly is random variables and probability distributions. If you’ve seen these terms in a textbook and moved on, I’d like to show you why they’re not abstract theory — they’re the precise description of what your data is and what your model is trying to learn."
-  },
-  {
-    "objectID": "posts/02-random-variables-distributions/index.html#your-data-has-a-secret-life",
-    "href": "posts/02-random-variables-distributions/index.html#your-data-has-a-secret-life",
-    "title": "Random Variables and Distributions: What Your Data Actually Is",
-    "section": "",
-    "text": "Open any ML tutorial. Step one is always the same: load the data. pd.read_csv('data.csv'). You get a DataFrame. Rows and columns. Numbers.\nAnd then you do things to those numbers. Scale them. Split them. Feed them to a model. Tune hyperparameters. Evaluate. Ship.\nBut here’s the question almost nobody stops to ask: where did those numbers come from?\nNot “which API” or “which database.” I mean: what process generated them? Is each row independent of the others? Could the values have turned out differently if you’d collected data on a different day? If you collected more data tomorrow, would the new rows look like the old ones?\nThese aren’t philosophical questions. They’re statistical ones. And your answers to them — whether you state them explicitly or not — determine whether your model’s predictions mean anything at all.\nThe language for thinking about this clearly is random variables and probability distributions. If you’ve seen these terms in a textbook and moved on, I’d like to show you why they’re not abstract theory — they’re the precise description of what your data is and what your model is trying to learn."
-  },
-  {
-    "objectID": "posts/02-random-variables-distributions/index.html#a-random-variable-is-a-question-not-an-answer",
-    "href": "posts/02-random-variables-distributions/index.html#a-random-variable-is-a-question-not-an-answer",
-    "title": "Random Variables and Distributions: What Your Data Actually Is",
-    "section": "A random variable is a question, not an answer",
-    "text": "A random variable is a question, not an answer\nHere’s the definition you’ll find everywhere: a random variable is a function that maps outcomes from a sample space to real numbers.\nThat’s technically correct and practically useless. Let me give you a better one.\nA random variable is a numerical quantity whose value hasn’t been determined yet.\nBefore you observe your data, you don’t know what values you’ll get. Will this patient’s blood pressure be 120 or 145? Will this customer churn or stay? Will this image contain a cat? You don’t know. But you know the kind of values that are possible, and you may have beliefs about which values are more likely.\nThat’s what a random variable captures: the space of possible values and their relative likelihoods, before you observe anything.\nOnce you observe a value — once the patient’s blood pressure reads 132 — that’s no longer a random variable. It’s a realisation. A data point. One draw from the underlying random process.\nYour entire dataset is a collection of realisations. Each row in your DataFrame was, before you observed it, a random variable. Now it’s a fixed number. But the process that generated it is still out there, and it could generate different numbers tomorrow.\nThis is why it matters: your model isn’t trying to memorise your specific 10,000 rows. It’s trying to learn the process that generated them, so it can make predictions about rows it hasn’t seen yet. You can’t do that without thinking about your data as draws from something larger.\n\nThe notation\nStatisticians use uppercase letters for random variables and lowercase for their observed values:\n\n\\(X\\) = the random variable (the question: “what will this patient’s blood pressure be?”)\n\\(x\\) = an observed value, a realisation (the answer: 132)\n\nWhen we write \\(X = x\\), we mean “the random variable \\(X\\) took the value \\(x\\).” When we write \\(P(X = x)\\), we mean “the probability that \\(X\\) takes the value \\(x\\).”\nThis isn’t pedantry. The distinction between \\(X\\) and \\(x\\) is the distinction between the process and the data. Confusing them is how you end up overfitting."
-  },
-  {
-    "objectID": "posts/02-random-variables-distributions/index.html#distributions-the-shape-of-uncertainty",
-    "href": "posts/02-random-variables-distributions/index.html#distributions-the-shape-of-uncertainty",
-    "title": "Random Variables and Distributions: What Your Data Actually Is",
-    "section": "Distributions: the shape of uncertainty",
-    "text": "Distributions: the shape of uncertainty\nIf a random variable describes what could happen, a probability distribution describes how likely each possibility is.\nThink of it as a contract. Before you observe any data, the distribution tells you: “Here are all the possible values, and here’s the relative chance of each one.”\nThere are two flavours, depending on whether the random variable takes countable values or values on a continuum.\n\nDiscrete distributions: counting outcomes\nA discrete random variable takes values you can list: 0, 1, 2, 3, … or {cat, dog, bird}. The probability of each value is given by a probability mass function (PMF):\n\\[P(X = x) = p(x)\\]\nwith two rules: every probability is between 0 and 1, and they all add up to 1.\nThe Bernoulli distribution is the simplest possible distribution. A single trial. Two outcomes. Probability \\(p\\) of success, \\(1-p\\) of failure.\n\\[X \\sim \\text{Bernoulli}(p), \\quad P(X=1) = p, \\quad P(X=0) = 1-p\\]\nEvery binary classification target in your dataset follows a Bernoulli distribution. When your logistic regression outputs \\(\\hat{p} = 0.73\\), it’s estimating the parameter of a Bernoulli distribution. That’s literally what it’s doing — fitting \\(p\\).\nThe Binomial distribution counts the number of successes in \\(n\\) independent Bernoulli trials:\n\\[X \\sim \\text{Binomial}(n, p), \\quad P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}\\]\nIf you flip a coin 100 times, the number of heads is Binomial. If you classify 100 samples and count the correct ones, the number correct is Binomial (under independence). This is why your model’s accuracy has a sampling distribution — it’s not a fixed number, it’s a draw from a Binomial.\nThe Poisson distribution models the count of events in a fixed interval when events happen at a constant average rate:\n\\[X \\sim \\text{Poisson}(\\lambda), \\quad P(X = k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}\\]\nServer requests per minute. Customer complaints per day. Gene mutations per chromosome. Any time you’re modelling “how many times does something happen,” you’re probably looking at Poisson data.\n\n\nContinuous distributions: measuring on a continuum\nA continuous random variable takes values on the real line (or an interval). You can’t list all possible values, so you can’t assign a probability to any single value — \\(P(X = 1.23456789...) = 0\\) for any specific number.\nInstead, you describe probabilities over intervals using a probability density function (PDF):\n\\[P(a \\leq X \\leq b) = \\int_a^b f(x)\\,dx\\]\nThe PDF \\(f(x)\\) tells you how densely the probability is packed around each value. It’s not a probability itself — it can be greater than 1 — but the area under the curve over any interval gives you a probability.\nThe Normal (Gaussian) distribution is the one you know:\n\\[X \\sim \\mathcal{N}(\\mu, \\sigma^2), \\quad f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\exp\\left(-\\frac{(x - \\mu)^2}{2\\sigma^2}\\right)\\]\nTwo parameters: \\(\\mu\\) (the centre) and \\(\\sigma^2\\) (the spread). It shows up everywhere, and there’s a deep reason for that — the Central Limit Theorem, which we’ll cover in a future article.\nBut here’s what matters for ML: when you assume your regression errors are normally distributed, you’re saying the residuals follow this specific shape. That’s not a trivial assumption. It determines your loss function (MSE corresponds to Gaussian errors), your confidence intervals, and your hypothesis tests. If the assumption is wrong, all of those break.\nThe Uniform distribution assigns equal probability to all values in an interval:\n\\[X \\sim \\text{Uniform}(a, b), \\quad f(x) = \\frac{1}{b-a} \\quad \\text{for } a \\leq x \\leq b\\]\nThis is the distribution of “I have no idea what value to expect.” When you initialise neural network weights uniformly, you’re sampling from this distribution. When you use random search for hyperparameter tuning, you’re drawing from it. It’s the mathematical formalisation of ignorance."
-  },
-  {
-    "objectID": "posts/02-random-variables-distributions/index.html#the-cdf-the-cumulative-view",
-    "href": "posts/02-random-variables-distributions/index.html#the-cdf-the-cumulative-view",
-    "title": "Random Variables and Distributions: What Your Data Actually Is",
-    "section": "The CDF: the cumulative view",
-    "text": "The CDF: the cumulative view\nThe cumulative distribution function (CDF) gives the probability that \\(X\\) is less than or equal to a value:\n\\[F(x) = P(X \\leq x)\\]\nFor discrete random variables, the CDF is a step function. For continuous ones, it’s a smooth curve from 0 to 1. The CDF always exists, even when the PDF doesn’t (for discrete variables), which makes it the more fundamental object.\nWhy should you care? Because when you compute a percentile, a quantile, or a p-value, you’re using the CDF. When you say “this patient’s blood pressure is in the 95th percentile,” you’re saying \\(F(x) = 0.95\\)."
-  },
-  {
-    "objectID": "posts/02-random-variables-distributions/index.html#the-connection-to-ml-you-probably-missed",
-    "href": "posts/02-random-variables-distributions/index.html#the-connection-to-ml-you-probably-missed",
-    "title": "Random Variables and Distributions: What Your Data Actually Is",
-    "section": "The connection to ML you probably missed",
-    "text": "The connection to ML you probably missed\nHere’s where everything clicks.\nEvery supervised learning problem is an attempt to learn a conditional distribution.\nWhen you fit a regression model, you’re estimating:\n\\[P(Y \\mid X) = \\text{some distribution parameterised by } X\\]\nFor linear regression with Gaussian errors, this is:\n\\[Y \\mid X \\sim \\mathcal{N}(X\\beta, \\sigma^2)\\]\nFor logistic regression:\n\\[Y \\mid X \\sim \\text{Bernoulli}(\\sigma(X\\beta))\\]\nFor Poisson regression:\n\\[Y \\mid X \\sim \\text{Poisson}(\\exp(X\\beta))\\]\nIn each case, \\(X\\) (the features) determine the parameters of the distribution, and \\(Y\\) (the target) is a random draw from that distribution. The model doesn’t predict \\(Y\\) directly — it predicts the distribution of \\(Y\\), and the point prediction is just a summary (usually the mean).\nThis is why understanding distributions isn’t optional for ML. You’re fitting them whether you know it or not. sklearn just hides it from you.\n\nThe loss function is the distribution\nThis connection goes even deeper. Your choice of loss function implicitly assumes a distribution:\n\n\n\nLoss Function\nImplicit Distribution\nLink\n\n\n\n\nMean Squared Error\nNormal (Gaussian)\nIdentity\n\n\nCross-Entropy\nBernoulli / Categorical\nLogit / Softmax\n\n\nPoisson Deviance\nPoisson\nLog\n\n\nHuber Loss\nA compromise: Normal near 0, Laplace in the tails\n—\n\n\n\nWhen you minimise MSE, you’re doing maximum likelihood estimation under the assumption that your errors are Gaussian. When you minimise cross-entropy, you’re doing MLE under the assumption that your targets are Bernoulli.\nIf you’ve ever wondered “why MSE for regression and cross-entropy for classification?” — this is the answer. It’s not arbitrary. Each loss function is derived from a distributional assumption about the target variable. We’ll make this precise when we cover likelihood in a future article."
-  },
-  {
-    "objectID": "posts/02-random-variables-distributions/index.html#what-this-means-in-practice",
-    "href": "posts/02-random-variables-distributions/index.html#what-this-means-in-practice",
-    "title": "Random Variables and Distributions: What Your Data Actually Is",
-    "section": "What this means in practice",
-    "text": "What this means in practice\nUnderstanding random variables and distributions gives you three practical superpowers:\n1. You can diagnose model failures. If your regression residuals aren’t approximately normal, MSE might not be the right loss. If your count data has more zeros than Poisson allows, you need a zero-inflated model. If your binary classifier’s predicted probabilities don’t match observed frequencies, it’s miscalibrated. All of these diagnoses require understanding the distributional assumptions you’ve made.\n2. You can quantify uncertainty. A prediction of \\(\\hat{y} = 42\\) is useless without knowing how confident you are. If you know the distribution, you can compute prediction intervals, confidence intervals, and posterior distributions. Without it, you’re flying blind.\n3. You can choose the right model. Gaussian targets → linear regression (or ridge, lasso). Binary targets → logistic regression. Count targets → Poisson regression. Skewed positive targets → Gamma regression. Bounded proportions → Beta regression. The distribution of your target variable tells you which model family to use."
-  },
-  {
-    "objectID": "posts/02-random-variables-distributions/index.html#the-mental-model-to-take-away",
-    "href": "posts/02-random-variables-distributions/index.html#the-mental-model-to-take-away",
-    "title": "Random Variables and Distributions: What Your Data Actually Is",
-    "section": "The mental model to take away",
-    "text": "The mental model to take away\nHere’s the shift I want you to make:\nBefore: “I have data in a CSV. I’ll fit a model to it.”\nAfter: “My data is a sample of realisations from an unknown data-generating process. My model is a hypothesis about what that process looks like. Training is estimating the parameters of that process. Evaluation is checking whether my hypothesis is consistent with new realisations.”\nThat second framing is what statistics gives you. It’s more precise, more honest, and it leads to better models.\nNext week, we’ll build on this foundation. You now know that your data comes from distributions and your models estimate distributions. But what exactly are you estimating when you compute a mean, a variance, or a loss? That’s the world of expected values — and it turns out your loss function is one.\n\nThis is article 2 of Stats Beneath, a weekly series on the statistical foundations of machine learning. Subscribe to get each article when it’s published."
-  },
-  {
-    "objectID": "updates/index.html",
-    "href": "updates/index.html",
-    "title": "The statistical why behind every ML algorithm",
-    "section": "",
-    "text": "For ML engineers and data scientists who want to understand the mathematics driving their models — not just tune the hyperparameters. Intuition first, code second.\nNew article every week.\n\nBrowse Articles Subscribe"
-  },
-  {
-    "objectID": "updates/index.html#latest-articles",
-    "href": "updates/index.html#latest-articles",
-    "title": "The statistical why behind every ML algorithm",
-    "section": "Latest Articles",
-    "text": "Latest Articles\n\n\n\n\nNo matching items"
+    "objectID": "posts/01-why-stats-matter/index.html#coming-next-week",
+    "href": "posts/01-why-stats-matter/index.html#coming-next-week",
+    "title": "Why Statistics Matters Before You Touch Machine Learning",
+    "section": "Coming next week",
+    "text": "Coming next week\nWhat Data Actually Is,types, distributions, and why the shape of your data matters more than the algorithm you choose.\n\nFound this useful? Share it with someone who’s jumping into ML without the foundations. And follow along,we publish every week."
   }
 ]

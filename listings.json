@@ -1,13 +1,15 @@
 [
   {
-    "listing": "/archive.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/02-random-variables-distributions/index.html",
       "/posts/01-why-stats-matter/index.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/archive.html",
     "items": [
+      "/posts/02-random-variables-distributions/index.html",
       "/posts/01-why-stats-matter/index.html"
     ]
   }

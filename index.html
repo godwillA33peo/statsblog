@@ -79,20 +79,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-articles-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-articles-listing'] = new List('listing-articles-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -156,16 +156,12 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Stats Beneath" href="index.xml" data-external="1"><meta property="og:title" content="Stats Beneath">
-<meta property="og:description" content="Statistics simplified — the foundations beneath AI and machine learning">
-<meta property="og:image" content="https://statsbeneath.com/posts/01-why-stats-matter/thumbnail.png">
+<meta property="og:title" content="Stats Beneath">
 <meta property="og:site_name" content="Stats Beneath">
 <meta name="twitter:title" content="Stats Beneath">
-<meta name="twitter:description" content="Statistics simplified — the foundations beneath AI and machine learning">
-<meta name="twitter:image" content="https://statsbeneath.com/posts/01-why-stats-matter/thumbnail.png">
 <meta name="twitter:creator" content="@drpeo404">
 <meta name="twitter:site" content="@statsbeneath">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -360,24 +356,12 @@ window.Quarto = {
 <span class="menu-text">Articles</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./learning-path.html"> 
-<span class="menu-text">Learning Path</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./cheatsheets.html"> 
-<span class="menu-text">Cheat Sheets</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./did-you-know.html"> 
-<span class="menu-text">Did You Know?</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./resources.html"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./#newsletter"> 
+<span class="menu-text">Subscribe</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -426,7 +410,7 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Zm91bmRhdGlvbnM=">foundations <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWFjaGluZS1sZWFybmluZw==">machine-learning <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Zm91bmRhdGlvbnM=">foundations <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bWFjaGluZS1sZWFybmluZw==">machine-learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJvYmFiaWxpdHk=">probability <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -456,76 +440,45 @@ window.Quarto = {
 </header>
 
 
-<section id="stats-beneath" class="level1 hero-banner">
-<h1>Stats Beneath</h1>
-<div class="subtitle">
-<p>Statistics simplified — understanding the foundations that power AI, machine learning, and data science.</p>
+<section id="the-statistical-why-behind-every-ml-algorithm" class="level1 hero-section">
+<h1>The statistical <em>why</em> behind every ML algorithm</h1>
+<div class="hero-subtitle">
+<p>For ML engineers and data scientists who want to understand the mathematics driving their models — not just tune the hyperparameters. Intuition first, code second.</p>
 </div>
-<div class="tagline">
-<p>New article every week</p>
+<div class="hero-meta">
+<p>New article every week.</p>
 </div>
 </section>
-<div class="fun-fact-card">
-<div class="fact-label">
-<p>Did you know?</p>
-</div>
-<p>80% of a data scientist’s time is spent cleaning and organising data — not building models. The glamorous algorithm stuff? That’s just the tip of the iceberg. The real skill is in understanding your data first.</p>
-</div>
-<div class="stat-grid">
-<div class="stat-card">
-<div class="stat-number">
-<p>149 ZB</p>
-</div>
-<div class="stat-label">
-<p>Data created globally in 2024 — and growing fast</p>
-</div>
-</div>
-<div class="stat-card">
-<div class="stat-number">
-<p>1763</p>
-</div>
-<div class="stat-label">
-<p>Year Bayes’ Theorem was published — still powering AI today</p>
-</div>
-</div>
-<div class="stat-card">
-<div class="stat-number">
-<p>70%</p>
-</div>
-<div class="stat-label">
-<p>Of data science projects fail — often from poor statistical foundations</p>
-</div>
-</div>
-<div class="stat-card">
-<div class="stat-number">
-<p>37 sec</p>
-</div>
-<div class="stat-label">
-<p>Average time a reader spends on a blog post — we’ll make yours count</p>
-</div>
-</div>
-</div>
+<div class="content-wrapper">
 <section id="latest-articles" class="level2">
 <h2 class="anchored" data-anchor-id="latest-articles">Latest Articles</h2>
-<p>Each week, we break down one statistical concept with real-world analogies, clear visuals, and optional R code. No jargon walls. No assumptions about your background.</p>
-<section id="stay-in-the-loop" class="level3 newsletter-box">
-<h3 class="anchored" data-anchor-id="stay-in-the-loop">Stay in the loop</h3>
-<p>One email per week. One concept explained simply. No spam, no fluff.</p>
-<p><a href="#" class="btn-subscribe">Subscribe →</a></p>
-</section>
-
-
-
-</section>
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div id="listing-articles-listing" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Zm91bmRhdGlvbnMlMkNtYWNoaW5lLWxlYXJuaW5n" data-listing-date-sort="1770681600000" data-listing-file-modified-sort="1770770181153" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="593">
-<div class="thumbnail"><a href="./posts/01-why-stats-matter/index.html" class="no-external">
+<div class="quarto-post image-right" data-index="0" data-categories="Zm91bmRhdGlvbnMlMkNwcm9iYWJpbGl0eQ==" data-listing-date-sort="1770940800000" data-listing-file-modified-sort="1771008391898" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1804">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/02-random-variables-distributions/index.html" class="no-external">Random Variables and Distributions: What Your Data Actually Is</a>
+</h3>
+<div class="listing-categories">
 
-<img loading="lazy" src="./posts/01-why-stats-matter/thumbnail.png" class="thumbnail-image">
+<div class="listing-category" onclick="window.quartoListingCategory('Zm91bmRhdGlvbnM='); return false;">foundations</div>
 
+<div class="listing-category" onclick="window.quartoListingCategory('cHJvYmFiaWxpdHk='); return false;">probability</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/02-random-variables-distributions/index.html" class="no-external">
+<p>Your dataset isn’t just numbers in a CSV. It’s a realisation of random variables drawn from an unknown distribution. Until you understand that, every model you build is a guess about a process you haven’t described.</p>
 </a></div>
+</div>
+<div class="metadata">
+<a href="./posts/02-random-variables-distributions/index.html" class="no-external">
+<div class="listing-date">
+February 13, 2026
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Zm91bmRhdGlvbnMlMkNtYWNoaW5lLWxlYXJuaW5n" data-listing-date-sort="1770681600000" data-listing-file-modified-sort="1770770181153" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="593">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="./posts/01-why-stats-matter/index.html" class="no-external">Why Statistics Matters Before You Touch Machine Learning</a>
@@ -546,15 +499,54 @@ window.Quarto = {
 <div class="listing-date">
 February 10, 2026
 </div>
-<div class="listing-author">
-Godwil
-</div>
 </a>
 </div>
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</div>
+</section>
+<section id="topics-were-building-toward" class="level2 topics-section">
+<h2 class="anchored" data-anchor-id="topics-were-building-toward">Topics we’re building toward</h2>
+<div class="topic-pills">
+<p><span class="topic-pill">Bias-Variance Tradeoff</span> <span class="topic-pill">PCA &amp; Eigendecomposition</span> <span class="topic-pill">Maximum Likelihood</span> <span class="topic-pill">Bayesian Inference</span> <span class="topic-pill">Hypothesis Testing for ML</span> <span class="topic-pill">GLMs</span> <span class="topic-pill">Causal Inference</span></p>
+</div>
+</section>
+<div id="newsletter" class="newsletter-section">
+<section id="one-statistical-concept-explained-clearly-every-week" class="level2">
+<h2 class="anchored" data-anchor-id="one-statistical-concept-explained-clearly-every-week">One statistical concept, explained clearly, every week</h2>
+<p>Join ML engineers and data scientists building the mathematical intuition their bootcamp skipped.</p>
+<div class="newsletter-form">
+<form action="#" method="post" class="subscribe-form">
+<input type="email" placeholder="Your email address" required="" class="email-input"> <button type="submit" class="subscribe-button">Subscribe</button>
+</form>
+<p class="newsletter-note">
+No spam. Unsubscribe anytime.
+</p>
+</div>
+</section>
+</div>
+<div class="about-teaser">
+<div class="about-teaser-content">
+<div class="avatar-placeholder">
+<p>G</p>
+</div>
+<div class="about-text">
+<p><strong>Written by Godwil.</strong> MSc Health Data Science at University of Galway. Background in operations research, Bayesian modelling, and years of applied M&amp;E work. I believe the future of AI depends on engineers who understand the statistics beneath the algorithms.</p>
+<p><a href="./about.html" class="about-link">Learn more about me →</a></p>
+</div>
+</div>
+</div>
+<div class="custom-footer">
+<p>© 2026 Stats Beneath · Built with Quarto &amp; R</p>
+<p><a href="https://github.com/godwillA33peo/" class="footer-link">GitHub</a> · <a href="https://www.linkedin.com/in/godwill-zulu/" class="footer-link">LinkedIn</a></p>
+</div>
+</div>
+
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

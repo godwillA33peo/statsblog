@@ -8,7 +8,7 @@
 
 <meta name="author" content="Godwill">
 
-<title>About – Stats Beneath</title>
+<title>Stats Beneath</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,29 +24,31 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-9e15f8fb9e1f2f288bfbe28f6ca11029.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-9e15f8fb9e1f2f288bfbe28f6ca11029.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-9e15f8fb9e1f2f288bfbe28f6ca11029.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2b5c9bcf425a053c45e5000656919bfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-0c8d6c9924f93c509488b80bc4ab001c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-2b5c9bcf425a053c45e5000656919bfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9e15f8fb9e1f2f288bfbe28f6ca11029.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-9e15f8fb9e1f2f288bfbe28f6ca11029.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-9e15f8fb9e1f2f288bfbe28f6ca11029.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2b5c9bcf425a053c45e5000656919bfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0c8d6c9924f93c509488b80bc4ab001c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-2b5c9bcf425a053c45e5000656919bfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,6 +76,35 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-articles-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: [],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-articles-listing'] = new List('listing-articles-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 <!-- Google tag (gtag.js) -->
 
@@ -94,15 +125,44 @@ ul.task-list li input[type="checkbox"] {
 </script>
 
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="homepage.css">
-<meta property="og:title" content="About – Stats Beneath">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../homepage.css">
+<meta property="og:title" content="Stats Beneath">
 <meta property="og:description" content="Statistics simplified — the foundations beneath AI and machine learning">
 <meta property="og:site_name" content="Stats Beneath">
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -271,11 +331,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logo.png" alt="" class="navbar-logo light-content">
-    <img src="./images/logo.png" alt="" class="navbar-logo dark-content">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../images/logo.png" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Stats Beneath</span>
     </a>
   </div>
@@ -286,19 +346,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./archive.html"> 
+    <a class="nav-link" href="../archive.html"> 
 <span class="menu-text">Articles</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./#newsletter"> 
+    <a class="nav-link" href="../#newsletter"> 
 <span class="menu-text">Subscribe</span></a>
   </li>  
 </ul>
@@ -320,37 +380,23 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">About</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -368,49 +414,50 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="about-header">
+<section id="the-statistical-why-behind-every-ml-algorithm" class="level1 hero-section">
+<h1>The statistical <span class="hero-accent"><em>why</em></span> behind every ML algorithm</h1>
+<p>For ML engineers and data scientists who want to understand the mathematics driving their models — not just tune the hyperparameters. Intuition first, code second.</p>
+<p><span class="hero-cadence">New article every week.</span></p>
+<div class="hero-buttons">
+<p><a href="archive.html" class="btn-primary">Browse Articles</a> <a href="#newsletter" class="btn-secondary">Subscribe</a></p>
+</div>
+</section>
+<section id="latest-articles" class="level2 articles-section">
+<h2 class="anchored" data-anchor-id="latest-articles">Latest Articles</h2>
+<div id="listing-articles-listing" class="quarto-listing quarto-listing-container-default">
+<div class="list quarto-listing-default">
+
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div>
+</section>
+<section id="topics-were-building-toward" class="level4 topics-section">
+<h4 class="anchored" data-anchor-id="topics-were-building-toward">Topics we’re building toward</h4>
+<div class="topic-pills">
+<p><span class="topic-pill">Likelihood &amp; MLE</span> <span class="topic-pill">Bias-Variance Tradeoff</span> <span class="topic-pill">Regularisation as Prior</span> <span class="topic-pill">Hypothesis Testing for ML</span> <span class="topic-pill">Bayesian Inference</span> <span class="topic-pill">PCA &amp; Eigendecomposition</span> <span class="topic-pill">GLMs</span> <span class="topic-pill">Causal Inference</span></p>
+</div>
+</section>
+<div id="newsletter" class="newsletter-section">
+<section id="one-statistical-concept-explained-clearly-every-week" class="level3">
+<h3 class="anchored" data-anchor-id="one-statistical-concept-explained-clearly-every-week">One statistical concept, explained clearly, every week</h3>
+<p>Join ML engineers and data scientists building the mathematical intuition their bootcamp skipped.</p>
+<div class="newsletter-form">
+<p><a href="mailto:statsbeneath@gmail.com" class="btn-subscribe">Subscribe →</a></p>
+</div>
+<p><span class="newsletter-note">No spam. Unsubscribe anytime.</span></p>
+</section>
+</div>
+<div class="about-teaser">
 <div class="about-avatar">
 <p>G</p>
 </div>
-<section id="godwil-zulu" class="level1">
-<h1>Godwil Zulu</h1>
-<div class="about-tagline">
-<p>MSc Health Data Science · Bayesian Modelling · Statistical Foundations for ML</p>
+<div class="about-text">
+<p><strong>Written by Godwil.</strong> MSc Health Data Science at University of Galway. Background in operations research, Bayesian modelling, and years of applied M&amp;E work in health systems. I believe the future of AI depends on engineers who understand the statistics beneath the algorithms. <a href="about.html">More about me →</a></p>
 </div>
-</section>
 </div>
-<section id="about-me" class="level2">
-<h2 class="anchored" data-anchor-id="about-me">About me</h2>
-<p>I’m a Health Data Science MSc student at the University of Galway, originally from Zimbabwe. I hold a First Class Honours degree in Operations Research and Statistics, and have spent years working as a Monitoring &amp; Evaluation Specialist in the health sector, where I developed a deep appreciation for rigorous data analysis and evidence-based decision making.</p>
-<p>In 2023, I was selected for the Ireland Fellows Programme, which brought me to Ireland to pursue advanced studies in health data science. My journey through operations research, public health program evaluation, and now Bayesian statistical modelling has taught me that the real power of data science lies not in knowing which algorithm to run, but in understanding <em>why</em> it works.</p>
-<p>I created <strong>Stats Beneath</strong> because I’ve seen too many talented engineers and data scientists skip over the statistical foundations that make machine learning actually work. This blog is my attempt to bridge that gap — explaining one statistical concept at a time, with clarity, intuition, and real-world context.</p>
-</section>
-<section id="what-im-working-on" class="level2">
-<h2 class="anchored" data-anchor-id="what-im-working-on">What I’m working on</h2>
-<p><strong>MSc Thesis</strong>: I’m currently working on small area estimation for malaria prevalence in Ghana using Bayesian hierarchical models. Specifically, I’m implementing BYM2 and ICAR spatial models in Stan to produce district-level prevalence estimates from survey data. This work combines my interests in public health, spatial statistics, and Bayesian inference.</p>
-<p><strong>Stats Beneath</strong>: This blog, where I publish weekly deep dives into the statistical concepts that power machine learning and AI. Each article starts with intuition, builds to mathematical understanding, and ends with practical takeaways.</p>
-<p><strong>Bayesian Explorer</strong>: An interactive Shiny application I built to help students and practitioners develop intuition for Bayesian concepts. It visualizes prior-likelihood-posterior relationships and lets you explore how different priors affect inference in real-time. <a href="https://godwil.shinyapps.io/bayesian-explorer/">Try it here →</a></p>
-</section>
-<section id="technical-skills" class="level2">
-<h2 class="anchored" data-anchor-id="technical-skills">Technical skills</h2>
-<p>I work primarily in <strong>R</strong> for statistical analysis and modeling, using <strong>Stan</strong> and <strong>JAGS</strong> for Bayesian inference. I build interactive tools with <strong>Shiny</strong>, write and publish technical content with <strong>Quarto</strong>, and handle version control with <strong>Git</strong>. I also use <strong>Python</strong> for machine learning workflows and have experience with geospatial analysis (spatial statistics, mapping, GIS workflows).</p>
-<p>My approach is tool-agnostic but principles-first: I believe understanding the statistical foundations makes you better at choosing the right tool for the job.</p>
-</section>
-<section id="connect" class="level2">
-<h2 class="anchored" data-anchor-id="connect">Connect</h2>
-<p>I’m always interested in connecting with people working at the intersection of statistics, machine learning, and public health.</p>
-<div class="connect-links">
-<ul>
-<li><a href="https://github.com/godwillA33peo">GitHub</a> — code, projects, and open-source contributions</li>
-<li><a href="https://www.linkedin.com/in/godwill-zulu/">LinkedIn</a> — professional background and updates</li>
-<li><a href="mailto:godwillzulu51@gmail.com">Email</a> — reach out directly</li>
-</ul>
-</div>
-<hr>
-<p><em>This site is built with <a href="https://quarto.org">Quarto</a> and deployed on GitHub Pages. All content is written in R Markdown and rendered to HTML. The source code is available on GitHub.</em></p>
 
 
-</section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -851,5 +898,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

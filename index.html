@@ -88,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -156,15 +156,13 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="homepage.css">
 <meta property="og:title" content="Stats Beneath">
+<meta property="og:description" content="Statistics simplified — the foundations beneath AI and machine learning">
 <meta property="og:site_name" content="Stats Beneath">
-<meta name="twitter:title" content="Stats Beneath">
-<meta name="twitter:creator" content="@drpeo404">
-<meta name="twitter:site" content="@statsbeneath">
-<meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -366,22 +364,12 @@ window.Quarto = {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/godwillA33peo/"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://x.com/drpeo404"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://github.com/godwillA33peo"> <i class="bi bi-github" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://www.linkedin.com/in/godwill-zulu/"> <i class="bi bi-linkedin" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="./index.xml"> <i class="bi bi-rss" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -392,37 +380,23 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Stats Beneath</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Zm91bmRhdGlvbnM=">foundations <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bWFjaGluZS1sZWFybmluZw==">machine-learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJvYmFiaWxpdHk=">probability <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Stats Beneath</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta column-page">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -441,16 +415,14 @@ window.Quarto = {
 
 
 <section id="the-statistical-why-behind-every-ml-algorithm" class="level1 hero-section">
-<h1>The statistical <em>why</em> behind every ML algorithm</h1>
-<div class="hero-subtitle">
+<h1>The statistical <span class="hero-accent"><em>why</em></span> behind every ML algorithm</h1>
 <p>For ML engineers and data scientists who want to understand the mathematics driving their models — not just tune the hyperparameters. Intuition first, code second.</p>
-</div>
-<div class="hero-meta">
-<p>New article every week.</p>
+<p><span class="hero-cadence">New article every week.</span></p>
+<div class="hero-buttons">
+<p><a href="archive.html" class="btn-primary">Browse Articles</a> <a href="#newsletter" class="btn-secondary">Subscribe</a></p>
 </div>
 </section>
-<div class="content-wrapper">
-<section id="latest-articles" class="level2">
+<section id="latest-articles" class="level2 articles-section">
 <h2 class="anchored" data-anchor-id="latest-articles">Latest Articles</h2>
 <div id="listing-articles-listing" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
@@ -473,7 +445,7 @@ window.Quarto = {
 <div class="metadata">
 <a href="./posts/02-random-variables-distributions/index.html" class="no-external">
 <div class="listing-date">
-February 13, 2026
+Feb 13, 2026
 </div>
 </a>
 </div>
@@ -497,7 +469,7 @@ February 13, 2026
 <div class="metadata">
 <a href="./posts/01-why-stats-matter/index.html" class="no-external">
 <div class="listing-date">
-February 10, 2026
+Feb 10, 2026
 </div>
 </a>
 </div>
@@ -506,40 +478,28 @@ February 10, 2026
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
 </section>
-<section id="topics-were-building-toward" class="level2 topics-section">
-<h2 class="anchored" data-anchor-id="topics-were-building-toward">Topics we’re building toward</h2>
+<section id="topics-were-building-toward" class="level4 topics-section">
+<h4 class="anchored" data-anchor-id="topics-were-building-toward">Topics we’re building toward</h4>
 <div class="topic-pills">
-<p><span class="topic-pill">Bias-Variance Tradeoff</span> <span class="topic-pill">PCA &amp; Eigendecomposition</span> <span class="topic-pill">Maximum Likelihood</span> <span class="topic-pill">Bayesian Inference</span> <span class="topic-pill">Hypothesis Testing for ML</span> <span class="topic-pill">GLMs</span> <span class="topic-pill">Causal Inference</span></p>
+<p><span class="topic-pill">Likelihood &amp; MLE</span> <span class="topic-pill">Bias-Variance Tradeoff</span> <span class="topic-pill">Regularisation as Prior</span> <span class="topic-pill">Hypothesis Testing for ML</span> <span class="topic-pill">Bayesian Inference</span> <span class="topic-pill">PCA &amp; Eigendecomposition</span> <span class="topic-pill">GLMs</span> <span class="topic-pill">Causal Inference</span></p>
 </div>
 </section>
 <div id="newsletter" class="newsletter-section">
-<section id="one-statistical-concept-explained-clearly-every-week" class="level2">
-<h2 class="anchored" data-anchor-id="one-statistical-concept-explained-clearly-every-week">One statistical concept, explained clearly, every week</h2>
+<section id="one-statistical-concept-explained-clearly-every-week" class="level3">
+<h3 class="anchored" data-anchor-id="one-statistical-concept-explained-clearly-every-week">One statistical concept, explained clearly, every week</h3>
 <p>Join ML engineers and data scientists building the mathematical intuition their bootcamp skipped.</p>
 <div class="newsletter-form">
-<form action="#" method="post" class="subscribe-form">
-<input type="email" placeholder="Your email address" required="" class="email-input"> <button type="submit" class="subscribe-button">Subscribe</button>
-</form>
-<p class="newsletter-note">
-No spam. Unsubscribe anytime.
-</p>
+<p><a href="mailto:statsbeneath@gmail.com" class="btn-subscribe">Subscribe →</a></p>
 </div>
+<p><span class="newsletter-note">No spam. Unsubscribe anytime.</span></p>
 </section>
 </div>
 <div class="about-teaser">
-<div class="about-teaser-content">
-<div class="avatar-placeholder">
+<div class="about-avatar">
 <p>G</p>
 </div>
 <div class="about-text">
-<p><strong>Written by Godwil.</strong> MSc Health Data Science at University of Galway. Background in operations research, Bayesian modelling, and years of applied M&amp;E work. I believe the future of AI depends on engineers who understand the statistics beneath the algorithms.</p>
-<p><a href="./about.html" class="about-link">Learn more about me →</a></p>
-</div>
-</div>
-</div>
-<div class="custom-footer">
-<p>© 2026 Stats Beneath · Built with Quarto &amp; R</p>
-<p><a href="https://github.com/godwillA33peo/" class="footer-link">GitHub</a> · <a href="https://www.linkedin.com/in/godwill-zulu/" class="footer-link">LinkedIn</a></p>
+<p><strong>Written by Godwil.</strong> MSc Health Data Science at University of Galway. Background in operations research, Bayesian modelling, and years of applied M&amp;E work in health systems. I believe the future of AI depends on engineers who understand the statistics beneath the algorithms. <a href="about.html">More about me →</a></p>
 </div>
 </div>
 
@@ -974,12 +934,6 @@ No spam. Unsubscribe anytime.
     <li class="nav-item compact">
     <a class="nav-link" href="mailto:godwillzulu51@gmail.com">
       <i class="bi bi-envelope" role="img">
-</i> 
-    </a>
-  </li>  
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://x.com/drpeo404">
-      <i class="bi bi-twitter" role="img">
 </i> 
     </a>
   </li>  

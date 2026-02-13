@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://statsbeneath.com/updates/INSTRUCTIONS.html</loc>
+    <lastmod>2026-02-13T19:29:52.964Z</lastmod>
+  </url>
+  <url>
     <loc>https://statsbeneath.com/resources.html</loc>
     <lastmod>2026-02-11T00:36:21.156Z</lastmod>
   </url>
@@ -10,7 +14,7 @@
   </url>
   <url>
     <loc>https://statsbeneath.com/index.html</loc>
-    <lastmod>2026-02-13T18:49:46.352Z</lastmod>
+    <lastmod>2026-02-13T19:30:22.242Z</lastmod>
   </url>
   <url>
     <loc>https://statsbeneath.com/cheatsheets.html</loc>
@@ -18,7 +22,7 @@
   </url>
   <url>
     <loc>https://statsbeneath.com/about.html</loc>
-    <lastmod>2026-02-13T18:49:55.615Z</lastmod>
+    <lastmod>2026-02-13T19:12:20.755Z</lastmod>
   </url>
   <url>
     <loc>https://statsbeneath.com/archive.html</loc>
@@ -35,5 +39,9 @@
   <url>
     <loc>https://statsbeneath.com/posts/02-random-variables-distributions/index.html</loc>
     <lastmod>2026-02-13T18:46:31.898Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/updates/index.html</loc>
+    <lastmod>2026-02-13T19:26:45.246Z</lastmod>
   </url>
 </urlset>

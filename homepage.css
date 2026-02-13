@@ -1,0 +1,370 @@
+/* ============================================
+   Stats Beneath — Custom Homepage Styles
+   ============================================ */
+
+/* --- Import Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --green-accent: #22c55e;
+  --green-dark: #166534;
+  --green-bg: #14532d;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --bg-surface: #1a2332;
+  --border-color: #334155;
+  --max-content: 780px;
+}
+
+/* --- Suppress Default Quarto Blog Elements --- */
+/* Hide the auto-generated title block, author, and categories sidebar */
+.quarto-title-block,
+.quarto-title,
+#title-block-header,
+.quarto-title-meta,
+.quarto-title-meta-heading,
+.quarto-title-meta-contents,
+#quarto-margin-sidebar,
+.quarto-margin-sidebar,
+.sidebar,
+.quarto-listing-category,
+.listing-categories,
+.quarto-listing-category-title {
+  display: none !important;
+}
+
+/* Remove sidebar layout spacing */
+.page-columns .content {
+  grid-column: page-start / page-end !important;
+}
+
+.column-body {
+  max-width: 100% !important;
+  grid-column: page-start / page-end !important;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-bg) 60%, #0c4a1e 100%);
+  padding: 4rem 2rem;
+  text-align: center;
+  border-radius: 12px;
+  max-width: var(--max-content);
+  margin: 0 auto 3rem auto;
+}
+
+.hero-section h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+
+.hero-accent {
+  color: var(--green-accent) !important;
+  font-style: italic;
+}
+
+.hero-section > p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto 1rem auto;
+}
+
+.hero-cadence {
+  display: block;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-top: 0.5rem;
+}
+
+.hero-buttons {
+  margin-top: 1.8rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-buttons .btn-primary {
+  background: var(--green-accent);
+  color: #0f172a;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.hero-buttons .btn-primary:hover {
+  background: #16a34a;
+}
+
+.hero-buttons .btn-secondary {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #475569;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+
+.hero-buttons .btn-secondary:hover {
+  border-color: #94a3b8;
+}
+
+/* --- Articles Section --- */
+.articles-section {
+  max-width: var(--max-content);
+  margin: 0 auto 3rem auto;
+  padding: 0 1rem;
+}
+
+.articles-section h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Style the Quarto listing items */
+.quarto-listing .list-group-item,
+.quarto-listing .quarto-post {
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.2rem 0;
+  background: transparent !important;
+}
+
+.quarto-listing .list-group-item:last-child,
+.quarto-listing .quarto-post:last-child {
+  border-bottom: none;
+}
+
+/* Listing title links */
+.quarto-listing .listing-title,
+.quarto-listing .listing-title a {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary) !important;
+  text-decoration: none;
+}
+
+.quarto-listing .listing-title a:hover {
+  color: var(--green-accent) !important;
+}
+
+/* Listing descriptions */
+.quarto-listing .listing-description,
+.quarto-listing .delink {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Listing dates */
+.quarto-listing .listing-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Category pills in listing */
+.quarto-listing .listing-categories .listing-category {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid var(--green-dark);
+  color: var(--green-accent);
+  border-radius: 20px;
+  padding: 0.15rem 0.6rem;
+  text-transform: lowercase;
+}
+
+/* Remove thumbnail images from listing on homepage */
+.quarto-listing .thumbnail,
+.quarto-listing .listing-image,
+.quarto-listing img {
+  display: none !important;
+}
+
+/* --- Topics Section --- */
+.topics-section {
+  max-width: var(--max-content);
+  margin: 0 auto 3rem auto;
+  padding: 0 1rem;
+}
+
+.topics-section h4 {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.topic-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.topic-pill {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 0.3rem 0.9rem;
+  background: transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.topic-pill:hover {
+  border-color: var(--green-accent);
+  color: var(--green-accent);
+}
+
+/* --- Newsletter Section --- */
+.newsletter-section {
+  max-width: var(--max-content);
+  margin: 0 auto 3rem auto;
+  padding: 2.5rem 2rem;
+  background: var(--bg-surface);
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.newsletter-section h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 0.8rem;
+}
+
+.newsletter-section > p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.newsletter-form {
+  margin-bottom: 0.8rem;
+}
+
+.btn-subscribe {
+  display: inline-block;
+  background: var(--green-accent);
+  color: #0f172a !important;
+  padding: 0.65rem 2rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: background 0.2s;
+}
+
+.btn-subscribe:hover {
+  background: #16a34a;
+}
+
+.newsletter-note {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* --- About Teaser --- */
+.about-teaser {
+  max-width: var(--max-content);
+  margin: 0 auto 3rem auto;
+  padding: 2rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  border-top: 1px solid var(--border-color);
+  padding-top: 2rem;
+}
+
+.about-avatar {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  background: var(--green-dark);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.about-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.about-text strong {
+  color: var(--text-primary);
+}
+
+.about-text a {
+  color: var(--green-accent);
+  text-decoration: none;
+}
+
+.about-text a:hover {
+  text-decoration: underline;
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .hero-section {
+    padding: 2.5rem 1.2rem;
+  }
+
+  .hero-section h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-teaser {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

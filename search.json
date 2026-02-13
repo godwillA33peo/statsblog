@@ -1,5 +1,40 @@
 [
   {
+    "objectID": "updates/INSTRUCTIONS.html",
+    "href": "updates/INSTRUCTIONS.html",
+    "title": "Stats Beneath Homepage Redesign — Instructions",
+    "section": "",
+    "text": "You have 2 files to apply from the updates folder:\n\nindex.qmd — Replaces your current homepage. Uses page-layout: full and sidebar: false to suppress the default Quarto title block, author label, and categories sidebar. The hero section is the first thing visitors see.\nhomepage.css — Custom styles for the hero, articles listing, topics pills, newsletter CTA, and about teaser. Designed to work with your existing dark theme.\n\n\n\n\n\n\ncp index.qmd index.qmd.bak\n\n\n\nCopy the new index.qmd into your project root, replacing the existing one.\n\n\n\nCopy homepage.css into your project root (or wherever your other CSS files live).\n\n\n\nIn your _quarto.yml, under format: html:, add homepage.css to your css list. For example, if you currently have:\nformat:\n  html:\n    theme: darkly  # or whatever theme you use\n    css: styles.css\nChange it to:\nformat:\n  html:\n    theme: darkly\n    css:\n      - styles.css\n      - homepage.css\nIf you don’t have a css field yet, just add one.\n\n\n\nIn _quarto.yml, under website: navbar:, reduce the right-side icons to just GitHub, LinkedIn, and the search tool. Remove Twitter, RSS, and the eye/preview icon.\nExample:\nwebsite:\n  navbar:\n    right:\n      - icon: github\n        href: https://github.com/godwillA33peo\n      - icon: linkedin\n        href: ttps://www.linkedin.com/in/godwill-zulu/ \n      - text: \"\"\n        icon: search\n\n\n\nquarto preview\n\n\n\nquarto render\ngit add -A\ngit commit -m \"Homepage redesign: hero-first, no sidebar/counters\"\ngit push\n\n\n\n\n\n\n\n\n\n\n\nBefore\nAfter\n\n\n\n\n“Stats Beneath” title + “AUTHOR: Godwill” above hero\nSuppressed — site name is already in nav\n\n\nCategories sidebar (right column)\nRemoved — not useful with &lt;5 articles\n\n\nStats counters (149 ZB, 1763, etc.)\nRemoved\n\n\n“Did You Know?” section\nRemoved\n\n\nArticle listing below lots of decoration\nArticle listing directly after hero\n\n\n6 social icons in nav\n3 (GitHub, LinkedIn, Search)\n\n\nGreen hero banner below wasted space\nGreen hero banner is first content element\n\n\n\n\n\n\nCategories sidebar still shows: Make sure sidebar: false and categories: false are in the YAML front matter. Also check that homepage.css is loaded (the CSS has display: none !important rules for sidebar elements as a fallback).\nTitle block still shows: The title-block-banner: false and absence of a title: field (we use pagetitle: instead) should suppress it. If it still appears, add this to your _quarto.yml under the page or format section:\ntitle-block-style: none\nListing shows no articles: Make sure your posts are in a /posts directory and each has draft: false (or no draft field) in the YAML front matter.\nCSS not applying: Check the browser dev tools console for 404 errors on homepage.css. Make sure the path in _quarto.yml matches where you placed the file."
+  },
+  {
+    "objectID": "updates/INSTRUCTIONS.html#what-these-files-do",
+    "href": "updates/INSTRUCTIONS.html#what-these-files-do",
+    "title": "Stats Beneath Homepage Redesign — Instructions",
+    "section": "",
+    "text": "You have 2 files to apply from the updates folder:\n\nindex.qmd — Replaces your current homepage. Uses page-layout: full and sidebar: false to suppress the default Quarto title block, author label, and categories sidebar. The hero section is the first thing visitors see.\nhomepage.css — Custom styles for the hero, articles listing, topics pills, newsletter CTA, and about teaser. Designed to work with your existing dark theme."
+  },
+  {
+    "objectID": "updates/INSTRUCTIONS.html#step-by-step",
+    "href": "updates/INSTRUCTIONS.html#step-by-step",
+    "title": "Stats Beneath Homepage Redesign — Instructions",
+    "section": "",
+    "text": "cp index.qmd index.qmd.bak\n\n\n\nCopy the new index.qmd into your project root, replacing the existing one.\n\n\n\nCopy homepage.css into your project root (or wherever your other CSS files live).\n\n\n\nIn your _quarto.yml, under format: html:, add homepage.css to your css list. For example, if you currently have:\nformat:\n  html:\n    theme: darkly  # or whatever theme you use\n    css: styles.css\nChange it to:\nformat:\n  html:\n    theme: darkly\n    css:\n      - styles.css\n      - homepage.css\nIf you don’t have a css field yet, just add one.\n\n\n\nIn _quarto.yml, under website: navbar:, reduce the right-side icons to just GitHub, LinkedIn, and the search tool. Remove Twitter, RSS, and the eye/preview icon.\nExample:\nwebsite:\n  navbar:\n    right:\n      - icon: github\n        href: https://github.com/godwillA33peo\n      - icon: linkedin\n        href: ttps://www.linkedin.com/in/godwill-zulu/ \n      - text: \"\"\n        icon: search\n\n\n\nquarto preview\n\n\n\nquarto render\ngit add -A\ngit commit -m \"Homepage redesign: hero-first, no sidebar/counters\"\ngit push"
+  },
+  {
+    "objectID": "updates/INSTRUCTIONS.html#what-changed-vs.-the-old-homepage",
+    "href": "updates/INSTRUCTIONS.html#what-changed-vs.-the-old-homepage",
+    "title": "Stats Beneath Homepage Redesign — Instructions",
+    "section": "",
+    "text": "Before\nAfter\n\n\n\n\n“Stats Beneath” title + “AUTHOR: Godwill” above hero\nSuppressed — site name is already in nav\n\n\nCategories sidebar (right column)\nRemoved — not useful with &lt;5 articles\n\n\nStats counters (149 ZB, 1763, etc.)\nRemoved\n\n\n“Did You Know?” section\nRemoved\n\n\nArticle listing below lots of decoration\nArticle listing directly after hero\n\n\n6 social icons in nav\n3 (GitHub, LinkedIn, Search)\n\n\nGreen hero banner below wasted space\nGreen hero banner is first content element"
+  },
+  {
+    "objectID": "updates/INSTRUCTIONS.html#troubleshooting",
+    "href": "updates/INSTRUCTIONS.html#troubleshooting",
+    "title": "Stats Beneath Homepage Redesign — Instructions",
+    "section": "",
+    "text": "Categories sidebar still shows: Make sure sidebar: false and categories: false are in the YAML front matter. Also check that homepage.css is loaded (the CSS has display: none !important rules for sidebar elements as a fallback).\nTitle block still shows: The title-block-banner: false and absence of a title: field (we use pagetitle: instead) should suppress it. If it still appears, add this to your _quarto.yml under the page or format section:\ntitle-block-style: none\nListing shows no articles: Make sure your posts are in a /posts directory and each has draft: false (or no draft field) in the YAML front matter.\nCSS not applying: Check the browser dev tools console for 404 errors on homepage.css. Make sure the path in _quarto.yml matches where you placed the file."
+  },
+  {
     "objectID": "resources.html",
     "href": "resources.html",
     "title": "Resources",
@@ -86,30 +121,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Stats Beneath",
+    "title": "The statistical why behind every ML algorithm",
     "section": "",
-    "text": "For ML engineers and data scientists who want to understand the mathematics driving their models — not just tune the hyperparameters. Intuition first, code second.\n\n\nNew article every week."
+    "text": "For ML engineers and data scientists who want to understand the mathematics driving their models — not just tune the hyperparameters. Intuition first, code second.\nNew article every week.\n\nBrowse Articles Subscribe"
   },
   {
     "objectID": "index.html#latest-articles",
     "href": "index.html#latest-articles",
-    "title": "Stats Beneath",
+    "title": "The statistical why behind every ML algorithm",
     "section": "Latest Articles",
-    "text": "Latest Articles\n\n\n\n\n\nRandom Variables and Distributions: What Your Data Actually Is\n\n\n\nfoundations\n\nprobability\n\n\n\nYour dataset isn’t just numbers in a CSV. It’s a realisation of random variables drawn from an unknown distribution. Until you understand that, every model you build is a guess about a process you haven’t described.\n\n\n\n\n\nFebruary 13, 2026\n\n\n\n\n\n\n\nWhy Statistics Matters Before You Touch Machine Learning\n\n\n\nfoundations\n\nmachine-learning\n\n\n\nEveryone wants to build AI. But the real superpower isn’t knowing which algorithm to use — it’s understanding why it works.\n\n\n\n\n\nFebruary 10, 2026\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "index.html#topics-were-building-toward",
-    "href": "index.html#topics-were-building-toward",
-    "title": "Stats Beneath",
-    "section": "Topics we’re building toward",
-    "text": "Topics we’re building toward\n\nBias-Variance Tradeoff PCA & Eigendecomposition Maximum Likelihood Bayesian Inference Hypothesis Testing for ML GLMs Causal Inference"
-  },
-  {
-    "objectID": "index.html#one-statistical-concept-explained-clearly-every-week",
-    "href": "index.html#one-statistical-concept-explained-clearly-every-week",
-    "title": "Stats Beneath",
-    "section": "One statistical concept, explained clearly, every week",
-    "text": "One statistical concept, explained clearly, every week\nJoin ML engineers and data scientists building the mathematical intuition their bootcamp skipped.\n\n\n Subscribe\n\n\nNo spam. Unsubscribe anytime."
+    "text": "Latest Articles\n\n\n\n\n\nRandom Variables and Distributions: What Your Data Actually Is\n\n\n\nfoundations\n\nprobability\n\n\n\nYour dataset isn’t just numbers in a CSV. It’s a realisation of random variables drawn from an unknown distribution. Until you understand that, every model you build is a guess about a process you haven’t described.\n\n\n\n\n\nFeb 13, 2026\n\n\n\n\n\n\n\nWhy Statistics Matters Before You Touch Machine Learning\n\n\n\nfoundations\n\nmachine-learning\n\n\n\nEveryone wants to build AI. But the real superpower isn’t knowing which algorithm to use — it’s understanding why it works.\n\n\n\n\n\nFeb 10, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "cheatsheets.html",
@@ -285,5 +306,19 @@
     "title": "Random Variables and Distributions: What Your Data Actually Is",
     "section": "The mental model to take away",
     "text": "The mental model to take away\nHere’s the shift I want you to make:\nBefore: “I have data in a CSV. I’ll fit a model to it.”\nAfter: “My data is a sample of realisations from an unknown data-generating process. My model is a hypothesis about what that process looks like. Training is estimating the parameters of that process. Evaluation is checking whether my hypothesis is consistent with new realisations.”\nThat second framing is what statistics gives you. It’s more precise, more honest, and it leads to better models.\nNext week, we’ll build on this foundation. You now know that your data comes from distributions and your models estimate distributions. But what exactly are you estimating when you compute a mean, a variance, or a loss? That’s the world of expected values — and it turns out your loss function is one.\n\nThis is article 2 of Stats Beneath, a weekly series on the statistical foundations of machine learning. Subscribe to get each article when it’s published."
+  },
+  {
+    "objectID": "updates/index.html",
+    "href": "updates/index.html",
+    "title": "The statistical why behind every ML algorithm",
+    "section": "",
+    "text": "For ML engineers and data scientists who want to understand the mathematics driving their models — not just tune the hyperparameters. Intuition first, code second.\nNew article every week.\n\nBrowse Articles Subscribe"
+  },
+  {
+    "objectID": "updates/index.html#latest-articles",
+    "href": "updates/index.html#latest-articles",
+    "title": "The statistical why behind every ML algorithm",
+    "section": "Latest Articles",
+    "text": "Latest Articles\n\n\n\n\nNo matching items"
   }
 ]

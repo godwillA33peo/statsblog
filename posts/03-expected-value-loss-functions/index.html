@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Godwill">
-<meta name="dcterms.date" content="2026-02-27">
+<meta name="dcterms.date" content="2026-02-16">
 <meta name="description" content="You minimise loss functions every day. MSE, cross-entropy, MAE — they’re the core of model training. But each one is an expected value in disguise. Understanding that connection changes how you think about every model you build.">
 
 <title>Expected Value, Variance, and Why Your Loss Function Is a Statistic – Stats Beneath</title>
@@ -433,7 +433,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 27, 2026</p>
+      <p class="date">February 16, 2026</p>
     </div>
   </div>
   
@@ -490,7 +490,7 @@ window.Quarto = {
 <p>If <span class="math inline">\(g(X)\)</span> is some function of <span class="math inline">\(X\)</span>, then:</p>
 <p><span class="math display">\[E[g(X)] = \sum_i g(x_i) \, p_i \quad \text{(discrete)}\]</span></p>
 <p><span class="math display">\[E[g(X)] = \int g(x) \, f(x) \, dx \quad \text{(continuous)}\]</span></p>
-<p>This is called the <strong>Law of the Unconscious Statistician</strong> (yes, really — the name is a gentle jab at people who use it without realising what they’re doing).</p>
+<p>This is called the <strong>Law of the Unconscious Statistician</strong> (yes, really: the name is a gentle jab at people who use it without realising what they’re doing).</p>
 <p>Why does this matter? Because loss functions are functions of random variables. And when you average a loss function over your data, you’re estimating the expected value of that function. Let’s make this precise.</p>
 </section>
 </section>
@@ -506,8 +506,8 @@ window.Quarto = {
 <section id="why-variance-matters-for-ml" class="level3">
 <h3 class="anchored" data-anchor-id="why-variance-matters-for-ml">Why variance matters for ML</h3>
 <p>Variance shows up everywhere:</p>
-<p><strong>In your data:</strong> The variance of your features determines how much information they carry. A feature with zero variance is useless — it tells you nothing. Feature scaling (standardisation) divides by standard deviation precisely to put all features on equal footing.</p>
-<p><strong>In your model:</strong> The variance of your model’s predictions across different training sets is what we call “model variance” in the bias-variance tradeoff. High variance means your model is sensitive to which specific data points it was trained on — that’s overfitting.</p>
+<p><strong>In your data:</strong> The variance of your features determines how much information they carry. A feature with zero variance is useless: it tells you nothing. Feature scaling (standardisation) divides by standard deviation precisely to put all features on equal footing.</p>
+<p><strong>In your model:</strong> The variance of your model’s predictions across different training sets is what we call “model variance” in the bias-variance tradeoff. High variance means your model is sensitive to which specific data points it was trained on, that’s overfitting.</p>
 <p><strong>In your estimates:</strong> When you report “accuracy = 0.91”, that number has a variance. It would be different if you’d tested on a different sample. The variance tells you how much to trust it.</p>
 </section>
 </section>
@@ -519,17 +519,17 @@ window.Quarto = {
 <p>Positive covariance means they move together. Negative means they move in opposite directions. Zero covariance means there’s no <em>linear</em> relationship (but there could still be a nonlinear one).</p>
 <p><strong>Correlation</strong> is covariance normalised to lie between -1 and 1:</p>
 <p><span class="math display">\[\rho(X, Y) = \frac{\text{Cov}(X, Y)}{\sqrt{\text{Var}(X) \cdot \text{Var}(Y)}}\]</span></p>
-<p>Here’s the ML connection that matters: <strong>multicollinearity</strong> happens when your feature variables have high covariance with each other. When features are highly correlated, your regression coefficients become unstable — they have high variance, are hard to interpret, and can flip sign. PCA, which we’ll cover in a future article, works by finding directions in feature space along which the <em>variance</em> is maximised while the <em>covariance</em> between the new directions is zero.</p>
+<p>Here’s the ML connection that matters: <strong>multicollinearity</strong> happens when your feature variables have high covariance with each other. When features are highly correlated, your regression coefficients become unstable: they have high variance, are hard to interpret, and can flip sign. PCA, which we’ll cover in a future article, works by finding directions in feature space along which the <em>variance</em> is maximised while the <em>covariance</em> between the new directions is zero.</p>
 </section>
 <section id="now-the-connection-that-changes-everything" class="level2">
 <h2 class="anchored" data-anchor-id="now-the-connection-that-changes-everything">Now: the connection that changes everything</h2>
 <p>Here’s the payoff. Let’s look at what you’re actually computing when you train a model.</p>
 <p>You have training data <span class="math inline">\(\{(x_i, y_i)\}_{i=1}^n\)</span>. You have a model <span class="math inline">\(\hat{y} = f(x; \theta)\)</span> with parameters <span class="math inline">\(\theta\)</span>. You define a loss function <span class="math inline">\(L(y, \hat{y})\)</span> that measures how bad each prediction is. Then you compute:</p>
 <p><span class="math display">\[\hat{R}(\theta) = \frac{1}{n} \sum_{i=1}^n L(y_i, f(x_i; \theta))\]</span></p>
-<p>This is the <strong>empirical risk</strong> — the average loss over your training data. You minimise it to find the best parameters.</p>
+<p>This is the <strong>empirical risk</strong>: the average loss over your training data. You minimise it to find the best parameters.</p>
 <p>But what are you <em>really</em> doing? You’re computing a <strong>sample average</strong> of the function <span class="math inline">\(L(y, f(x; \theta))\)</span>. And a sample average is an <em>estimate</em> of an expected value:</p>
 <p><span class="math display">\[R(\theta) = E[L(Y, f(X; \theta))]\]</span></p>
-<p>This is the <strong>true risk</strong> — the expected loss over the entire data-generating distribution. It’s the quantity you actually care about, because it tells you how well your model will perform on <em>new</em> data, not just the training set.</p>
+<p>This is the <strong>true risk</strong>: the expected loss over the entire data-generating distribution. It’s the quantity you actually care about, because it tells you how well your model will perform on <em>new</em> data, not just the training set.</p>
 <p><strong>Training is estimating parameters that minimise an expected value. Your loss function is the function inside that expectation.</strong></p>
 <p>This is not a metaphor. It’s literally what’s happening when you call <code>model.fit()</code>.</p>
 </section>
@@ -539,20 +539,20 @@ window.Quarto = {
 <section id="mean-squared-error" class="level3">
 <h3 class="anchored" data-anchor-id="mean-squared-error">Mean Squared Error</h3>
 <p><span class="math display">\[\text{MSE} = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2 \quad \approx \quad E\left[(Y - \hat{Y})^2\right]\]</span></p>
-<p>The MSE is a sample estimate of the expected squared error. Notice that this looks exactly like the formula for variance — and that’s not a coincidence. If your model predicts the mean perfectly (<span class="math inline">\(\hat{Y} = E[Y|X]\)</span>), then the remaining MSE is the <strong>irreducible variance</strong> of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>. That’s the noise in your data that no model can eliminate.</p>
+<p>The MSE is a sample estimate of the expected squared error. Notice that this looks exactly like the formula for variance, and that’s not a coincidence. If your model predicts the mean perfectly (<span class="math inline">\(\hat{Y} = E[Y|X]\)</span>), then the remaining MSE is the <strong>irreducible variance</strong> of <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>. That’s the noise in your data that no model can eliminate.</p>
 <p>Here’s the deeper insight: MSE is the <em>natural</em> loss function when you assume <span class="math inline">\(Y|X \sim \mathcal{N}(\hat{y}, \sigma^2)\)</span>. Minimising MSE is <em>identical</em> to maximising the likelihood under Gaussian errors. We’ll prove this formally in the next article on likelihood, but for now, know that <strong>choosing MSE means assuming your errors are normally distributed.</strong> If they’re not — if they’re skewed, heavy-tailed, or heteroscedastic — MSE may not be the right choice.</p>
 </section>
 <section id="mean-absolute-error" class="level3">
 <h3 class="anchored" data-anchor-id="mean-absolute-error">Mean Absolute Error</h3>
 <p><span class="math display">\[\text{MAE} = \frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i| \quad \approx \quad E\left[|Y - \hat{Y}|\right]\]</span></p>
-<p>MAE estimates the expected absolute error. Minimising MAE doesn’t correspond to Gaussian errors — it corresponds to <strong>Laplace (double exponential) errors.</strong> This is why MAE is more robust to outliers: the Laplace distribution has heavier tails than the Gaussian, so it’s less surprised by extreme values.</p>
+<p>MAE estimates the expected absolute error. Minimising MAE doesn’t correspond to Gaussian errors: it corresponds to <strong>Laplace (double exponential) errors.</strong> This is why MAE is more robust to outliers: the Laplace distribution has heavier tails than the Gaussian, so it’s less surprised by extreme values.</p>
 <p>The best prediction under MAE is the <strong>conditional median</strong> of <span class="math inline">\(Y|X\)</span>, not the mean. This is a key distinction: MSE targets the mean, MAE targets the median. If your data is skewed, these are different numbers and the choice matters.</p>
 </section>
 <section id="cross-entropy-log-loss" class="level3">
 <h3 class="anchored" data-anchor-id="cross-entropy-log-loss">Cross-Entropy (Log Loss)</h3>
 <p>For binary classification with true labels <span class="math inline">\(y_i \in \{0, 1\}\)</span> and predicted probabilities <span class="math inline">\(\hat{p}_i\)</span>:</p>
 <p><span class="math display">\[\text{CE} = -\frac{1}{n}\sum_{i=1}^n \left[y_i \log \hat{p}_i + (1-y_i)\log(1 - \hat{p}_i)\right] \quad \approx \quad -E\left[Y\log\hat{P} + (1-Y)\log(1-\hat{P})\right]\]</span></p>
-<p>Cross-entropy is the expected negative log-probability assigned to the true outcome. It’s what you get when you do maximum likelihood estimation for a Bernoulli distribution — which is exactly what logistic regression does.</p>
+<p>Cross-entropy is the expected negative log-probability assigned to the true outcome. It’s what you get when you do maximum likelihood estimation for a Bernoulli distribution, which is exactly what logistic regression does.</p>
 <p>Minimising cross-entropy makes your predicted probabilities <span class="math inline">\(\hat{p}\)</span> as close as possible (in a precise information-theoretic sense) to the true conditional probability <span class="math inline">\(P(Y=1|X)\)</span>.</p>
 </section>
 <section id="the-unifying-view" class="level3">
@@ -608,11 +608,11 @@ window.Quarto = {
 </section>
 <section id="the-sample-mean-is-an-estimator-and-it-has-variance" class="level2">
 <h2 class="anchored" data-anchor-id="the-sample-mean-is-an-estimator-and-it-has-variance">The sample mean is an estimator — and it has variance</h2>
-<p>When you compute <span class="math inline">\(\bar{x} = \frac{1}{n}\sum x_i\)</span> from data, you’re estimating <span class="math inline">\(E[X]\)</span> from a finite sample. This estimate is itself a random variable — if you’d drawn different data, you’d get a different <span class="math inline">\(\bar{x}\)</span>.</p>
+<p>When you compute <span class="math inline">\(\bar{x} = \frac{1}{n}\sum x_i\)</span> from data, you’re estimating <span class="math inline">\(E[X]\)</span> from a finite sample. This estimate is itself a random variable: if you’d drawn different data, you’d get a different <span class="math inline">\(\bar{x}\)</span>.</p>
 <p>The variance of the sample mean is:</p>
 <p><span class="math display">\[\text{Var}(\bar{X}) = \frac{\text{Var}(X)}{n}\]</span></p>
 <p>This one formula explains several things at once:</p>
-<p><strong>Why more data helps:</strong> As <span class="math inline">\(n\)</span> increases, <span class="math inline">\(\text{Var}(\bar{X})\)</span> decreases. Your estimate becomes more precise. This is why training on more data is almost always beneficial — you’re reducing the variance of your loss estimates.</p>
+<p><strong>Why more data helps:</strong> As <span class="math inline">\(n\)</span> increases, <span class="math inline">\(\text{Var}(\bar{X})\)</span> decreases. Your estimate becomes more precise. This is why training on more data is almost always beneficial: you’re reducing the variance of your loss estimates.</p>
 <p><strong>Why your test accuracy fluctuates:</strong> If you evaluate on 100 test samples vs.&nbsp;10,000, the variance of your accuracy estimate differs by a factor of 100. Small test sets give noisy estimates.</p>
 <p><strong>Why mini-batch SGD works:</strong> Each mini-batch gives you a noisy estimate of the gradient (which is itself an expected value). The variance of that estimate decreases with batch size. Smaller batches = noisier gradients = more variance but faster updates. Larger batches = smoother gradients = less variance but slower updates. The tradeoff is directly governed by <span class="math inline">\(\text{Var}(\bar{X}) = \text{Var}(X)/n\)</span>.</p>
 </section>
@@ -620,7 +620,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="what-this-means-in-practice">What this means in practice</h2>
 <p>Understanding that loss functions are expected values gives you three practical capabilities:</p>
 <p><strong>1. You can diagnose loss function mismatch.</strong> If your residuals are heavily skewed, MSE (which assumes Gaussian errors) is pulling your predictions toward a mean that isn’t representative. Switch to MAE (which targets the median) or a quantile loss. If your count data has overdispersion, Poisson deviance will underestimate uncertainty — consider negative binomial loss instead. The distributional assumption behind your loss function must match the actual behaviour of your data.</p>
-<p><strong>2. You can understand why your evaluation metrics are noisy.</strong> Your reported accuracy, F1 score, or AUC are all sample averages estimating expected values. They have variance. Reporting them without confidence intervals is like reporting a point estimate without uncertainty — technically a number, practically meaningless. We’ll cover confidence intervals properly in a future article.</p>
+<p><strong>2. You can understand why your evaluation metrics are noisy.</strong> Your reported accuracy, F1 score, or AUC are all sample averages estimating expected values. They have variance. Reporting them without confidence intervals is like reporting a point estimate without uncertainty: technically a number, practically meaningless. We’ll cover confidence intervals properly in a future article.</p>
 <p><strong>3. You can reason about the bias-variance tradeoff.</strong> The expected test error decomposes into bias squared plus variance plus irreducible noise. All three terms are expected values. Understanding this decomposition requires understanding expected value first — which is why we’re building this foundation before tackling bias-variance directly.</p>
 </section>
 <section id="the-mental-model-to-take-away" class="level2">
@@ -628,7 +628,7 @@ window.Quarto = {
 <p><strong>Before:</strong> “I pick MSE for regression and cross-entropy for classification because that’s what the tutorial said.”</p>
 <p><strong>After:</strong> “MSE estimates <span class="math inline">\(E[(Y - \hat{Y})^2]\)</span> under a Gaussian assumption. Cross-entropy estimates <span class="math inline">\(-E[Y\log\hat{P} + (1-Y)\log(1-\hat{P})]\)</span> under a Bernoulli assumption. I choose based on the distributional properties of my target variable — and I check whether those assumptions hold.”</p>
 <p>That’s the shift. Loss functions aren’t arbitrary choices or convention. They’re expected values derived from specific distributional assumptions. When you pick a loss, you’re picking a distribution. When you train a model, you’re minimising an expected value. When you evaluate, you’re estimating an expected value from a finite sample.</p>
-<p>Next week, we’ll close the loop. You now know your data comes from distributions (article 2) and your training process minimises expected values of loss functions derived from those distributions (this article). The missing piece is: <strong>how exactly do you estimate the distribution’s parameters from data?</strong> That’s <strong>likelihood</strong> — the single most important concept in ML that nobody teaches properly.</p>
+<p>Next week, we’ll close the loop. You now know your data comes from distributions (article 2) and your training process minimises expected values of loss functions derived from those distributions (this article). The missing piece is: <strong>how exactly do you estimate the distribution’s parameters from data?</strong> That’s <strong>likelihood</strong>: the single most important concept in ML that nobody teaches properly.</p>
 <hr>
 <p><em>This is article 3 of <a href="https://statsbeneath.com">Stats Beneath</a>, a weekly series on the statistical foundations of machine learning. <a href="../..">Subscribe</a> to get each article when it’s published.</em></p>
 

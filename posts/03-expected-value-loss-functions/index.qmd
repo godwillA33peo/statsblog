@@ -2,7 +2,7 @@
 title: "Expected Value, Variance, and Why Your Loss Function Is a Statistic"
 description: "You minimise loss functions every day. MSE, cross-entropy, MAE — they're the core of model training. But each one is an expected value in disguise. Understanding that connection changes how you think about every model you build."
 author: "Godwill"
-date: "2026-02-27"
+date: "2026-02-16"
 categories: [foundations, probability]
 image: "thumbnail.png"
 draft: false
@@ -61,7 +61,7 @@ $$E[g(X)] = \sum_i g(x_i) \, p_i \quad \text{(discrete)}$$
 
 $$E[g(X)] = \int g(x) \, f(x) \, dx \quad \text{(continuous)}$$
 
-This is called the **Law of the Unconscious Statistician** (yes, really — the name is a gentle jab at people who use it without realising what they're doing).
+This is called the **Law of the Unconscious Statistician** (yes, really: the name is a gentle jab at people who use it without realising what they're doing).
 
 Why does this matter? Because loss functions are functions of random variables. And when you average a loss function over your data, you're estimating the expected value of that function. Let's make this precise.
 
@@ -85,9 +85,9 @@ This tells you: the variance is the expected value of the square minus the squar
 
 Variance shows up everywhere:
 
-**In your data:** The variance of your features determines how much information they carry. A feature with zero variance is useless — it tells you nothing. Feature scaling (standardisation) divides by standard deviation precisely to put all features on equal footing.
+**In your data:** The variance of your features determines how much information they carry. A feature with zero variance is useless: it tells you nothing. Feature scaling (standardisation) divides by standard deviation precisely to put all features on equal footing.
 
-**In your model:** The variance of your model's predictions across different training sets is what we call "model variance" in the bias-variance tradeoff. High variance means your model is sensitive to which specific data points it was trained on — that's overfitting.
+**In your model:** The variance of your model's predictions across different training sets is what we call "model variance" in the bias-variance tradeoff. High variance means your model is sensitive to which specific data points it was trained on, that's overfitting.
 
 **In your estimates:** When you report "accuracy = 0.91", that number has a variance. It would be different if you'd tested on a different sample. The variance tells you how much to trust it.
 
@@ -105,7 +105,7 @@ Positive covariance means they move together. Negative means they move in opposi
 
 $$\rho(X, Y) = \frac{\text{Cov}(X, Y)}{\sqrt{\text{Var}(X) \cdot \text{Var}(Y)}}$$
 
-Here's the ML connection that matters: **multicollinearity** happens when your feature variables have high covariance with each other. When features are highly correlated, your regression coefficients become unstable — they have high variance, are hard to interpret, and can flip sign. PCA, which we'll cover in a future article, works by finding directions in feature space along which the *variance* is maximised while the *covariance* between the new directions is zero.
+Here's the ML connection that matters: **multicollinearity** happens when your feature variables have high covariance with each other. When features are highly correlated, your regression coefficients become unstable: they have high variance, are hard to interpret, and can flip sign. PCA, which we'll cover in a future article, works by finding directions in feature space along which the *variance* is maximised while the *covariance* between the new directions is zero.
 
 ## Now: the connection that changes everything
 
@@ -115,13 +115,13 @@ You have training data $\{(x_i, y_i)\}_{i=1}^n$. You have a model $\hat{y} = f(x
 
 $$\hat{R}(\theta) = \frac{1}{n} \sum_{i=1}^n L(y_i, f(x_i; \theta))$$
 
-This is the **empirical risk** — the average loss over your training data. You minimise it to find the best parameters.
+This is the **empirical risk**: the average loss over your training data. You minimise it to find the best parameters.
 
 But what are you *really* doing? You're computing a **sample average** of the function $L(y, f(x; \theta))$. And a sample average is an *estimate* of an expected value:
 
 $$R(\theta) = E[L(Y, f(X; \theta))]$$
 
-This is the **true risk** — the expected loss over the entire data-generating distribution. It's the quantity you actually care about, because it tells you how well your model will perform on *new* data, not just the training set.
+This is the **true risk**: the expected loss over the entire data-generating distribution. It's the quantity you actually care about, because it tells you how well your model will perform on *new* data, not just the training set.
 
 **Training is estimating parameters that minimise an expected value. Your loss function is the function inside that expectation.**
 
@@ -135,7 +135,7 @@ Let's make this concrete for the loss functions you use every day.
 
 $$\text{MSE} = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2 \quad \approx \quad E\left[(Y - \hat{Y})^2\right]$$
 
-The MSE is a sample estimate of the expected squared error. Notice that this looks exactly like the formula for variance — and that's not a coincidence. If your model predicts the mean perfectly ($\hat{Y} = E[Y|X]$), then the remaining MSE is the **irreducible variance** of $Y$ given $X$. That's the noise in your data that no model can eliminate.
+The MSE is a sample estimate of the expected squared error. Notice that this looks exactly like the formula for variance, and that's not a coincidence. If your model predicts the mean perfectly ($\hat{Y} = E[Y|X]$), then the remaining MSE is the **irreducible variance** of $Y$ given $X$. That's the noise in your data that no model can eliminate.
 
 Here's the deeper insight: MSE is the *natural* loss function when you assume $Y|X \sim \mathcal{N}(\hat{y}, \sigma^2)$. Minimising MSE is *identical* to maximising the likelihood under Gaussian errors. We'll prove this formally in the next article on likelihood, but for now, know that **choosing MSE means assuming your errors are normally distributed.** If they're not — if they're skewed, heavy-tailed, or heteroscedastic — MSE may not be the right choice.
 
@@ -143,7 +143,7 @@ Here's the deeper insight: MSE is the *natural* loss function when you assume $Y
 
 $$\text{MAE} = \frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i| \quad \approx \quad E\left[|Y - \hat{Y}|\right]$$
 
-MAE estimates the expected absolute error. Minimising MAE doesn't correspond to Gaussian errors — it corresponds to **Laplace (double exponential) errors.** This is why MAE is more robust to outliers: the Laplace distribution has heavier tails than the Gaussian, so it's less surprised by extreme values.
+MAE estimates the expected absolute error. Minimising MAE doesn't correspond to Gaussian errors: it corresponds to **Laplace (double exponential) errors.** This is why MAE is more robust to outliers: the Laplace distribution has heavier tails than the Gaussian, so it's less surprised by extreme values.
 
 The best prediction under MAE is the **conditional median** of $Y|X$, not the mean. This is a key distinction: MSE targets the mean, MAE targets the median. If your data is skewed, these are different numbers and the choice matters.
 
@@ -153,7 +153,7 @@ For binary classification with true labels $y_i \in \{0, 1\}$ and predicted prob
 
 $$\text{CE} = -\frac{1}{n}\sum_{i=1}^n \left[y_i \log \hat{p}_i + (1-y_i)\log(1 - \hat{p}_i)\right] \quad \approx \quad -E\left[Y\log\hat{P} + (1-Y)\log(1-\hat{P})\right]$$
 
-Cross-entropy is the expected negative log-probability assigned to the true outcome. It's what you get when you do maximum likelihood estimation for a Bernoulli distribution — which is exactly what logistic regression does.
+Cross-entropy is the expected negative log-probability assigned to the true outcome. It's what you get when you do maximum likelihood estimation for a Bernoulli distribution, which is exactly what logistic regression does.
 
 Minimising cross-entropy makes your predicted probabilities $\hat{p}$ as close as possible (in a precise information-theoretic sense) to the true conditional probability $P(Y=1|X)$.
 
@@ -186,7 +186,7 @@ This says: if you first compute the expected value of $Y$ within each group defi
 
 ## The sample mean is an estimator — and it has variance
 
-When you compute $\bar{x} = \frac{1}{n}\sum x_i$ from data, you're estimating $E[X]$ from a finite sample. This estimate is itself a random variable — if you'd drawn different data, you'd get a different $\bar{x}$.
+When you compute $\bar{x} = \frac{1}{n}\sum x_i$ from data, you're estimating $E[X]$ from a finite sample. This estimate is itself a random variable: if you'd drawn different data, you'd get a different $\bar{x}$.
 
 The variance of the sample mean is:
 
@@ -194,7 +194,7 @@ $$\text{Var}(\bar{X}) = \frac{\text{Var}(X)}{n}$$
 
 This one formula explains several things at once:
 
-**Why more data helps:** As $n$ increases, $\text{Var}(\bar{X})$ decreases. Your estimate becomes more precise. This is why training on more data is almost always beneficial — you're reducing the variance of your loss estimates.
+**Why more data helps:** As $n$ increases, $\text{Var}(\bar{X})$ decreases. Your estimate becomes more precise. This is why training on more data is almost always beneficial: you're reducing the variance of your loss estimates.
 
 **Why your test accuracy fluctuates:** If you evaluate on 100 test samples vs. 10,000, the variance of your accuracy estimate differs by a factor of 100. Small test sets give noisy estimates.
 
@@ -206,7 +206,7 @@ Understanding that loss functions are expected values gives you three practical 
 
 **1. You can diagnose loss function mismatch.** If your residuals are heavily skewed, MSE (which assumes Gaussian errors) is pulling your predictions toward a mean that isn't representative. Switch to MAE (which targets the median) or a quantile loss. If your count data has overdispersion, Poisson deviance will underestimate uncertainty — consider negative binomial loss instead. The distributional assumption behind your loss function must match the actual behaviour of your data.
 
-**2. You can understand why your evaluation metrics are noisy.** Your reported accuracy, F1 score, or AUC are all sample averages estimating expected values. They have variance. Reporting them without confidence intervals is like reporting a point estimate without uncertainty — technically a number, practically meaningless. We'll cover confidence intervals properly in a future article.
+**2. You can understand why your evaluation metrics are noisy.** Your reported accuracy, F1 score, or AUC are all sample averages estimating expected values. They have variance. Reporting them without confidence intervals is like reporting a point estimate without uncertainty: technically a number, practically meaningless. We'll cover confidence intervals properly in a future article.
 
 **3. You can reason about the bias-variance tradeoff.** The expected test error decomposes into bias squared plus variance plus irreducible noise. All three terms are expected values. Understanding this decomposition requires understanding expected value first — which is why we're building this foundation before tackling bias-variance directly.
 
@@ -218,7 +218,7 @@ Understanding that loss functions are expected values gives you three practical 
 
 That's the shift. Loss functions aren't arbitrary choices or convention. They're expected values derived from specific distributional assumptions. When you pick a loss, you're picking a distribution. When you train a model, you're minimising an expected value. When you evaluate, you're estimating an expected value from a finite sample.
 
-Next week, we'll close the loop. You now know your data comes from distributions (article 2) and your training process minimises expected values of loss functions derived from those distributions (this article). The missing piece is: **how exactly do you estimate the distribution's parameters from data?** That's **likelihood** — the single most important concept in ML that nobody teaches properly.
+Next week, we'll close the loop. You now know your data comes from distributions (article 2) and your training process minimises expected values of loss functions derived from those distributions (this article). The missing piece is: **how exactly do you estimate the distribution's parameters from data?** That's **likelihood**: the single most important concept in ML that nobody teaches properly.
 
 ---
 

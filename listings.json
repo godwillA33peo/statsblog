@@ -1,14 +1,16 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/archive.html",
     "items": [
+      "/posts/03-expected-value-loss-functions/index.html",
       "/posts/02-random-variables-distributions/index.html",
       "/posts/01-why-stats-matter/index.html"
     ]
   },
   {
-    "listing": "/archive.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/03-expected-value-loss-functions/index.html",
       "/posts/02-random-variables-distributions/index.html",
       "/posts/01-why-stats-matter/index.html"
     ]

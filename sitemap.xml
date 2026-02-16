@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://statsbeneath.com/posts/02-random-variables-distributions/index.html</loc>
-    <lastmod>2026-02-13T20:11:33.761Z</lastmod>
+    <loc>https://statsbeneath.com/posts/03-expected-value-loss-functions/index.html</loc>
+    <lastmod>2026-02-16T09:19:07.543Z</lastmod>
   </url>
   <url>
-    <loc>https://statsbeneath.com/index.html</loc>
-    <lastmod>2026-02-13T20:52:43.738Z</lastmod>
-  </url>
-  <url>
-    <loc>https://statsbeneath.com/about.html</loc>
-    <lastmod>2026-02-13T20:52:29.436Z</lastmod>
+    <loc>https://statsbeneath.com/posts/01-why-stats-matter/index.html</loc>
+    <lastmod>2026-02-13T20:52:47.708Z</lastmod>
   </url>
   <url>
     <loc>https://statsbeneath.com/archive.html</loc>
     <lastmod>2026-02-11T00:36:21.148Z</lastmod>
   </url>
   <url>
-    <loc>https://statsbeneath.com/posts/01-why-stats-matter/index.html</loc>
-    <lastmod>2026-02-13T20:52:47.708Z</lastmod>
+    <loc>https://statsbeneath.com/about.html</loc>
+    <lastmod>2026-02-13T20:52:29.436Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/index.html</loc>
+    <lastmod>2026-02-13T20:52:43.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/posts/02-random-variables-distributions/index.html</loc>
+    <lastmod>2026-02-13T20:11:33.761Z</lastmod>
   </url>
 </urlset>

@@ -1,6 +1,6 @@
 ---
 title: "Expected Value, Variance, and Why Your Loss Function Is a Statistic"
-description: "You minimise loss functions every day. MSE, cross-entropy, MAE — they're the core of model training. But each one is an expected value in disguise. Understanding that connection changes how you think about every model you build."
+description: "You minimise loss functions every day. MSE, cross-entropy, MAE, they're the core of model training. But each one is an expected value in disguise. Understanding that connection changes how you think about every model you build."
 author: "Godwill"
 date: "2026-02-16"
 categories: [foundations, probability]
@@ -12,7 +12,7 @@ draft: false
 
 ## What you'll learn in 10 minutes
 
-- **Expected value** is the bridge between probability distributions and the numbers you compute from data — and you're already using it every time you evaluate a loss function.
+- **Expected value** is the bridge between probability distributions and the numbers you compute from data, and you're already using it every time you evaluate a loss function.
 - **Variance** measures spread around the mean, and it quietly controls everything from feature scaling to overfitting to how noisy your test accuracy is.
 - **Every loss function is an expected value in disguise**: MSE estimates $E[(Y-\hat{Y})^2]$ under Gaussian errors, cross-entropy estimates $-E[Y\log\hat{P} + \ldots]$ under Bernoulli targets, MAE targets the median under Laplace errors.
 - **When you pick a loss, you pick a distribution.** When you train, you minimise an expected value. When you evaluate, you estimate one from a finite sample.
@@ -23,11 +23,11 @@ draft: false
 
 Every time you compute an average, you're computing an expected value. Every time you evaluate a loss function, you're computing an expected value. Every time you report "my model's accuracy is 91%," that number is an expected value.
 
-The concept hides behind so many familiar operations that most ML engineers never pause to examine it directly. That's a problem, because expected value isn't just a formula — it's the *bridge* between probability distributions (which describe the world) and the numbers you compute from data (which summarise it).
+The concept hides behind so many familiar operations that most ML engineers never pause to examine it directly. That's a problem, because expected value isn't just a formula, it's the *bridge* between probability distributions (which describe the world) and the numbers you compute from data (which summarise it).
 
 In the [previous article](/posts/02-random-variables-distributions/index.html), we established that your data consists of realisations of random variables, and that your model learns a conditional distribution. Now the question is: once you have a distribution, what do you *do* with it? How do you extract a single useful number from an entire probability distribution?
 
-The answer is expected value. And the specific expected values you're already computing — without knowing it — are your loss functions.
+The answer is expected value. And the specific expected values you're already computing, without knowing it, are your loss functions.
 
 ## Expected value: the long-run average
 
@@ -49,7 +49,7 @@ Roll a fair die. The random variable $X$ is the number that comes up. The expect
 
 $$E[X] = 1 \cdot \frac{1}{6} + 2 \cdot \frac{1}{6} + 3 \cdot \frac{1}{6} + 4 \cdot \frac{1}{6} + 5 \cdot \frac{1}{6} + 6 \cdot \frac{1}{6} = 3.5$$
 
-You'll never roll 3.5. That's fine. The expected value isn't a value you expect to *see* — it's the centre of gravity of the distribution. It's the number your sample mean converges to as you roll more and more times.
+You'll never roll 3.5. That's fine. The expected value isn't a value you expect to *see*; it's the centre of gravity of the distribution. It's the number your sample mean converges to as you roll more and more times.
 
 ### Expected value of a function
 
@@ -71,7 +71,7 @@ Before we get to loss functions, we need one more concept. **Variance** measures
 
 $$\text{Var}(X) = E\left[(X - E[X])^2\right]$$
 
-Read it carefully. Variance is itself an expected value — the expected value of the squared deviation from the mean. It's $E[g(X)]$ where $g(X) = (X - \mu)^2$.
+Read it carefully. Variance is itself an expected value, the expected value of the squared deviation from the mean. It's $E[g(X)]$ where $g(X) = (X - \mu)^2$.
 
 The square root of variance is the **standard deviation**, $\sigma = \sqrt{\text{Var}(X)}$, which has the same units as $X$ and is easier to interpret.
 
@@ -137,7 +137,7 @@ $$\text{MSE} = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2 \quad \approx \quad 
 
 The MSE is a sample estimate of the expected squared error. Notice that this looks exactly like the formula for variance, and that's not a coincidence. If your model predicts the mean perfectly ($\hat{Y} = E[Y|X]$), then the remaining MSE is the **irreducible variance** of $Y$ given $X$. That's the noise in your data that no model can eliminate.
 
-Here's the deeper insight: MSE is the *natural* loss function when you assume $Y|X \sim \mathcal{N}(\hat{y}, \sigma^2)$. Minimising MSE is *identical* to maximising the likelihood under Gaussian errors. We'll prove this formally in the next article on likelihood, but for now, know that **choosing MSE means assuming your errors are normally distributed.** If they're not — if they're skewed, heavy-tailed, or heteroscedastic — MSE may not be the right choice.
+Here's the deeper insight: MSE is the *natural* loss function when you assume $Y|X \sim \mathcal{N}(\hat{y}, \sigma^2)$. Minimising MSE is *identical* to maximising the likelihood under Gaussian errors. We'll prove this formally in the next article on likelihood, but for now, know that **choosing MSE means assuming your errors are normally distributed.** If they're not, if they're skewed, heavy-tailed, or heteroscedastic, MSE may not be the right choice.
 
 ### Mean Absolute Error
 
@@ -184,7 +184,7 @@ This is why training on more data works. Your empirical risk (sample average los
 
 This says: if you first compute the expected value of $Y$ within each group defined by $X$, and then average those, you get the overall expected value of $Y$. This is the mathematical foundation of the bias-variance decomposition, which we'll derive in a future article.
 
-## The sample mean is an estimator — and it has variance
+## The sample mean is an estimator, and it has variance
 
 When you compute $\bar{x} = \frac{1}{n}\sum x_i$ from data, you're estimating $E[X]$ from a finite sample. This estimate is itself a random variable: if you'd drawn different data, you'd get a different $\bar{x}$.
 
@@ -204,17 +204,17 @@ This one formula explains several things at once:
 
 Understanding that loss functions are expected values gives you three practical capabilities:
 
-**1. You can diagnose loss function mismatch.** If your residuals are heavily skewed, MSE (which assumes Gaussian errors) is pulling your predictions toward a mean that isn't representative. Switch to MAE (which targets the median) or a quantile loss. If your count data has overdispersion, Poisson deviance will underestimate uncertainty — consider negative binomial loss instead. The distributional assumption behind your loss function must match the actual behaviour of your data.
+**1. You can diagnose loss function mismatch.** If your residuals are heavily skewed, MSE (which assumes Gaussian errors) is pulling your predictions toward a mean that isn't representative. Switch to MAE (which targets the median) or a quantile loss. If your count data has overdispersion, Poisson deviance will underestimate uncertainty, consider negative binomial loss instead. The distributional assumption behind your loss function must match the actual behaviour of your data.
 
 **2. You can understand why your evaluation metrics are noisy.** Your reported accuracy, F1 score, or AUC are all sample averages estimating expected values. They have variance. Reporting them without confidence intervals is like reporting a point estimate without uncertainty: technically a number, practically meaningless. We'll cover confidence intervals properly in a future article.
 
-**3. You can reason about the bias-variance tradeoff.** The expected test error decomposes into bias squared plus variance plus irreducible noise. All three terms are expected values. Understanding this decomposition requires understanding expected value first — which is why we're building this foundation before tackling bias-variance directly.
+**3. You can reason about the bias-variance tradeoff.** The expected test error decomposes into bias squared plus variance plus irreducible noise. All three terms are expected values. Understanding this decomposition requires understanding expected value first, which is why we're building this foundation before tackling bias-variance directly.
 
 ## The mental model to take away
 
 **Before:** "I pick MSE for regression and cross-entropy for classification because that's what the tutorial said."
 
-**After:** "MSE estimates $E[(Y - \hat{Y})^2]$ under a Gaussian assumption. Cross-entropy estimates $-E[Y\log\hat{P} + (1-Y)\log(1-\hat{P})]$ under a Bernoulli assumption. I choose based on the distributional properties of my target variable — and I check whether those assumptions hold."
+**After:** "MSE estimates $E[(Y - \hat{Y})^2]$ under a Gaussian assumption. Cross-entropy estimates $-E[Y\log\hat{P} + (1-Y)\log(1-\hat{P})]$ under a Bernoulli assumption. I choose based on the distributional properties of my target variable, and I check whether those assumptions hold."
 
 That's the shift. Loss functions aren't arbitrary choices or convention. They're expected values derived from specific distributional assumptions. When you pick a loss, you're picking a distribution. When you train a model, you're minimising an expected value. When you evaluate, you're estimating an expected value from a finite sample.
 

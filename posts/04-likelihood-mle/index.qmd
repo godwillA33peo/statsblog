@@ -1,0 +1,261 @@
+---
+title: "Likelihood: The Most Important Concept in ML That Nobody Teaches You"
+description: "Every time you call model.fit(), you're doing maximum likelihood estimation. MSE, cross-entropy, and Poisson deviance are all negative log-likelihoods in disguise. Understanding that single fact unifies everything you know about training models."
+author: "Godwill"
+date: "2026-03-06"
+categories: [Foundations, Probability]
+image: "thumbnail.png"
+draft: false
+---
+
+::: {.callout-note appearance="simple"}
+
+## What you'll learn in 12 minutes
+
+- **Likelihood is not probability.** Probability asks "given these parameters, how likely is this data?" Likelihood asks "given this data, which parameters best explain it?" Same formula, opposite question.
+- **Maximum likelihood estimation (MLE)** is the principle behind almost every ML model you've ever trained: find the parameters that make your observed data most probable.
+- **Your loss functions are negative log-likelihoods**: MSE comes from Gaussian likelihood, cross-entropy from Bernoulli likelihood, Poisson deviance from Poisson likelihood. This is a derivation, not a coincidence.
+- **The complete chain is now closed**: your data comes from distributions (article 2) → your loss function is an expected value under a distributional assumption (article 3) → likelihood is how you estimate the parameters of that distribution from data (this article) → `model.fit()` is MLE.
+
+:::
+
+## The question your model is actually answering
+
+In [article 2](/posts/02-random-variables-distributions/index.html), we established that your data consists of realisations from some unknown distribution. In [article 3](/posts/03-expected-value-loss-functions/index.html), we showed that your loss function is an expected value that encodes a specific distributional assumption.
+
+Now the question that ties everything together: **how do you find the best parameters for that distribution?**
+
+You've been doing it every time you train a model. You just didn't know the name for it.
+
+Suppose you have a dataset of heights. You believe they come from a Normal distribution, but you don't know the mean $\mu$ or the variance $\sigma^2$. You have 100 measurements. Which values of $\mu$ and $\sigma^2$ best explain the data you actually observed?
+
+That's a likelihood question. And the answer is maximum likelihood estimation: the engine behind virtually every model in ML.
+
+## Probability vs. likelihood: the same formula, opposite questions
+
+This is the distinction that trips up everyone, so let's be precise.
+
+**Probability** fixes the parameters and asks about the data. Given that the mean height is 170cm and the standard deviation is 10cm, what's the probability of observing someone who is 185cm tall?
+
+$$P(X = 185 \mid \mu = 170, \sigma = 10)$$
+
+You know the distribution. You're asking about a possible outcome.
+
+**Likelihood** fixes the data and asks about the parameters. You've observed someone who is 185cm tall. How well does the model $\mathcal{N}(170, 10^2)$ explain that observation? How about $\mathcal{N}(180, 8^2)$?
+
+$$\mathcal{L}(\mu, \sigma \mid X = 185) = P(X = 185 \mid \mu, \sigma)$$
+
+You know the data. You're asking which parameters make that data most plausible.
+
+The formula on the right-hand side is identical --- it's the same density function evaluated at the same point. But the *question* is reversed. With probability, the parameters are known and the data varies. With likelihood, the data is known and the parameters vary.
+
+This is why likelihood is sometimes called **"reverse probability."** You're running the distribution backwards: instead of generating data from parameters, you're inferring parameters from data.
+
+## The likelihood function
+
+Let's make this formal. Suppose you have $n$ observations $x_1, x_2, \ldots, x_n$, and you assume they come independently from a distribution with density $f(x \mid \theta)$, where $\theta$ represents the unknown parameters.
+
+The **likelihood function** is:
+
+$$\mathcal{L}(\theta) = \prod_{i=1}^n f(x_i \mid \theta)$$
+
+It's the joint probability of all your data, viewed as a function of the parameters.
+
+Because these are independent observations, the joint probability is the product of the individual probabilities. Each data point contributes a factor. If a particular value of $\theta$ makes even one data point very unlikely, the whole product drops.
+
+**The maximum likelihood estimate (MLE)** is the value of $\theta$ that maximises this function:
+
+$$\hat{\theta}_{\text{MLE}} = \arg\max_\theta \; \mathcal{L}(\theta)$$
+
+In words: find the parameters under which your observed data is most probable.
+
+## Why we use the log-likelihood
+
+In practice, nobody maximises the likelihood directly. Products of hundreds or thousands of small probabilities quickly underflow to zero on a computer. Instead, we take the logarithm.
+
+Since $\log$ is a monotonically increasing function, maximising $\log \mathcal{L}(\theta)$ gives the same answer as maximising $\mathcal{L}(\theta)$. And the log turns the product into a sum:
+
+$$\ell(\theta) = \log \mathcal{L}(\theta) = \sum_{i=1}^n \log f(x_i \mid \theta)$$
+
+This is the **log-likelihood**. It's a sum instead of a product, which is numerically stable and much easier to differentiate.
+
+And here's where ML connects: in software, we minimise rather than maximise. So we flip the sign:
+
+$$\text{Loss} = -\ell(\theta) = -\sum_{i=1}^n \log f(x_i \mid \theta)$$
+
+This is the **negative log-likelihood (NLL)**. Minimising the negative log-likelihood is identical to maximising the likelihood. That's literally what your optimiser is doing when you train a model.
+
+## Deriving MSE from Gaussian likelihood
+
+Let's prove that MSE, the loss function you've used a thousand times, is just the negative log-likelihood under a Gaussian assumption. This is the derivation that makes the whole series click.
+
+Assume your data follows:
+
+$$Y_i \mid X_i \sim \mathcal{N}(f(X_i; \theta), \sigma^2)$$
+
+where $f(X_i; \theta)$ is your model's prediction (e.g., $X_i \beta$ for linear regression). Each target $Y_i$ is normally distributed around the model's prediction, with some constant variance $\sigma^2$.
+
+The density of a single observation is:
+
+$$f(y_i \mid x_i, \theta) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(y_i - f(x_i; \theta))^2}{2\sigma^2}\right)$$
+
+Take the log:
+
+$$\log f(y_i \mid x_i, \theta) = -\frac{1}{2}\log(2\pi\sigma^2) - \frac{(y_i - f(x_i; \theta))^2}{2\sigma^2}$$
+
+Sum over all $n$ observations:
+
+$$\ell(\theta) = -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^n (y_i - f(x_i; \theta))^2$$
+
+Now maximise with respect to $\theta$. The first term doesn't depend on $\theta$, so it vanishes. The factor $\frac{1}{2\sigma^2}$ is a positive constant. So maximising the log-likelihood is equivalent to **minimising**:
+
+$$\sum_{i=1}^n (y_i - f(x_i; \theta))^2$$
+
+That's the sum of squared errors. Divide by $n$ and you get MSE.
+
+**MSE is the negative log-likelihood of a Gaussian model, up to constants.** You didn't choose MSE because a tutorial told you to. You chose it because you implicitly assumed that your errors are normally distributed. That assumption has consequences. If your errors are actually skewed or heavy-tailed, Gaussian likelihood is the wrong model and MSE is the wrong loss.
+
+## Deriving cross-entropy from Bernoulli likelihood
+
+Now let's do the same for classification. Assume your binary targets follow:
+
+$$Y_i \mid X_i \sim \text{Bernoulli}(\hat{p}_i)$$
+
+where $\hat{p}_i = \sigma(f(X_i; \theta))$ is your model's predicted probability (e.g., the output of a logistic regression through a sigmoid function).
+
+The probability mass function is:
+
+$$P(Y_i = y_i \mid \hat{p}_i) = \hat{p}_i^{y_i}(1 - \hat{p}_i)^{1 - y_i}$$
+
+Take the log:
+
+$$\log P(Y_i = y_i \mid \hat{p}_i) = y_i \log \hat{p}_i + (1 - y_i) \log(1 - \hat{p}_i)$$
+
+Sum over all observations and negate:
+
+$$-\ell(\theta) = -\sum_{i=1}^n \left[ y_i \log \hat{p}_i + (1 - y_i) \log(1 - \hat{p}_i) \right]$$
+
+That's **binary cross-entropy**. Exactly the loss function you use for logistic regression, for binary classification in neural networks, for any model that outputs a probability for a yes/no outcome.
+
+Cross-entropy isn't an arbitrary choice. It's the negative log-likelihood of a Bernoulli model. When you minimise cross-entropy, you're doing maximum likelihood estimation: finding the parameters that make your observed class labels most probable under a Bernoulli assumption.
+
+## Deriving Poisson deviance from Poisson likelihood
+
+One more, to drive the pattern home. For count data:
+
+$$Y_i \mid X_i \sim \text{Poisson}(\hat{\lambda}_i)$$
+
+where $\hat{\lambda}_i = \exp(f(X_i; \theta))$ (the exponential ensures the predicted rate is positive).
+
+The PMF is:
+
+$$P(Y_i = y_i \mid \hat{\lambda}_i) = \frac{\hat{\lambda}_i^{y_i} e^{-\hat{\lambda}_i}}{y_i!}$$
+
+Take the log:
+
+$$\log P(Y_i = y_i \mid \hat{\lambda}_i) = y_i \log \hat{\lambda}_i - \hat{\lambda}_i - \log(y_i!)$$
+
+Sum over all observations and negate:
+
+$$-\ell(\theta) = \sum_{i=1}^n \left[\hat{\lambda}_i - y_i \log \hat{\lambda}_i + \log(y_i!)\right]$$
+
+Drop the constant $\log(y_i!)$ and you get the **Poisson deviance** loss. It's the natural loss for count data because it's the negative log-likelihood of the Poisson model.
+
+## The unified view
+
+Here's the table from article 3, now completed with the derivation:
+
+| Loss Function | Distribution | Likelihood | Log-likelihood → Loss |
+|:--|:--|:--|:--|
+| MSE | $\mathcal{N}(\hat{y}, \sigma^2)$ | $\prod \frac{1}{\sigma\sqrt{2\pi}} e^{-(y_i - \hat{y}_i)^2/2\sigma^2}$ | $\sum(y_i - \hat{y}_i)^2$ |
+| Cross-Entropy | $\text{Bernoulli}(\hat{p})$ | $\prod \hat{p}_i^{y_i}(1-\hat{p}_i)^{1-y_i}$ | $-\sum y_i\log\hat{p}_i + (1-y_i)\log(1-\hat{p}_i)$ |
+| Poisson Deviance | $\text{Poisson}(\hat{\lambda})$ | $\prod \frac{\hat{\lambda}_i^{y_i} e^{-\hat{\lambda}_i}}{y_i!}$ | $\sum \hat{\lambda}_i - y_i\log\hat{\lambda}_i$ |
+| MAE | $\text{Laplace}(\hat{y}, b)$ | $\prod \frac{1}{2b} e^{-\|y_i - \hat{y}_i\|/b}$ | $\sum \|y_i - \hat{y}_i\|$ |
+
+Every row follows the same recipe: assume a distribution → write down the likelihood → take the log → negate → minimise. That's all a loss function is. That's all training is.
+
+## What model.fit() actually does
+
+Let's put the complete chain together. When you write:
+
+```python
+model = LinearRegression()
+model.fit(X_train, y_train)
+```
+
+Here's what's happening beneath the API:
+
+1. **Distributional assumption** (article 2): $Y \mid X \sim \mathcal{N}(X\beta, \sigma^2)$
+2. **Likelihood**: $\mathcal{L}(\beta) = \prod_{i=1}^n f(y_i \mid x_i, \beta)$
+3. **Log-likelihood**: $\ell(\beta) = \sum_{i=1}^n \log f(y_i \mid x_i, \beta)$
+4. **Negative log-likelihood = loss function** (article 3): $\text{MSE} = -\ell(\beta) + \text{const}$
+5. **MLE** (this article): $\hat{\beta} = \arg\min_\beta \text{MSE}$
+
+When you write:
+
+```python
+model = LogisticRegression()
+model.fit(X_train, y_train)
+```
+
+Same chain, different distribution:
+
+1. **Distributional assumption**: $Y \mid X \sim \text{Bernoulli}(\sigma(X\beta))$
+2. **Likelihood**: $\mathcal{L}(\beta) = \prod \hat{p}_i^{y_i}(1-\hat{p}_i)^{1-y_i}$
+3. **Log-likelihood**: $\ell(\beta) = \sum y_i\log\hat{p}_i + (1-y_i)\log(1-\hat{p}_i)$
+4. **Negative log-likelihood = loss function**: Cross-entropy
+5. **MLE**: $\hat{\beta} = \arg\min_\beta \text{CE}$
+
+And when you train a neural network with `nn.CrossEntropyLoss()` or `nn.MSELoss()` in PyTorch? Exact same thing. The architecture is more complex, but the training principle is identical: maximum likelihood estimation. The loss function is a negative log-likelihood. The optimiser finds the parameters that maximise the likelihood of the training data.
+
+## Properties of MLE that matter for ML
+
+MLE isn't just a convenient framework. It has theoretical properties that explain why ML works:
+
+**Consistency.** As your dataset grows ($n \to \infty$), the MLE converges to the true parameter values. More data means better estimates. This is the formal justification for "get more data" being almost always good advice.
+
+**Asymptotic normality.** For large samples, the MLE is approximately normally distributed around the true parameter. This means you can construct confidence intervals for your estimates, and by extension, for your model's predictions.
+
+**Efficiency.** Among all consistent estimators, MLE achieves the lowest possible variance for large samples. No other method can do better, asymptotically. This is the Cramér-Rao lower bound, and MLE achieves it.
+
+**Invariance.** If $\hat{\theta}$ is the MLE of $\theta$, then $g(\hat{\theta})$ is the MLE of $g(\theta)$ for any function $g$. This means you can transform your parameters freely without redoing the estimation.
+
+These properties explain a lot. Consistency is why more training data helps. Efficiency is why MLE-based methods are hard to beat. Invariance is why you can reparameterise your model without changing the MLE.
+
+## When MLE isn't enough
+
+MLE has a blind spot: it uses only the data and ignores any prior knowledge you might have. If you have very little data, MLE can overfit, finding parameters that explain your small sample perfectly but generalise poorly.
+
+This is exactly the problem that **regularisation** solves. And here's the preview for a future article: regularisation is Bayesian. L2 regularisation (Ridge) is equivalent to adding a Gaussian prior on your parameters. L1 regularisation (Lasso) is equivalent to a Laplace prior. When you add a regularisation term to your loss function, you're no longer doing pure MLE. You're doing **maximum a posteriori (MAP) estimation**, which is MLE with a prior.
+
+$$\hat{\theta}_{\text{MAP}} = \arg\max_\theta \; \underbrace{\mathcal{L}(\theta)}_{\text{likelihood}} \cdot \underbrace{P(\theta)}_{\text{prior}} = \arg\max_\theta \; \underbrace{\ell(\theta)}_{\text{log-likelihood}} + \underbrace{\log P(\theta)}_{\text{regularisation term}}$$
+
+That's the complete picture: Loss = negative log-likelihood + regularisation = negative log-posterior. But we'll build that properly when we cover regularisation and Bayesian inference.
+
+## The mental model to take away
+
+**Before:** "I use MSE for regression and cross-entropy for classification because that's what the documentation says. I call model.fit() and it finds the best parameters somehow."
+
+**After:** "MSE is the negative log-likelihood under Gaussian errors. Cross-entropy is the negative log-likelihood under Bernoulli targets. model.fit() performs maximum likelihood estimation: it finds the parameters that make my observed data most probable under my assumed distribution. When I add regularisation, I'm incorporating prior beliefs about the parameters."
+
+The chain is now complete:
+
+Your data = realisations from an unknown distribution (article 2)
+→ Your loss = an expected value under a distributional assumption (article 3)
+→ Your loss = the negative log-likelihood of that distribution (this article)
+→ Training = finding parameters that maximise the likelihood = MLE
+→ `model.fit()`
+
+Every supervised learning model you've ever trained follows this chain. The distribution changes, the architecture changes, the optimiser changes, but the principle is always likelihood.
+
+## Key Takeaways
+
+- Likelihood and probability use the same formula but ask opposite questions: probability asks what data is likely given fixed parameters; likelihood asks which parameters best explain fixed data.
+- The maximum likelihood estimate finds the parameters that make your observed data most probable under your assumed distribution.
+- MSE, cross-entropy, and Poisson deviance are all negative log-likelihoods. Every loss function embeds a distributional assumption about your targets.
+- `model.fit()` performs MLE: it minimises the negative log-likelihood of your assumed distribution.
+- Regularisation is MAP estimation. Adding L2 or L1 penalties is equivalent to placing a Gaussian or Laplace prior on your parameters.
+
+---
+
+*This is article 4 of [Stats Beneath](https://statsbeneath.com), a weekly series on the statistical foundations of machine learning. [Subscribe](/) to get each article when it's published.*

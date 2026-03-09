@@ -2,6 +2,8 @@
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/04-likelihood-mle/04-likelihood-mle.html",
+      "/posts/04-likelihood-mle/index.html",
       "/posts/03-expected-value-loss-functions/index.html",
       "/posts/02-random-variables-distributions/index.html",
       "/posts/01-why-stats-matter/index.html"
@@ -10,6 +12,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/04-likelihood-mle/04-likelihood-mle.html",
+      "/posts/04-likelihood-mle/index.html",
       "/posts/03-expected-value-loss-functions/index.html",
       "/posts/02-random-variables-distributions/index.html",
       "/posts/01-why-stats-matter/index.html"

@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Godwill">
+<meta name="dcterms.date" content="2026-03-06">
+<meta name="description" content="Every time you call model.fit(), you’re doing maximum likelihood estimation. MSE, cross-entropy, and Poisson deviance are all negative log-likelihoods in disguise. Understanding that single fact unifies everything you know about training models.">
+
+<title>Likelihood: The Most Important Concept in ML That Nobody Teaches You – Stats Beneath</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9e15f8fb9e1f2f288bfbe28f6ca11029.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-9e15f8fb9e1f2f288bfbe28f6ca11029.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-9e15f8fb9e1f2f288bfbe28f6ca11029.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-2b5c9bcf425a053c45e5000656919bfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-0c8d6c9924f93c509488b80bc4ab001c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-2b5c9bcf425a053c45e5000656919bfa.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Google tag (gtag.js) -->
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PZV1Y6DP51"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'G-PZV1Y6DP51');
+
+</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../homepage.css">
+<meta property="og:title" content="Likelihood: The Most Important Concept in ML That Nobody Teaches You – Stats Beneath">
+<meta property="og:description" content="Every time you call model.fit(), you’re doing maximum likelihood estimation. MSE, cross-entropy, and Poisson deviance are all negative log-likelihoods in disguise. Understanding that single fact unifies everything you know about training models.">
+<meta property="og:image" content="https://statsbeneath.com/posts/04-likelihood-mle/thumbnail.png">
+<meta property="og:site_name" content="Stats Beneath">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Stats Beneath</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../archive.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../#newsletter"> 
+<span class="menu-text">Subscribe</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/godwillA33peo"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/godwill-zulu/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Likelihood: The Most Important Concept in ML That Nobody Teaches You</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-question-your-model-is-actually-answering" id="toc-the-question-your-model-is-actually-answering" class="nav-link active" data-scroll-target="#the-question-your-model-is-actually-answering">The question your model is actually answering</a></li>
+  <li><a href="#probability-vs.-likelihood-the-same-formula-opposite-questions" id="toc-probability-vs.-likelihood-the-same-formula-opposite-questions" class="nav-link" data-scroll-target="#probability-vs.-likelihood-the-same-formula-opposite-questions">Probability vs.&nbsp;likelihood: the same formula, opposite questions</a></li>
+  <li><a href="#the-likelihood-function" id="toc-the-likelihood-function" class="nav-link" data-scroll-target="#the-likelihood-function">The likelihood function</a></li>
+  <li><a href="#why-we-use-the-log-likelihood" id="toc-why-we-use-the-log-likelihood" class="nav-link" data-scroll-target="#why-we-use-the-log-likelihood">Why we use the log-likelihood</a></li>
+  <li><a href="#deriving-mse-from-gaussian-likelihood" id="toc-deriving-mse-from-gaussian-likelihood" class="nav-link" data-scroll-target="#deriving-mse-from-gaussian-likelihood">Deriving MSE from Gaussian likelihood</a></li>
+  <li><a href="#deriving-cross-entropy-from-bernoulli-likelihood" id="toc-deriving-cross-entropy-from-bernoulli-likelihood" class="nav-link" data-scroll-target="#deriving-cross-entropy-from-bernoulli-likelihood">Deriving cross-entropy from Bernoulli likelihood</a></li>
+  <li><a href="#deriving-poisson-deviance-from-poisson-likelihood" id="toc-deriving-poisson-deviance-from-poisson-likelihood" class="nav-link" data-scroll-target="#deriving-poisson-deviance-from-poisson-likelihood">Deriving Poisson deviance from Poisson likelihood</a></li>
+  <li><a href="#the-unified-view" id="toc-the-unified-view" class="nav-link" data-scroll-target="#the-unified-view">The unified view</a></li>
+  <li><a href="#what-model.fit-actually-does" id="toc-what-model.fit-actually-does" class="nav-link" data-scroll-target="#what-model.fit-actually-does">What model.fit() actually does</a></li>
+  <li><a href="#properties-of-mle-that-matter-for-ml" id="toc-properties-of-mle-that-matter-for-ml" class="nav-link" data-scroll-target="#properties-of-mle-that-matter-for-ml">Properties of MLE that matter for ML</a></li>
+  <li><a href="#when-mle-isnt-enough" id="toc-when-mle-isnt-enough" class="nav-link" data-scroll-target="#when-mle-isnt-enough">When MLE isn’t enough</a></li>
+  <li><a href="#the-mental-model-to-take-away" id="toc-the-mental-model-to-take-away" class="nav-link" data-scroll-target="#the-mental-model-to-take-away">The mental model to take away</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Likelihood: The Most Important Concept in ML That Nobody Teaches You</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Foundations</div>
+    <div class="quarto-category">Probability</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Every time you call model.fit(), you’re doing maximum likelihood estimation. MSE, cross-entropy, and Poisson deviance are all negative log-likelihoods in disguise. Understanding that single fact unifies everything you know about training models.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Godwill </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 6, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What you’ll learn in 12 minutes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Likelihood is not probability.</strong> Probability asks “given these parameters, how likely is this data?” Likelihood asks “given this data, which parameters best explain it?” Same formula, opposite question.</li>
+<li><strong>Maximum likelihood estimation (MLE)</strong> is the principle behind almost every ML model you’ve ever trained: find the parameters that make your observed data most probable.</li>
+<li><strong>Your loss functions are negative log-likelihoods</strong>: MSE comes from Gaussian likelihood, cross-entropy from Bernoulli likelihood, Poisson deviance from Poisson likelihood. This is a derivation, not a coincidence.</li>
+<li><strong>The complete chain is now closed</strong>: your data comes from distributions (article 2) → your loss function is an expected value under a distributional assumption (article 3) → likelihood is how you estimate the parameters of that distribution from data (this article) → <code>model.fit()</code> is MLE.</li>
+</ul>
+</div>
+</div>
+<section id="the-question-your-model-is-actually-answering" class="level2">
+<h2 class="anchored" data-anchor-id="the-question-your-model-is-actually-answering">The question your model is actually answering</h2>
+<p>In <a href="../..\posts/02-random-variables-distributions/index.html">article 2</a>, we established that your data consists of realisations from some unknown distribution. In <a href="../..\posts/03-expected-value-loss-functions/index.html">article 3</a>, we showed that your loss function is an expected value that encodes a specific distributional assumption.</p>
+<p>Now the question that ties everything together: <strong>how do you find the best parameters for that distribution?</strong></p>
+<p>You’ve been doing it every time you train a model. You just didn’t know the name for it.</p>
+<p>Suppose you have a dataset of heights. You believe they come from a Normal distribution, but you don’t know the mean <span class="math inline">\(\mu\)</span> or the variance <span class="math inline">\(\sigma^2\)</span>. You have 100 measurements. Which values of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> best explain the data you actually observed?</p>
+<p>That’s a likelihood question. And the answer is maximum likelihood estimation: the engine behind virtually every model in ML.</p>
+</section>
+<section id="probability-vs.-likelihood-the-same-formula-opposite-questions" class="level2">
+<h2 class="anchored" data-anchor-id="probability-vs.-likelihood-the-same-formula-opposite-questions">Probability vs.&nbsp;likelihood: the same formula, opposite questions</h2>
+<p>This is the distinction that trips up everyone, so let’s be precise.</p>
+<p><strong>Probability</strong> fixes the parameters and asks about the data. Given that the mean height is 170cm and the standard deviation is 10cm, what’s the probability of observing someone who is 185cm tall?</p>
+<p><span class="math display">\[P(X = 185 \mid \mu = 170, \sigma = 10)\]</span></p>
+<p>You know the distribution. You’re asking about a possible outcome.</p>
+<p><strong>Likelihood</strong> fixes the data and asks about the parameters. You’ve observed someone who is 185cm tall. How well does the model <span class="math inline">\(\mathcal{N}(170, 10^2)\)</span> explain that observation? How about <span class="math inline">\(\mathcal{N}(180, 8^2)\)</span>?</p>
+<p><span class="math display">\[\mathcal{L}(\mu, \sigma \mid X = 185) = P(X = 185 \mid \mu, \sigma)\]</span></p>
+<p>You know the data. You’re asking which parameters make that data most plausible.</p>
+<p>The formula on the right-hand side is identical — it’s the same density function evaluated at the same point. But the <em>question</em> is reversed. With probability, the parameters are known and the data varies. With likelihood, the data is known and the parameters vary.</p>
+<p>This is why likelihood is sometimes called <strong>“reverse probability.”</strong> You’re running the distribution backwards: instead of generating data from parameters, you’re inferring parameters from data.</p>
+</section>
+<section id="the-likelihood-function" class="level2">
+<h2 class="anchored" data-anchor-id="the-likelihood-function">The likelihood function</h2>
+<p>Let’s make this formal. Suppose you have <span class="math inline">\(n\)</span> observations <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>, and you assume they come independently from a distribution with density <span class="math inline">\(f(x \mid \theta)\)</span>, where <span class="math inline">\(\theta\)</span> represents the unknown parameters.</p>
+<p>The <strong>likelihood function</strong> is:</p>
+<p><span class="math display">\[\mathcal{L}(\theta) = \prod_{i=1}^n f(x_i \mid \theta)\]</span></p>
+<p>It’s the joint probability of all your data, viewed as a function of the parameters.</p>
+<p>Because these are independent observations, the joint probability is the product of the individual probabilities. Each data point contributes a factor. If a particular value of <span class="math inline">\(\theta\)</span> makes even one data point very unlikely, the whole product drops.</p>
+<p><strong>The maximum likelihood estimate (MLE)</strong> is the value of <span class="math inline">\(\theta\)</span> that maximises this function:</p>
+<p><span class="math display">\[\hat{\theta}_{\text{MLE}} = \arg\max_\theta \; \mathcal{L}(\theta)\]</span></p>
+<p>In words: find the parameters under which your observed data is most probable.</p>
+</section>
+<section id="why-we-use-the-log-likelihood" class="level2">
+<h2 class="anchored" data-anchor-id="why-we-use-the-log-likelihood">Why we use the log-likelihood</h2>
+<p>In practice, nobody maximises the likelihood directly. Products of hundreds or thousands of small probabilities quickly underflow to zero on a computer. Instead, we take the logarithm.</p>
+<p>Since <span class="math inline">\(\log\)</span> is a monotonically increasing function, maximising <span class="math inline">\(\log \mathcal{L}(\theta)\)</span> gives the same answer as maximising <span class="math inline">\(\mathcal{L}(\theta)\)</span>. And the log turns the product into a sum:</p>
+<p><span class="math display">\[\ell(\theta) = \log \mathcal{L}(\theta) = \sum_{i=1}^n \log f(x_i \mid \theta)\]</span></p>
+<p>This is the <strong>log-likelihood</strong>. It’s a sum instead of a product, which is numerically stable and much easier to differentiate.</p>
+<p>And here’s where ML connects: in software, we minimise rather than maximise. So we flip the sign:</p>
+<p><span class="math display">\[\text{Loss} = -\ell(\theta) = -\sum_{i=1}^n \log f(x_i \mid \theta)\]</span></p>
+<p>This is the <strong>negative log-likelihood (NLL)</strong>. Minimising the negative log-likelihood is identical to maximising the likelihood. That’s literally what your optimiser is doing when you train a model.</p>
+</section>
+<section id="deriving-mse-from-gaussian-likelihood" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-mse-from-gaussian-likelihood">Deriving MSE from Gaussian likelihood</h2>
+<p>Let’s prove that MSE, the loss function you’ve used a thousand times, is just the negative log-likelihood under a Gaussian assumption. This is the derivation that makes the whole series click.</p>
+<p>Assume your data follows:</p>
+<p><span class="math display">\[Y_i \mid X_i \sim \mathcal{N}(f(X_i; \theta), \sigma^2)\]</span></p>
+<p>where <span class="math inline">\(f(X_i; \theta)\)</span> is your model’s prediction (e.g., <span class="math inline">\(X_i \beta\)</span> for linear regression). Each target <span class="math inline">\(Y_i\)</span> is normally distributed around the model’s prediction, with some constant variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>The density of a single observation is:</p>
+<p><span class="math display">\[f(y_i \mid x_i, \theta) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(y_i - f(x_i; \theta))^2}{2\sigma^2}\right)\]</span></p>
+<p>Take the log:</p>
+<p><span class="math display">\[\log f(y_i \mid x_i, \theta) = -\frac{1}{2}\log(2\pi\sigma^2) - \frac{(y_i - f(x_i; \theta))^2}{2\sigma^2}\]</span></p>
+<p>Sum over all <span class="math inline">\(n\)</span> observations:</p>
+<p><span class="math display">\[\ell(\theta) = -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^n (y_i - f(x_i; \theta))^2\]</span></p>
+<p>Now maximise with respect to <span class="math inline">\(\theta\)</span>. The first term doesn’t depend on <span class="math inline">\(\theta\)</span>, so it vanishes. The factor <span class="math inline">\(\frac{1}{2\sigma^2}\)</span> is a positive constant. So maximising the log-likelihood is equivalent to <strong>minimising</strong>:</p>
+<p><span class="math display">\[\sum_{i=1}^n (y_i - f(x_i; \theta))^2\]</span></p>
+<p>That’s the sum of squared errors. Divide by <span class="math inline">\(n\)</span> and you get MSE.</p>
+<p><strong>MSE is the negative log-likelihood of a Gaussian model, up to constants.</strong> You didn’t choose MSE because a tutorial told you to. You chose it because you implicitly assumed that your errors are normally distributed. That assumption has consequences. If your errors are actually skewed or heavy-tailed, Gaussian likelihood is the wrong model and MSE is the wrong loss.</p>
+</section>
+<section id="deriving-cross-entropy-from-bernoulli-likelihood" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-cross-entropy-from-bernoulli-likelihood">Deriving cross-entropy from Bernoulli likelihood</h2>
+<p>Now let’s do the same for classification. Assume your binary targets follow:</p>
+<p><span class="math display">\[Y_i \mid X_i \sim \text{Bernoulli}(\hat{p}_i)\]</span></p>
+<p>where <span class="math inline">\(\hat{p}_i = \sigma(f(X_i; \theta))\)</span> is your model’s predicted probability (e.g., the output of a logistic regression through a sigmoid function).</p>
+<p>The probability mass function is:</p>
+<p><span class="math display">\[P(Y_i = y_i \mid \hat{p}_i) = \hat{p}_i^{y_i}(1 - \hat{p}_i)^{1 - y_i}\]</span></p>
+<p>Take the log:</p>
+<p><span class="math display">\[\log P(Y_i = y_i \mid \hat{p}_i) = y_i \log \hat{p}_i + (1 - y_i) \log(1 - \hat{p}_i)\]</span></p>
+<p>Sum over all observations and negate:</p>
+<p><span class="math display">\[-\ell(\theta) = -\sum_{i=1}^n \left[ y_i \log \hat{p}_i + (1 - y_i) \log(1 - \hat{p}_i) \right]\]</span></p>
+<p>That’s <strong>binary cross-entropy</strong>. Exactly the loss function you use for logistic regression, for binary classification in neural networks, for any model that outputs a probability for a yes/no outcome.</p>
+<p>Cross-entropy isn’t an arbitrary choice. It’s the negative log-likelihood of a Bernoulli model. When you minimise cross-entropy, you’re doing maximum likelihood estimation: finding the parameters that make your observed class labels most probable under a Bernoulli assumption.</p>
+</section>
+<section id="deriving-poisson-deviance-from-poisson-likelihood" class="level2">
+<h2 class="anchored" data-anchor-id="deriving-poisson-deviance-from-poisson-likelihood">Deriving Poisson deviance from Poisson likelihood</h2>
+<p>One more, to drive the pattern home. For count data:</p>
+<p><span class="math display">\[Y_i \mid X_i \sim \text{Poisson}(\hat{\lambda}_i)\]</span></p>
+<p>where <span class="math inline">\(\hat{\lambda}_i = \exp(f(X_i; \theta))\)</span> (the exponential ensures the predicted rate is positive).</p>
+<p>The PMF is:</p>
+<p><span class="math display">\[P(Y_i = y_i \mid \hat{\lambda}_i) = \frac{\hat{\lambda}_i^{y_i} e^{-\hat{\lambda}_i}}{y_i!}\]</span></p>
+<p>Take the log:</p>
+<p><span class="math display">\[\log P(Y_i = y_i \mid \hat{\lambda}_i) = y_i \log \hat{\lambda}_i - \hat{\lambda}_i - \log(y_i!)\]</span></p>
+<p>Sum over all observations and negate:</p>
+<p><span class="math display">\[-\ell(\theta) = \sum_{i=1}^n \left[\hat{\lambda}_i - y_i \log \hat{\lambda}_i + \log(y_i!)\right]\]</span></p>
+<p>Drop the constant <span class="math inline">\(\log(y_i!)\)</span> and you get the <strong>Poisson deviance</strong> loss. It’s the natural loss for count data because it’s the negative log-likelihood of the Poisson model.</p>
+</section>
+<section id="the-unified-view" class="level2">
+<h2 class="anchored" data-anchor-id="the-unified-view">The unified view</h2>
+<p>Here’s the table from article 3, now completed with the derivation:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Loss Function</th>
+<th style="text-align: left;">Distribution</th>
+<th style="text-align: left;">Likelihood</th>
+<th style="text-align: left;">Log-likelihood → Loss</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">MSE</td>
+<td style="text-align: left;"><span class="math inline">\(\mathcal{N}(\hat{y}, \sigma^2)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\prod \frac{1}{\sigma\sqrt{2\pi}} e^{-(y_i - \hat{y}_i)^2/2\sigma^2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sum(y_i - \hat{y}_i)^2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cross-Entropy</td>
+<td style="text-align: left;"><span class="math inline">\(\text{Bernoulli}(\hat{p})\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\prod \hat{p}_i^{y_i}(1-\hat{p}_i)^{1-y_i}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(-\sum y_i\log\hat{p}_i + (1-y_i)\log(1-\hat{p}_i)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Poisson Deviance</td>
+<td style="text-align: left;"><span class="math inline">\(\text{Poisson}(\hat{\lambda})\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\prod \frac{\hat{\lambda}_i^{y_i} e^{-\hat{\lambda}_i}}{y_i!}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sum \hat{\lambda}_i - y_i\log\hat{\lambda}_i\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAE</td>
+<td style="text-align: left;"><span class="math inline">\(\text{Laplace}(\hat{y}, b)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\prod \frac{1}{2b} e^{-\|y_i - \hat{y}_i\|/b}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sum \|y_i - \hat{y}_i\|\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Every row follows the same recipe: assume a distribution → write down the likelihood → take the log → negate → minimise. That’s all a loss function is. That’s all training is.</p>
+</section>
+<section id="what-model.fit-actually-does" class="level2">
+<h2 class="anchored" data-anchor-id="what-model.fit-actually-does">What model.fit() actually does</h2>
+<p>Let’s put the complete chain together. When you write:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Here’s what’s happening beneath the API:</p>
+<ol type="1">
+<li><strong>Distributional assumption</strong> (article 2): <span class="math inline">\(Y \mid X \sim \mathcal{N}(X\beta, \sigma^2)\)</span></li>
+<li><strong>Likelihood</strong>: <span class="math inline">\(\mathcal{L}(\beta) = \prod_{i=1}^n f(y_i \mid x_i, \beta)\)</span></li>
+<li><strong>Log-likelihood</strong>: <span class="math inline">\(\ell(\beta) = \sum_{i=1}^n \log f(y_i \mid x_i, \beta)\)</span></li>
+<li><strong>Negative log-likelihood = loss function</strong> (article 3): <span class="math inline">\(\text{MSE} = -\ell(\beta) + \text{const}\)</span></li>
+<li><strong>MLE</strong> (this article): <span class="math inline">\(\hat{\beta} = \arg\min_\beta \text{MSE}\)</span></li>
+</ol>
+<p>When you write:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Same chain, different distribution:</p>
+<ol type="1">
+<li><strong>Distributional assumption</strong>: <span class="math inline">\(Y \mid X \sim \text{Bernoulli}(\sigma(X\beta))\)</span></li>
+<li><strong>Likelihood</strong>: <span class="math inline">\(\mathcal{L}(\beta) = \prod \hat{p}_i^{y_i}(1-\hat{p}_i)^{1-y_i}\)</span></li>
+<li><strong>Log-likelihood</strong>: <span class="math inline">\(\ell(\beta) = \sum y_i\log\hat{p}_i + (1-y_i)\log(1-\hat{p}_i)\)</span></li>
+<li><strong>Negative log-likelihood = loss function</strong>: Cross-entropy</li>
+<li><strong>MLE</strong>: <span class="math inline">\(\hat{\beta} = \arg\min_\beta \text{CE}\)</span></li>
+</ol>
+<p>And when you train a neural network with <code>nn.CrossEntropyLoss()</code> or <code>nn.MSELoss()</code> in PyTorch? Exact same thing. The architecture is more complex, but the training principle is identical: maximum likelihood estimation. The loss function is a negative log-likelihood. The optimiser finds the parameters that maximise the likelihood of the training data.</p>
+</section>
+<section id="properties-of-mle-that-matter-for-ml" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-mle-that-matter-for-ml">Properties of MLE that matter for ML</h2>
+<p>MLE isn’t just a convenient framework. It has theoretical properties that explain why ML works:</p>
+<p><strong>Consistency.</strong> As your dataset grows (<span class="math inline">\(n \to \infty\)</span>), the MLE converges to the true parameter values. More data means better estimates. This is the formal justification for “get more data” being almost always good advice.</p>
+<p><strong>Asymptotic normality.</strong> For large samples, the MLE is approximately normally distributed around the true parameter. This means you can construct confidence intervals for your estimates, and by extension, for your model’s predictions.</p>
+<p><strong>Efficiency.</strong> Among all consistent estimators, MLE achieves the lowest possible variance for large samples. No other method can do better, asymptotically. This is the Cramér-Rao lower bound, and MLE achieves it.</p>
+<p><strong>Invariance.</strong> If <span class="math inline">\(\hat{\theta}\)</span> is the MLE of <span class="math inline">\(\theta\)</span>, then <span class="math inline">\(g(\hat{\theta})\)</span> is the MLE of <span class="math inline">\(g(\theta)\)</span> for any function <span class="math inline">\(g\)</span>. This means you can transform your parameters freely without redoing the estimation.</p>
+<p>These properties explain a lot. Consistency is why more training data helps. Efficiency is why MLE-based methods are hard to beat. Invariance is why you can reparameterise your model without changing the MLE.</p>
+</section>
+<section id="when-mle-isnt-enough" class="level2">
+<h2 class="anchored" data-anchor-id="when-mle-isnt-enough">When MLE isn’t enough</h2>
+<p>MLE has a blind spot: it uses only the data and ignores any prior knowledge you might have. If you have very little data, MLE can overfit, finding parameters that explain your small sample perfectly but generalise poorly.</p>
+<p>This is exactly the problem that <strong>regularisation</strong> solves. And here’s the preview for a future article: regularisation is Bayesian. L2 regularisation (Ridge) is equivalent to adding a Gaussian prior on your parameters. L1 regularisation (Lasso) is equivalent to a Laplace prior. When you add a regularisation term to your loss function, you’re no longer doing pure MLE. You’re doing <strong>maximum a posteriori (MAP) estimation</strong>, which is MLE with a prior.</p>
+<p><span class="math display">\[\hat{\theta}_{\text{MAP}} = \arg\max_\theta \; \underbrace{\mathcal{L}(\theta)}_{\text{likelihood}} \cdot \underbrace{P(\theta)}_{\text{prior}} = \arg\max_\theta \; \underbrace{\ell(\theta)}_{\text{log-likelihood}} + \underbrace{\log P(\theta)}_{\text{regularisation term}}\]</span></p>
+<p>That’s the complete picture: Loss = negative log-likelihood + regularisation = negative log-posterior. But we’ll build that properly when we cover regularisation and Bayesian inference.</p>
+</section>
+<section id="the-mental-model-to-take-away" class="level2">
+<h2 class="anchored" data-anchor-id="the-mental-model-to-take-away">The mental model to take away</h2>
+<p><strong>Before:</strong> “I use MSE for regression and cross-entropy for classification because that’s what the documentation says. I call model.fit() and it finds the best parameters somehow.”</p>
+<p><strong>After:</strong> “MSE is the negative log-likelihood under Gaussian errors. Cross-entropy is the negative log-likelihood under Bernoulli targets. model.fit() performs maximum likelihood estimation: it finds the parameters that make my observed data most probable under my assumed distribution. When I add regularisation, I’m incorporating prior beliefs about the parameters.”</p>
+<p>The chain is now complete:</p>
+<p>Your data = realisations from an unknown distribution (article 2) → Your loss = an expected value under a distributional assumption (article 3) → Your loss = the negative log-likelihood of that distribution (this article) → Training = finding parameters that maximise the likelihood = MLE → <code>model.fit()</code></p>
+<p>Every supervised learning model you’ve ever trained follows this chain. The distribution changes, the architecture changes, the optimiser changes, but the principle is always likelihood.</p>
+</section>
+<section id="key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>Likelihood and probability use the same formula but ask opposite questions: probability asks what data is likely given fixed parameters; likelihood asks which parameters best explain fixed data.</li>
+<li>The maximum likelihood estimate finds the parameters that make your observed data most probable under your assumed distribution.</li>
+<li>MSE, cross-entropy, and Poisson deviance are all negative log-likelihoods. Every loss function embeds a distributional assumption about your targets.</li>
+<li><code>model.fit()</code> performs MLE: it minimises the negative log-likelihood of your assumed distribution.</li>
+<li>Regularisation is MAP estimation. Adding L2 or L1 penalties is equivalent to placing a Gaussian or Laplace prior on your parameters.</li>
+</ul>
+<hr>
+<p><em>This is article 4 of <a href="https://statsbeneath.com">Stats Beneath</a>, a weekly series on the statistical foundations of machine learning. <a href="../..">Subscribe</a> to get each article when it’s published.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/statsbeneath\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Stats Beneath</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org">Quarto</a> &amp; R</p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:godwillzulu51@gmail.com">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

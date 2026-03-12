@@ -8,7 +8,7 @@
 
 <meta name="author" content="Godwill">
 
-<title>claude – Stats Beneath</title>
+<title>Notes — Stats Beneath – Stats Beneath</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -67,6 +32,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -109,6 +76,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-notes-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-notes-listing'] = new List('listing-notes-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 <!-- Google tag (gtag.js) -->
 
@@ -129,15 +125,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="homepage.css">
-<meta property="og:title" content="Stats Beneath">
-<meta property="og:description" content="Statistics simplified, the foundations beneath AI and machine learning">
+<meta property="og:title" content="Notes — Stats Beneath">
 <meta property="og:site_name" content="Stats Beneath">
 </head>
 
-<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -329,6 +353,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Articles</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link active" href="./notes.html" aria-current="page"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -355,64 +383,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#claude.md-stats-beneath-blog-statsbeneath.com" id="toc-claude.md-stats-beneath-blog-statsbeneath.com" class="nav-link active" data-scroll-target="#claude.md-stats-beneath-blog-statsbeneath.com">CLAUDE.md — Stats Beneath Blog (statsbeneath.com)</a>
-  <ul class="collapse">
-  <li><a href="#project-structure" id="toc-project-structure" class="nav-link" data-scroll-target="#project-structure">Project Structure</a></li>
-  <li><a href="#weekly-monday-workflow" id="toc-weekly-monday-workflow" class="nav-link" data-scroll-target="#weekly-monday-workflow">Weekly Monday Workflow</a>
-  <ul class="collapse">
-  <li><a href="#step-1-scan-for-unpublished-posts" id="toc-step-1-scan-for-unpublished-posts" class="nav-link" data-scroll-target="#step-1-scan-for-unpublished-posts">Step 1 — Scan for unpublished posts</a></li>
-  <li><a href="#step-2-review-the-post-against-all-writing-rules-see-below" id="toc-step-2-review-the-post-against-all-writing-rules-see-below" class="nav-link" data-scroll-target="#step-2-review-the-post-against-all-writing-rules-see-below">Step 2 — Review the post against all writing rules (see below)</a></li>
-  <li><a href="#step-3-report-issues-wait-for-approval-before-fixing" id="toc-step-3-report-issues-wait-for-approval-before-fixing" class="nav-link" data-scroll-target="#step-3-report-issues-wait-for-approval-before-fixing">Step 3 — Report issues, wait for approval before fixing</a></li>
-  <li><a href="#step-4-after-approval-render-and-confirm" id="toc-step-4-after-approval-render-and-confirm" class="nav-link" data-scroll-target="#step-4-after-approval-render-and-confirm">Step 4 — After approval, render and confirm</a></li>
-  <li><a href="#step-5-update-listings-and-site-index" id="toc-step-5-update-listings-and-site-index" class="nav-link" data-scroll-target="#step-5-update-listings-and-site-index">Step 5 — Update listings and site index</a></li>
-  </ul></li>
-  <li><a href="#writing-rules-enforced-on-every-post-before-publishing" id="toc-writing-rules-enforced-on-every-post-before-publishing" class="nav-link" data-scroll-target="#writing-rules-enforced-on-every-post-before-publishing">Writing Rules (enforced on every post before publishing)</a>
-  <ul class="collapse">
-  <li><a href="#typography-hard-rules" id="toc-typography-hard-rules" class="nav-link" data-scroll-target="#typography-hard-rules">Typography — HARD RULES</a></li>
-  <li><a href="#voice-style" id="toc-voice-style" class="nav-link" data-scroll-target="#voice-style">Voice &amp; Style</a></li>
-  <li><a href="#post-structure-required" id="toc-post-structure-required" class="nav-link" data-scroll-target="#post-structure-required">Post Structure (required)</a></li>
-  <li><a href="#mathematical-content" id="toc-mathematical-content" class="nav-link" data-scroll-target="#mathematical-content">Mathematical Content</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#series-continuity-foundations-series" id="toc-series-continuity-foundations-series" class="nav-link" data-scroll-target="#series-continuity-foundations-series">Series Continuity (Foundations Series)</a></li>
-  </ul></li>
-  <li><a href="#gitignore-rules" id="toc-gitignore-rules" class="nav-link" data-scroll-target="#gitignore-rules">.gitignore Rules</a></li>
-  <li><a href="#things-claude-must-never-do-without-asking" id="toc-things-claude-must-never-do-without-asking" class="nav-link" data-scroll-target="#things-claude-must-never-do-without-asking">Things Claude Must Never Do Without Asking</a></li>
-  <li><a href="#repository" id="toc-repository" class="nav-link" data-scroll-target="#repository">Repository</a></li>
-  <li><a href="#render-and-deploy-commands" id="toc-render-and-deploy-commands" class="nav-link" data-scroll-target="#render-and-deploy-commands">Render and Deploy Commands</a></li>
-  <li><a href="#flagging-for-author-review-do-not-auto-fix" id="toc-flagging-for-author-review-do-not-auto-fix" class="nav-link" data-scroll-target="#flagging-for-author-review-do-not-auto-fix">Flagging for Author Review (do not auto-fix)</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
+<h1 class="title">Notes</h1>
 </div>
 
 
@@ -435,223 +418,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="claude.md-stats-beneath-blog-statsbeneath.com" class="level1">
-<h1>CLAUDE.md — Stats Beneath Blog (statsbeneath.com)</h1>
-<p>A Quarto-based statistics blog explaining the statistical foundations of machine learning. Claude assists with weekly post detection, editing, and publishing.</p>
-<hr>
-<section id="project-structure" class="level2">
-<h2 class="anchored" data-anchor-id="project-structure">Project Structure</h2>
-<pre><code>statsblog/
-  posts/
-    _template/              # base template for new posts
-    01-why-stats-matter/
-    02-random-variables-distributions/
-    03-expected-value-loss-functions/
-    04-likelihood-mle/      # published 2026-03-06
-  _quarto.yml
-  index.qmd
-  about.qmd
-  archive.qmd
-  styles.css
-  homepage.css
-  CNAME</code></pre>
-<hr>
-</section>
-<section id="weekly-monday-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="weekly-monday-workflow">Weekly Monday Workflow</h2>
-<p>Every Monday, Claude should run the following routine automatically when invoked, or when the user says anything like “check posts” or “what’s new”:</p>
-<section id="step-1-scan-for-unpublished-posts" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-scan-for-unpublished-posts">Step 1 — Scan for unpublished posts</h3>
-<pre><code>Look in posts/ for any subfolder that:
-- Does NOT appear in _site/posts/ (not yet rendered), OR
-- Has a modified index.qmd more recent than its rendered HTML</code></pre>
-<p>Flag each unpublished folder by name. Example output:</p>
-<pre><code>Found 1 unpublished post:
-  posts/04-likelihood-mle/  (not yet rendered)
-Proceed with review? [yes/no]</code></pre>
-</section>
-<section id="step-2-review-the-post-against-all-writing-rules-see-below" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-review-the-post-against-all-writing-rules-see-below">Step 2 — Review the post against all writing rules (see below)</h3>
-</section>
-<section id="step-3-report-issues-wait-for-approval-before-fixing" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-report-issues-wait-for-approval-before-fixing">Step 3 — Report issues, wait for approval before fixing</h3>
-</section>
-<section id="step-4-after-approval-render-and-confirm" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-after-approval-render-and-confirm">Step 4 — After approval, render and confirm</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render posts/<span class="op">&lt;</span>folder-name<span class="op">&gt;</span>/index.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Confirm output appears in <code>_site/posts/&lt;folder-name&gt;/index.html</code>.</p>
-</section>
-<section id="step-5-update-listings-and-site-index" class="level3">
-<h3 class="anchored" data-anchor-id="step-5-update-listings-and-site-index">Step 5 — Update listings and site index</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr>
-</section>
-</section>
-<section id="writing-rules-enforced-on-every-post-before-publishing" class="level2">
-<h2 class="anchored" data-anchor-id="writing-rules-enforced-on-every-post-before-publishing">Writing Rules (enforced on every post before publishing)</h2>
-<section id="typography-hard-rules" class="level3">
-<h3 class="anchored" data-anchor-id="typography-hard-rules">Typography — HARD RULES</h3>
-<ul>
-<li><strong>NO em dashes</strong> (<code>—</code>). Always replace with one of:
-<ul>
-<li>A comma</li>
-<li>A colon</li>
-<li>Two sentences</li>
-<li>WRONG: “The prior updates — given the data — to a posterior.”</li>
-<li>RIGHT: “Given the data, the prior updates to a posterior.”</li>
-</ul></li>
-<li><strong>NO en dashes</strong> (<code>–</code>) used in place of em dashes</li>
-<li><strong>NO Unicode ellipsis</strong> (<code>…</code>) — use three plain dots <code>...</code></li>
-<li><strong>NO curly/smart quotes</strong> inside code blocks — straight quotes only</li>
-<li>Hyphens (<code>-</code>) only for compound adjectives: “well-specified model”</li>
-</ul>
-</section>
-<section id="voice-style" class="level3">
-<h3 class="anchored" data-anchor-id="voice-style">Voice &amp; Style</h3>
-<ul>
-<li>Plain, direct English — like a knowledgeable colleague, not a textbook</li>
-<li>Audience: data scientists and ML practitioners who want statistical depth</li>
-<li>Every post must connect theory to a concrete ML use case</li>
-<li>Build from simple to complex: scalar case before matrix case</li>
-<li>Define every symbol the first time it appears — no dangling notation</li>
-</ul>
-</section>
-<section id="post-structure-required" class="level3">
-<h3 class="anchored" data-anchor-id="post-structure-required">Post Structure (required)</h3>
-<p>Every <code>index.qmd</code> must have this YAML frontmatter:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">""</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> YYYY-MM-DD</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span><span class="co">         # e.g. [Bayesian, Foundations, ML]</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> </span><span class="st">""</span><span class="co">        # 1-2 sentence teaser for the listing page</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> </span><span class="st">""</span><span class="co">              # path to cover image (optional but encouraged)</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Required sections in this order: 1. <strong>Hook</strong> — a question, surprising fact, or motivation (before any equations) 2. Body with <code>##</code> and <code>###</code> headers only (never <code>#</code> in post body) 3. <strong>Key Takeaways</strong> — bullet list, maximum 5 items, at the end</p>
-</section>
-<section id="mathematical-content" class="level3">
-<h3 class="anchored" data-anchor-id="mathematical-content">Mathematical Content</h3>
-<ul>
-<li>Every equation must be followed by a plain-English sentence explaining it</li>
-<li>Use <code>$...$</code> for inline math, <code>$$...$$</code> for display math</li>
-<li>No equation should appear without its variables first being defined in prose</li>
-</ul>
-</section>
-<section id="code" class="level3">
-<h3 class="anchored" data-anchor-id="code">Code</h3>
-<ul>
-<li>All code in R unless the post explicitly covers Python</li>
-<li>Stan code blocks: use <code>```stan</code> fencing</li>
-<li>Every block must be self-contained (include <code>library()</code> calls)</li>
-<li>Comment the <em>why</em>, not the <em>what</em></li>
-</ul>
-</section>
-<section id="series-continuity-foundations-series" class="level3">
-<h3 class="anchored" data-anchor-id="series-continuity-foundations-series">Series Continuity (Foundations Series)</h3>
-<p>Posts follow this narrative arc:</p>
-<pre><code>01 → Why stats matter for ML
-02 → Random variables and distributions
-03 → Expected value and loss functions
-04 → Likelihood and MLE          ← current frontier</code></pre>
-<p>When editing or creating a post, verify: - Notation is consistent with prior posts (<code>theta</code> for parameters, <code>L</code> for likelihood) - Each post references the previous one where relevant - The arc is respected — don’t jump ahead conceptually</p>
-<hr>
-</section>
-</section>
-<section id="gitignore-rules" class="level2">
-<h2 class="anchored" data-anchor-id="gitignore-rules">.gitignore Rules</h2>
-<p>The <code>.gitignore</code> should ensure that <strong>only what the site needs to run</strong> is pushed to GitHub. Raw source files (<code>.qmd</code>, <code>.Rmd</code>, <code>.R</code>, <code>.stan</code>, <code>.rds</code>, figures used only locally) should NOT be pushed.</p>
-<p>Update <code>.gitignore</code> to include the following:</p>
-<pre class="gitignore"><code># R project artefacts
-/.quarto/
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-*.Rproj
-
-# Quarto freeze cache
-/_freeze/
-
-# Raw post source files — do not push to remote
-posts/**/*.qmd
-posts/**/*.Rmd
-posts/**/*.R
-posts/**/*.stan
-posts/**/*.jags
-posts/**/*.rds
-posts/**/*.RData
-posts/**/data/
-posts/**/raw/
-posts/**/_targets/
-
-# Local figures not needed by site (only _site/ figures are needed)
-posts/**/figures/
-posts/**/img/
-
-# Template folder — internal only
-posts/_template/
-
-# macOS
-.DS_Store
-
-# Node / npm (if any JS tooling used)
-node_modules/
-
-# Rendered site is built on deploy — exclude from source tracking
-# (only keep if you are NOT using CI/CD to build)
-# _site/
-
-# Quarto notebook artefacts
-**/*.quarto_ipynb</code></pre>
-<blockquote class="blockquote">
-<p>NOTE: If you deploy via Netlify or GitHub Pages with a build step, you can also add <code>_site/</code> to <code>.gitignore</code> and let the CI build it. If you push the built site directly, keep <code>_site/</code> tracked but exclude everything else above.</p>
-</blockquote>
-<hr>
-</section>
-<section id="things-claude-must-never-do-without-asking" class="level2">
-<h2 class="anchored" data-anchor-id="things-claude-must-never-do-without-asking">Things Claude Must Never Do Without Asking</h2>
-<ul>
-<li>Rewrite the author’s core argument or restructure sections</li>
-<li>Add new examples or derivations not in the original draft</li>
-<li>Remove equations (flag for clarity review instead)</li>
-<li>Change YAML categories or the post date</li>
-<li>Push or deploy anything — only render locally and report</li>
-</ul>
-<hr>
-</section>
-<section id="repository" class="level2">
-<h2 class="anchored" data-anchor-id="repository">Repository</h2>
-<p>GitHub: https://github.com/godwillA33peo/statsblog Remote: <code>origin</code> → <code>https://github.com/godwillA33peo/statsblog.git</code></p>
-<p>All commits must be authored as <strong>Godwill Zulu</strong> (<code>godwillzulu51@gmail.com</code>). Claude must never commit under its own name. Git identity is set globally:</p>
-<pre><code>user.name  = Godwill Zulu
-user.email = godwillzulu51@gmail.com</code></pre>
-<p>To push from WSL, the credential helper must be set:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> credential.helper <span class="st">"/mnt/c/Program Files/Git/mingw64/bin/git-credential-manager.exe"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr>
-</section>
-<section id="render-and-deploy-commands" class="level2">
-<h2 class="anchored" data-anchor-id="render-and-deploy-commands">Render and Deploy Commands</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview locally</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render one post</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render posts/<span class="op">&lt;</span>folder-name<span class="op">&gt;</span>/index.qmd</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Render full site</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Deploy to GitHub Pages (statsbeneath.com)</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="ex">cmd.exe</span> /c <span class="st">"quarto publish gh-pages --no-prompt"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr>
-</section>
-<section id="flagging-for-author-review-do-not-auto-fix" class="level2">
-<h2 class="anchored" data-anchor-id="flagging-for-author-review-do-not-auto-fix">Flagging for Author Review (do not auto-fix)</h2>
-<p>Raise a warning and wait for instruction when: - Any sentence exceeds 40 words - More than 3 equations appear in a row without explanatory prose - A paragraph exceeds 150 words - A statistical claim could be contested or is field-specific - The post breaks series continuity (jumps ahead, skips a concept)</p>
+<div class="notes-page-header">
+<p>Observations on AI, learning, academia, and whatever else I notice at the intersection of technology and everyday life. Not always stats. Not always serious. Always honest.</p>
+</div>
 
 
-</section>
-</section>
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-notes-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="QUklMkNFZHVjYXRpb24lMkNPcGluaW9u" data-listing-date-sort="1773273600000" data-listing-file-modified-sort="1773351522660" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1249">
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./notes/ai-higher-education-part1/index.html" class="no-external">You Cannot Open a Laptop in 2026 Without Touching AI. So Why Are We Still Pretending?</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QUk='); return false;">AI</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RWR1Y2F0aW9u'); return false;">Education</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T3Bpbmlvbg=='); return false;">Opinion</div>
+
+</div>
+<div class="delink listing-description"><a href="./notes/ai-higher-education-part1/index.html" class="no-external">
+<p>A student’s perspective on AI tools, academic integrity, and what honest learning looks like now that the room has changed.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="./notes/ai-higher-education-part1/index.html" class="no-external">
+<div class="listing-date">
+Mar 12, 2026
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

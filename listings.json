@@ -16,5 +16,11 @@
       "/posts/02-random-variables-distributions/index.html",
       "/posts/01-why-stats-matter/index.html"
     ]
+  },
+  {
+    "listing": "/notes.html",
+    "items": [
+      "/notes/ai-higher-education-part1/index.html"
+    ]
   }
 ]

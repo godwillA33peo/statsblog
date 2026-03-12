@@ -6,11 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Godwil">
-<meta name="dcterms.date" content="2026-03-06">
-<meta name="description" content="Every time you call model.fit(), you’re doing maximum likelihood estimation. MSE, cross-entropy, Poisson deviance — they’re all negative log-likelihoods in disguise. Understanding that single fact unifies everything you know about training models.">
+<meta name="author" content="Godwill">
+<meta name="dcterms.date" content="2026-03-12">
+<meta name="description" content="A student’s perspective on AI tools, academic integrity, and what honest learning looks like now that the room has changed.">
 
-<title>Likelihood: The Most Important Concept in ML That Nobody Teaches You – Stats Beneath</title>
+<title>You Cannot Open a Laptop in 2026 Without Touching AI. So Why Are We Still Pretending? – Stats Beneath</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -131,41 +96,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <link rel="stylesheet" href="../../homepage.css">
-<meta property="og:title" content="Likelihood: The Most Important Concept in ML That Nobody Teaches You – Stats Beneath">
-<meta property="og:description" content="Every time you call model.fit(), you’re doing maximum likelihood estimation. MSE, cross-entropy, Poisson deviance — they’re all negative log-likelihoods in disguise. Understanding that single fact unifies everything you know about training models.">
-<meta property="og:image" content="https://statsbeneath.com/posts/04-likelihood-mle/thumbnail.png">
+<meta property="og:title" content="You Cannot Open a Laptop in 2026 Without Touching AI. So Why Are We Still Pretending? – Stats Beneath">
+<meta property="og:description" content="A student’s perspective on AI tools, academic integrity, and what honest learning looks like now that the room has changed.">
 <meta property="og:site_name" content="Stats Beneath">
 </head>
 
@@ -361,6 +296,10 @@ window.Quarto = {
 <span class="menu-text">Articles</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../notes.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -392,7 +331,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Likelihood: The Most Important Concept in ML That Nobody Teaches You</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">You Cannot Open a Laptop in 2026 Without Touching AI. So Why Are We Still Pretending?</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -410,18 +349,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-question-your-model-is-actually-answering" id="toc-the-question-your-model-is-actually-answering" class="nav-link active" data-scroll-target="#the-question-your-model-is-actually-answering">The question your model is actually answering</a></li>
-  <li><a href="#probability-vs.-likelihood-the-same-formula-opposite-questions" id="toc-probability-vs.-likelihood-the-same-formula-opposite-questions" class="nav-link" data-scroll-target="#probability-vs.-likelihood-the-same-formula-opposite-questions">Probability vs.&nbsp;likelihood: the same formula, opposite questions</a></li>
-  <li><a href="#the-likelihood-function" id="toc-the-likelihood-function" class="nav-link" data-scroll-target="#the-likelihood-function">The likelihood function</a></li>
-  <li><a href="#why-we-use-the-log-likelihood" id="toc-why-we-use-the-log-likelihood" class="nav-link" data-scroll-target="#why-we-use-the-log-likelihood">Why we use the log-likelihood</a></li>
-  <li><a href="#deriving-mse-from-gaussian-likelihood" id="toc-deriving-mse-from-gaussian-likelihood" class="nav-link" data-scroll-target="#deriving-mse-from-gaussian-likelihood">Deriving MSE from Gaussian likelihood</a></li>
-  <li><a href="#deriving-cross-entropy-from-bernoulli-likelihood" id="toc-deriving-cross-entropy-from-bernoulli-likelihood" class="nav-link" data-scroll-target="#deriving-cross-entropy-from-bernoulli-likelihood">Deriving cross-entropy from Bernoulli likelihood</a></li>
-  <li><a href="#deriving-poisson-deviance-from-poisson-likelihood" id="toc-deriving-poisson-deviance-from-poisson-likelihood" class="nav-link" data-scroll-target="#deriving-poisson-deviance-from-poisson-likelihood">Deriving Poisson deviance from Poisson likelihood</a></li>
-  <li><a href="#the-unified-view" id="toc-the-unified-view" class="nav-link" data-scroll-target="#the-unified-view">The unified view</a></li>
-  <li><a href="#what-model.fit-actually-does" id="toc-what-model.fit-actually-does" class="nav-link" data-scroll-target="#what-model.fit-actually-does">What model.fit() actually does</a></li>
-  <li><a href="#properties-of-mle-that-matter-for-ml" id="toc-properties-of-mle-that-matter-for-ml" class="nav-link" data-scroll-target="#properties-of-mle-that-matter-for-ml">Properties of MLE that matter for ML</a></li>
-  <li><a href="#when-mle-isnt-enough" id="toc-when-mle-isnt-enough" class="nav-link" data-scroll-target="#when-mle-isnt-enough">When MLE isn’t enough</a></li>
-  <li><a href="#the-mental-model-to-take-away" id="toc-the-mental-model-to-take-away" class="nav-link" data-scroll-target="#the-mental-model-to-take-away">The mental model to take away</a></li>
+  <li><a href="#the-contradiction-nobody-wants-to-name" id="toc-the-contradiction-nobody-wants-to-name" class="nav-link active" data-scroll-target="#the-contradiction-nobody-wants-to-name">The Contradiction Nobody Wants to Name</a></li>
+  <li><a href="#the-maths-teacher-was-right.-but-the-problem-is-subtler-than-you-think" id="toc-the-maths-teacher-was-right.-but-the-problem-is-subtler-than-you-think" class="nav-link" data-scroll-target="#the-maths-teacher-was-right.-but-the-problem-is-subtler-than-you-think">The Maths Teacher Was Right. But the Problem Is Subtler Than You Think</a></li>
+  <li><a href="#which-subjects-are-most-exposed" id="toc-which-subjects-are-most-exposed" class="nav-link" data-scroll-target="#which-subjects-are-most-exposed">Which Subjects Are Most Exposed?</a></li>
+  <li><a href="#so-what-might-actually-work-and-who-gets-to-decide" id="toc-so-what-might-actually-work-and-who-gets-to-decide" class="nav-link" data-scroll-target="#so-what-might-actually-work-and-who-gets-to-decide">So What Might Actually Work, and Who Gets to Decide?</a></li>
   </ul>
 </nav>
     </div>
@@ -431,16 +362,17 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Likelihood: The Most Important Concept in ML That Nobody Teaches You</h1>
+<h1 class="title">You Cannot Open a Laptop in 2026 Without Touching AI. So Why Are We Still Pretending?</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">foundations</div>
-    <div class="quarto-category">probability</div>
+    <div class="quarto-category">AI</div>
+    <div class="quarto-category">Education</div>
+    <div class="quarto-category">Opinion</div>
   </div>
   </div>
 
 <div>
   <div class="description">
-    Every time you call model.fit(), you’re doing maximum likelihood estimation. MSE, cross-entropy, Poisson deviance — they’re all negative log-likelihoods in disguise. Understanding that single fact unifies everything you know about training models.
+    A student’s perspective on AI tools, academic integrity, and what honest learning looks like now that the room has changed.
   </div>
 </div>
 
@@ -450,14 +382,14 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Godwil </p>
+             <p>Godwill </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 6, 2026</p>
+      <p class="date">March 12, 2026</p>
     </div>
   </div>
   
@@ -469,207 +401,52 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>What you’ll learn in 12 minutes
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><strong>Likelihood is not probability.</strong> Probability asks “given these parameters, how likely is this data?” Likelihood asks “given this data, which parameters best explain it?” Same formula, opposite question.</li>
-<li><strong>Maximum likelihood estimation (MLE)</strong> is the principle behind almost every ML model you’ve ever trained: find the parameters that make your observed data most probable.</li>
-<li><strong>Your loss functions are negative log-likelihoods</strong>: MSE comes from Gaussian likelihood, cross-entropy from Bernoulli likelihood, Poisson deviance from Poisson likelihood. This is a derivation, not a coincidence.</li>
-<li><strong>The complete chain is now closed</strong>: your data comes from distributions (article 2) → your loss function is an expected value under a distributional assumption (article 3) → likelihood is how you estimate the parameters of that distribution from data (this article) → <code>model.fit()</code> is MLE.</li>
-</ul>
-</div>
-</div>
-<section id="the-question-your-model-is-actually-answering" class="level2">
-<h2 class="anchored" data-anchor-id="the-question-your-model-is-actually-answering">The question your model is actually answering</h2>
-<p>In <a href="../..\posts/02-random-variables-distributions/index.html">article 2</a>, we established that your data consists of realisations from some unknown distribution. In <a href="../..\posts/03-expected-value-loss-functions/index.html">article 3</a>, we showed that your loss function is an expected value that encodes a specific distributional assumption.</p>
-<p>Now the question that ties everything together: <strong>how do you find the best parameters for that distribution?</strong></p>
-<p>You’ve been doing it every time you train a model. You just didn’t know the name for it.</p>
-<p>Suppose you have a dataset of heights. You believe they come from a Normal distribution, but you don’t know the mean <span class="math inline">\(\mu\)</span> or the variance <span class="math inline">\(\sigma^2\)</span>. You have 100 measurements. Which values of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> best explain the data you actually observed?</p>
-<p>That’s a likelihood question. And the answer is maximum likelihood estimation — the engine behind virtually every model in ML.</p>
-</section>
-<section id="probability-vs.-likelihood-the-same-formula-opposite-questions" class="level2">
-<h2 class="anchored" data-anchor-id="probability-vs.-likelihood-the-same-formula-opposite-questions">Probability vs.&nbsp;likelihood: the same formula, opposite questions</h2>
-<p>This is the distinction that trips up everyone, so let’s be precise.</p>
-<p><strong>Probability</strong> fixes the parameters and asks about the data. Given that the mean height is 170cm and the standard deviation is 10cm, what’s the probability of observing someone who is 185cm tall?</p>
-<p><span class="math display">\[P(X = 185 \mid \mu = 170, \sigma = 10)\]</span></p>
-<p>You know the distribution. You’re asking about a possible outcome.</p>
-<p><strong>Likelihood</strong> fixes the data and asks about the parameters. You’ve observed someone who is 185cm tall. How well does the model <span class="math inline">\(\mathcal{N}(170, 10^2)\)</span> explain that observation? How about <span class="math inline">\(\mathcal{N}(180, 8^2)\)</span>?</p>
-<p><span class="math display">\[\mathcal{L}(\mu, \sigma \mid X = 185) = P(X = 185 \mid \mu, \sigma)\]</span></p>
-<p>You know the data. You’re asking which parameters make that data most plausible.</p>
-<p>The formula on the right-hand side is identical — it’s the same density function evaluated at the same point. But the <em>question</em> is reversed. With probability, the parameters are known and the data varies. With likelihood, the data is known and the parameters vary.</p>
-<p>This is why likelihood is sometimes called <strong>“reverse probability.”</strong> You’re running the distribution backwards — instead of generating data from parameters, you’re inferring parameters from data.</p>
-</section>
-<section id="the-likelihood-function" class="level2">
-<h2 class="anchored" data-anchor-id="the-likelihood-function">The likelihood function</h2>
-<p>Let’s make this formal. Suppose you have <span class="math inline">\(n\)</span> observations <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>, and you assume they come independently from a distribution with density <span class="math inline">\(f(x \mid \theta)\)</span>, where <span class="math inline">\(\theta\)</span> represents the unknown parameters.</p>
-<p>The <strong>likelihood function</strong> is:</p>
-<p><span class="math display">\[\mathcal{L}(\theta) = \prod_{i=1}^n f(x_i \mid \theta)\]</span></p>
-<p>It’s the joint probability of all your data, viewed as a function of the parameters.</p>
-<p>Because these are independent observations, the joint probability is the product of the individual probabilities. Each data point contributes a factor. If a particular value of <span class="math inline">\(\theta\)</span> makes even one data point very unlikely, the whole product drops.</p>
-<p><strong>The maximum likelihood estimate (MLE)</strong> is the value of <span class="math inline">\(\theta\)</span> that maximises this function:</p>
-<p><span class="math display">\[\hat{\theta}_{\text{MLE}} = \arg\max_\theta \; \mathcal{L}(\theta)\]</span></p>
-<p>In words: find the parameters under which your observed data is most probable.</p>
-</section>
-<section id="why-we-use-the-log-likelihood" class="level2">
-<h2 class="anchored" data-anchor-id="why-we-use-the-log-likelihood">Why we use the log-likelihood</h2>
-<p>In practice, nobody maximises the likelihood directly. Products of hundreds or thousands of small probabilities quickly underflow to zero on a computer. Instead, we take the logarithm.</p>
-<p>Since <span class="math inline">\(\log\)</span> is a monotonically increasing function, maximising <span class="math inline">\(\log \mathcal{L}(\theta)\)</span> gives the same answer as maximising <span class="math inline">\(\mathcal{L}(\theta)\)</span>. And the log turns the product into a sum:</p>
-<p><span class="math display">\[\ell(\theta) = \log \mathcal{L}(\theta) = \sum_{i=1}^n \log f(x_i \mid \theta)\]</span></p>
-<p>This is the <strong>log-likelihood</strong>. It’s a sum instead of a product, which is numerically stable and much easier to differentiate.</p>
-<p>And here’s where ML connects: in software, we minimise rather than maximise. So we flip the sign:</p>
-<p><span class="math display">\[\text{Loss} = -\ell(\theta) = -\sum_{i=1}^n \log f(x_i \mid \theta)\]</span></p>
-<p>This is the <strong>negative log-likelihood (NLL)</strong>. Minimising the negative log-likelihood is identical to maximising the likelihood. That’s literally what your optimiser is doing when you train a model.</p>
-</section>
-<section id="deriving-mse-from-gaussian-likelihood" class="level2">
-<h2 class="anchored" data-anchor-id="deriving-mse-from-gaussian-likelihood">Deriving MSE from Gaussian likelihood</h2>
-<p>Let’s prove that MSE — the loss function you’ve used a thousand times — is just the negative log-likelihood under a Gaussian assumption. This is the derivation that makes the whole series click.</p>
-<p>Assume your data follows:</p>
-<p><span class="math display">\[Y_i \mid X_i \sim \mathcal{N}(f(X_i; \theta), \sigma^2)\]</span></p>
-<p>where <span class="math inline">\(f(X_i; \theta)\)</span> is your model’s prediction (e.g., <span class="math inline">\(X_i \beta\)</span> for linear regression). Each target <span class="math inline">\(Y_i\)</span> is normally distributed around the model’s prediction, with some constant variance <span class="math inline">\(\sigma^2\)</span>.</p>
-<p>The density of a single observation is:</p>
-<p><span class="math display">\[f(y_i \mid x_i, \theta) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left(-\frac{(y_i - f(x_i; \theta))^2}{2\sigma^2}\right)\]</span></p>
-<p>Take the log:</p>
-<p><span class="math display">\[\log f(y_i \mid x_i, \theta) = -\frac{1}{2}\log(2\pi\sigma^2) - \frac{(y_i - f(x_i; \theta))^2}{2\sigma^2}\]</span></p>
-<p>Sum over all <span class="math inline">\(n\)</span> observations:</p>
-<p><span class="math display">\[\ell(\theta) = -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^n (y_i - f(x_i; \theta))^2\]</span></p>
-<p>Now maximise with respect to <span class="math inline">\(\theta\)</span>. The first term doesn’t depend on <span class="math inline">\(\theta\)</span>, so it vanishes. The factor <span class="math inline">\(\frac{1}{2\sigma^2}\)</span> is a positive constant. So maximising the log-likelihood is equivalent to <strong>minimising</strong>:</p>
-<p><span class="math display">\[\sum_{i=1}^n (y_i - f(x_i; \theta))^2\]</span></p>
-<p>That’s the sum of squared errors. Divide by <span class="math inline">\(n\)</span> and you get MSE.</p>
-<p><strong>MSE is the negative log-likelihood of a Gaussian model, up to constants.</strong> You didn’t choose MSE because a tutorial told you to. You chose it because you assumed — implicitly — that your errors are normally distributed. That assumption has consequences. If your errors are actually skewed or heavy-tailed, Gaussian likelihood is the wrong model and MSE is the wrong loss.</p>
-</section>
-<section id="deriving-cross-entropy-from-bernoulli-likelihood" class="level2">
-<h2 class="anchored" data-anchor-id="deriving-cross-entropy-from-bernoulli-likelihood">Deriving cross-entropy from Bernoulli likelihood</h2>
-<p>Now let’s do the same for classification. Assume your binary targets follow:</p>
-<p><span class="math display">\[Y_i \mid X_i \sim \text{Bernoulli}(\hat{p}_i)\]</span></p>
-<p>where <span class="math inline">\(\hat{p}_i = \sigma(f(X_i; \theta))\)</span> is your model’s predicted probability (e.g., the output of a logistic regression through a sigmoid function).</p>
-<p>The probability mass function is:</p>
-<p><span class="math display">\[P(Y_i = y_i \mid \hat{p}_i) = \hat{p}_i^{y_i}(1 - \hat{p}_i)^{1 - y_i}\]</span></p>
-<p>Take the log:</p>
-<p><span class="math display">\[\log P(Y_i = y_i \mid \hat{p}_i) = y_i \log \hat{p}_i + (1 - y_i) \log(1 - \hat{p}_i)\]</span></p>
-<p>Sum over all observations and negate:</p>
-<p><span class="math display">\[-\ell(\theta) = -\sum_{i=1}^n \left[ y_i \log \hat{p}_i + (1 - y_i) \log(1 - \hat{p}_i) \right]\]</span></p>
-<p>That’s <strong>binary cross-entropy</strong>. Exactly the loss function you use for logistic regression, for binary classification in neural networks, for any model that outputs a probability for a yes/no outcome.</p>
-<p>Cross-entropy isn’t an arbitrary choice. It’s the negative log-likelihood of a Bernoulli model. When you minimise cross-entropy, you’re doing maximum likelihood estimation — finding the parameters that make your observed class labels most probable under a Bernoulli assumption.</p>
-</section>
-<section id="deriving-poisson-deviance-from-poisson-likelihood" class="level2">
-<h2 class="anchored" data-anchor-id="deriving-poisson-deviance-from-poisson-likelihood">Deriving Poisson deviance from Poisson likelihood</h2>
-<p>One more, to drive the pattern home. For count data:</p>
-<p><span class="math display">\[Y_i \mid X_i \sim \text{Poisson}(\hat{\lambda}_i)\]</span></p>
-<p>where <span class="math inline">\(\hat{\lambda}_i = \exp(f(X_i; \theta))\)</span> (the exponential ensures the predicted rate is positive).</p>
-<p>The PMF is:</p>
-<p><span class="math display">\[P(Y_i = y_i \mid \hat{\lambda}_i) = \frac{\hat{\lambda}_i^{y_i} e^{-\hat{\lambda}_i}}{y_i!}\]</span></p>
-<p>Take the log:</p>
-<p><span class="math display">\[\log P(Y_i = y_i \mid \hat{\lambda}_i) = y_i \log \hat{\lambda}_i - \hat{\lambda}_i - \log(y_i!)\]</span></p>
-<p>Sum over all observations and negate:</p>
-<p><span class="math display">\[-\ell(\theta) = \sum_{i=1}^n \left[\hat{\lambda}_i - y_i \log \hat{\lambda}_i + \log(y_i!)\right]\]</span></p>
-<p>Drop the constant <span class="math inline">\(\log(y_i!)\)</span> and you get the <strong>Poisson deviance</strong> loss. It’s the natural loss for count data because it’s the negative log-likelihood of the Poisson model.</p>
-</section>
-<section id="the-unified-view" class="level2">
-<h2 class="anchored" data-anchor-id="the-unified-view">The unified view</h2>
-<p>Here’s the table from article 3, now completed with the derivation:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Loss Function</th>
-<th style="text-align: left;">Distribution</th>
-<th style="text-align: left;">Likelihood</th>
-<th style="text-align: left;">Log-likelihood → Loss</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">MSE</td>
-<td style="text-align: left;"><span class="math inline">\(\mathcal{N}(\hat{y}, \sigma^2)\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\prod \frac{1}{\sigma\sqrt{2\pi}} e^{-(y_i - \hat{y}_i)^2/2\sigma^2}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\sum(y_i - \hat{y}_i)^2\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Cross-Entropy</td>
-<td style="text-align: left;"><span class="math inline">\(\text{Bernoulli}(\hat{p})\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\prod \hat{p}_i^{y_i}(1-\hat{p}_i)^{1-y_i}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(-\sum y_i\log\hat{p}_i + (1-y_i)\log(1-\hat{p}_i)\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Poisson Deviance</td>
-<td style="text-align: left;"><span class="math inline">\(\text{Poisson}(\hat{\lambda})\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\prod \frac{\hat{\lambda}_i^{y_i} e^{-\hat{\lambda}_i}}{y_i!}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\sum \hat{\lambda}_i - y_i\log\hat{\lambda}_i\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MAE</td>
-<td style="text-align: left;"><span class="math inline">\(\text{Laplace}(\hat{y}, b)\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\prod \frac{1}{2b} e^{-\|y_i - \hat{y}_i\|/b}\)</span></td>
-<td style="text-align: left;"><span class="math inline">\(\sum \|y_i - \hat{y}_i\|\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Every row follows the same recipe: assume a distribution → write down the likelihood → take the log → negate → minimise. That’s all a loss function is. That’s all training is.</p>
-</section>
-<section id="what-model.fit-actually-does" class="level2">
-<h2 class="anchored" data-anchor-id="what-model.fit-actually-does">What model.fit() actually does</h2>
-<p>Let’s put the complete chain together. When you write:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Here’s what’s happening beneath the API:</p>
-<ol type="1">
-<li><strong>Distributional assumption</strong> (article 2): <span class="math inline">\(Y \mid X \sim \mathcal{N}(X\beta, \sigma^2)\)</span></li>
-<li><strong>Likelihood</strong>: <span class="math inline">\(\mathcal{L}(\beta) = \prod_{i=1}^n f(y_i \mid x_i, \beta)\)</span></li>
-<li><strong>Log-likelihood</strong>: <span class="math inline">\(\ell(\beta) = \sum_{i=1}^n \log f(y_i \mid x_i, \beta)\)</span></li>
-<li><strong>Negative log-likelihood = loss function</strong> (article 3): <span class="math inline">\(\text{MSE} = -\ell(\beta) + \text{const}\)</span></li>
-<li><strong>MLE</strong> (this article): <span class="math inline">\(\hat{\beta} = \arg\min_\beta \text{MSE}\)</span></li>
-</ol>
-<p>When you write:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Same chain, different distribution:</p>
-<ol type="1">
-<li><strong>Distributional assumption</strong>: <span class="math inline">\(Y \mid X \sim \text{Bernoulli}(\sigma(X\beta))\)</span></li>
-<li><strong>Likelihood</strong>: <span class="math inline">\(\mathcal{L}(\beta) = \prod \hat{p}_i^{y_i}(1-\hat{p}_i)^{1-y_i}\)</span></li>
-<li><strong>Log-likelihood</strong>: <span class="math inline">\(\ell(\beta) = \sum y_i\log\hat{p}_i + (1-y_i)\log(1-\hat{p}_i)\)</span></li>
-<li><strong>Negative log-likelihood = loss function</strong>: Cross-entropy</li>
-<li><strong>MLE</strong>: <span class="math inline">\(\hat{\beta} = \arg\min_\beta \text{CE}\)</span></li>
-</ol>
-<p>And when you train a neural network with <code>nn.CrossEntropyLoss()</code> or <code>nn.MSELoss()</code> in PyTorch? Exact same thing. The architecture is more complex, but the training principle is identical: maximum likelihood estimation. The loss function is a negative log-likelihood. The optimiser finds the parameters that maximise the likelihood of the training data.</p>
-</section>
-<section id="properties-of-mle-that-matter-for-ml" class="level2">
-<h2 class="anchored" data-anchor-id="properties-of-mle-that-matter-for-ml">Properties of MLE that matter for ML</h2>
-<p>MLE isn’t just a convenient framework. It has theoretical properties that explain why ML works:</p>
-<p><strong>Consistency.</strong> As your dataset grows (<span class="math inline">\(n \to \infty\)</span>), the MLE converges to the true parameter values. More data means better estimates. This is the formal justification for “get more data” being almost always good advice.</p>
-<p><strong>Asymptotic normality.</strong> For large samples, the MLE is approximately normally distributed around the true parameter. This means you can construct confidence intervals for your estimates — and by extension, for your model’s predictions.</p>
-<p><strong>Efficiency.</strong> Among all consistent estimators, MLE achieves the lowest possible variance for large samples. No other method can do better, asymptotically. This is the Cramér-Rao lower bound, and MLE achieves it.</p>
-<p><strong>Invariance.</strong> If <span class="math inline">\(\hat{\theta}\)</span> is the MLE of <span class="math inline">\(\theta\)</span>, then <span class="math inline">\(g(\hat{\theta})\)</span> is the MLE of <span class="math inline">\(g(\theta)\)</span> for any function <span class="math inline">\(g\)</span>. This means you can transform your parameters freely without redoing the estimation.</p>
-<p>These properties explain a lot. Consistency is why more training data helps. Efficiency is why MLE-based methods are hard to beat. Invariance is why you can reparameterise your model without changing the MLE.</p>
-</section>
-<section id="when-mle-isnt-enough" class="level2">
-<h2 class="anchored" data-anchor-id="when-mle-isnt-enough">When MLE isn’t enough</h2>
-<p>MLE has a blind spot: it uses only the data and ignores any prior knowledge you might have. If you have very little data, MLE can overfit — it will find parameters that explain your small sample perfectly but generalise poorly.</p>
-<p>This is exactly the problem that <strong>regularisation</strong> solves. And here’s the preview for a future article: regularisation is Bayesian. L2 regularisation (Ridge) is equivalent to adding a Gaussian prior on your parameters. L1 regularisation (Lasso) is equivalent to a Laplace prior. When you add a regularisation term to your loss function, you’re no longer doing pure MLE — you’re doing <strong>maximum a posteriori (MAP) estimation</strong>, which is MLE with a prior.</p>
-<p><span class="math display">\[\hat{\theta}_{\text{MAP}} = \arg\max_\theta \; \underbrace{\mathcal{L}(\theta)}_{\text{likelihood}} \cdot \underbrace{P(\theta)}_{\text{prior}} = \arg\max_\theta \; \underbrace{\ell(\theta)}_{\text{log-likelihood}} + \underbrace{\log P(\theta)}_{\text{regularisation term}}\]</span></p>
-<p>That’s the complete picture: Loss = negative log-likelihood + regularisation = negative log-posterior. But we’ll build that properly when we cover regularisation and Bayesian inference.</p>
-</section>
-<section id="the-mental-model-to-take-away" class="level2">
-<h2 class="anchored" data-anchor-id="the-mental-model-to-take-away">The mental model to take away</h2>
-<p><strong>Before:</strong> “I use MSE for regression and cross-entropy for classification because that’s what the documentation says. I call model.fit() and it finds the best parameters somehow.”</p>
-<p><strong>After:</strong> “MSE is the negative log-likelihood under Gaussian errors. Cross-entropy is the negative log-likelihood under Bernoulli targets. model.fit() performs maximum likelihood estimation — it finds the parameters that make my observed data most probable under my assumed distribution. When I add regularisation, I’m incorporating prior beliefs about the parameters.”</p>
-<p>The chain is now complete:</p>
-<p>Your data = realisations from an unknown distribution (article 2) → Your loss = an expected value under a distributional assumption (article 3) → Your loss = the negative log-likelihood of that distribution (this article) → Training = finding parameters that maximise the likelihood = MLE → <code>model.fit()</code></p>
-<p>Every supervised learning model you’ve ever trained follows this chain. The distribution changes, the architecture changes, the optimiser changes — but the principle is always likelihood.</p>
+<p><em>A student’s perspective on AI, academic integrity, and what learning actually needs to look like now.</em></p>
 <hr>
-<p><em>This is article 4 of <a href="https://statsbeneath.com">Stats Beneath</a>, a weekly series on the statistical foundations of machine learning. <a href="../..">Subscribe</a> to get each article when it’s published.</em></p>
+<section id="the-contradiction-nobody-wants-to-name" class="level2">
+<h2 class="anchored" data-anchor-id="the-contradiction-nobody-wants-to-name">The Contradiction Nobody Wants to Name</h2>
+<p>You cannot open a laptop in 2026 without touching AI.</p>
+<p>Adobe Reader prompts you to summarise the document before you’ve read a word. Google serves you an AI answer before the first blue link. Gmail wants to respond to your emails for you. LinkedIn wants to rewrite your posts. Grammarly is rewriting your sentences as you type them. GitHub Copilot is completing your code before you’ve finished thinking it through.</p>
+<p>Google Gemini is embedded in Docs, Slides, and Gmail. Microsoft Copilot lives inside Word, PowerPoint, and Excel: summarising, generating, suggesting, at every turn. These are the tools your university pays for, licenses, and recommends.</p>
+<p>These aren’t tools students are sneaking in through the back door. These are the defaults. The licensed, institutionally approved, school-recommended defaults.</p>
+<p>And yet, we sign declarations stating we haven’t used AI.</p>
+<p>I want to be careful here, because this isn’t an argument for academic dishonesty. It’s an argument for institutional honesty. The dishonesty in higher education right now isn’t students using AI. It’s the pretence, increasingly impossible to maintain, that opting out is even an option.</p>
+<hr>
+</section>
+<section id="the-maths-teacher-was-right.-but-the-problem-is-subtler-than-you-think" class="level2">
+<h2 class="anchored" data-anchor-id="the-maths-teacher-was-right.-but-the-problem-is-subtler-than-you-think">The Maths Teacher Was Right. But the Problem Is Subtler Than You Think</h2>
+<p>My high school maths teacher used to say: <em>you learn maths by doing it</em>. A hundred problems. Struggle, failure, correction, pattern recognition, until the concept stops being something you look up and becomes something you know. That principle hasn’t changed.</p>
+<p>What’s changed is that AI makes it very easy to simulate having done the work without actually doing it. A student can produce a polished answer without ever building the mental scaffold that makes the answer theirs. The output looks identical. The learning is absent.</p>
+<p>That’s the real danger. And it’s subtle enough that even well-intentioned students can fall into it without noticing. You’re not cheating in the old sense. You’re not copying someone else’s essay. You’re doing something arguably more insidious: producing output that looks like understanding while quietly bypassing the process that would have created it.</p>
+<hr>
+</section>
+<section id="which-subjects-are-most-exposed" class="level2">
+<h2 class="anchored" data-anchor-id="which-subjects-are-most-exposed">Which Subjects Are Most Exposed?</h2>
+<p>Not all disciplines are equally vulnerable, and this distinction matters enormously for how institutions should respond.</p>
+<p>The subjects most at risk are the ones where <strong>the output is the product</strong>: essays, reports, literature reviews, code submissions, reflection journals, policy briefs. In these disciplines, a polished final document has historically been sufficient evidence of learning. AI breaks that assumption completely. There is now no reliable inference from a well-written essay to the mind that supposedly wrote it.</p>
+<p>Less exposed are the subjects where <strong>the process is observable</strong>: lab practicals, oral defences, field placements, mathematical derivations shown step by step under exam conditions. In these settings, AI cannot silently substitute for you: the work leaves traces of the person doing it.</p>
+<p>This is exactly why a supervisor reviewing your models can tell whether you understand them. Every modelling decision encodes a reasoning process, and that process either holds up under questioning or it doesn’t.</p>
+<p>When I fit Bayesian spatial models for my thesis, I insist on being able to derive the posterior distribution by hand. I want to explain why a single child’s malaria test result is a Bernoulli trial, why aggregating across children within a cluster gives you a Binomial likelihood, and why a Poisson approximation fails here: the data doesn’t qualify as a rare event. That argument has to live in my head, not in a chatbot response. When my supervisor pushes back, I need to have it.</p>
+<p>A submitted PDF essay encodes none of that. You cannot tell, from the document alone, whether the person who wrote it could defend a single sentence.</p>
+<p>Do universities still build that kind of intuition? That’s the question I’m not sure anyone is asking loudly enough.</p>
+<p>The implication is important: the subjects that have always assessed through final written outputs are the ones that need to rethink their assessment design most urgently. The lab sciences and oral traditions have, perhaps accidentally, built in a degree of robustness. The humanities and social sciences, which have long relied on the essay as the primary vehicle of assessment, face the sharpest disruption.</p>
+<hr>
+</section>
+<section id="so-what-might-actually-work-and-who-gets-to-decide" class="level2">
+<h2 class="anchored" data-anchor-id="so-what-might-actually-work-and-who-gets-to-decide">So What Might Actually Work, and Who Gets to Decide?</h2>
+<p>I want to be careful here, because I don’t think I have the answer. What I have is a reflection, and a strong feeling that the answer cannot come from one side of the table alone.</p>
+<p>Some things feel worth exploring. Mini vivas, short oral defences where you’re asked to explain your own work, could tell a lecturer more in ten minutes than a submitted document ever could. Though I’ll be honest: if we’re not careful, students will just cram their own essays the night before, and we’ll have shifted the performance without shifting the learning.</p>
+<p>Process-documented submissions. Staged drafts. Live problem-solving with unseen material. These aren’t new ideas. What’s new is the urgency.</p>
+<p>But here’s what I keep coming back to, from a different part of my life entirely. I spent years working in HIV and SRHR advocacy and programme design, having been that same affected young person to being one of the people designing, implementing and evaluating such programs. The consistent failure in that space, not from bad intentions but from bad process, was designing <em>for</em> young people without designing <em>with</em> them. Programmes built on assumptions. Policies shaped by what adults thought young people needed, or feared, or would do. They often missed. Not because the people designing them were wrong to care, but because the people most affected weren’t genuinely at the drawing board.</p>
+<p>I see the same dynamic in higher education’s response to AI. The conversation is happening: in faculty meetings, in policy committees, in academic integrity offices. Students are largely not in that room. And yet students are the ones living inside this contradiction every day, navigating which tools are permitted, which are invisible, which are unavoidable, and what any of it actually means for whether they’re learning.</p>
+<p>What I’d actually advocate for is simple, and it’s not a policy recommendation: <strong>honest, structured conversations between institutions and students about what AI is actually doing to learning</strong>, not just to integrity. Not enforcement consultations. Not feedback forms. Real co-design, where students’ reflections about their own formation are treated as evidence, not noise.</p>
+<p>Because right now the institutional response is built mostly on assumption and the instinct to protect academic integrity as a procedural value. I understand that instinct. I just don’t think it’s working. And I don’t think it will work until the people most affected are genuinely part of figuring out what comes next.</p>
+<p>There is a distinction, and I think it’s the most important one in this conversation, between using AI as an agent to produce assignments, and using AI as a scaffold to genuinely understand better. One hollows out your formation. The other accelerates it. But students can only make that distinction meaningfully if someone has actually talked them through it, honestly, not in a two-hour compliance module.</p>
+<p>AI is here to stay. Learning will never look the same. The question institutions need to stop avoiding is not how to detect AI use. It’s what kind of learners they actually want to produce, and whether they’re willing to ask students that question directly.</p>
+<hr>
+<p><em>In Part 2, I’ll show what the second kind of use actually looks like: a Claude skill I built for my own MSc studies that changed how I prepare for exams and work through hard modelling problems. Not AI doing the work. AI making the struggle more productive.</em></p>
+<hr>
+<p><strong>Godwill</strong> | MSc Health Data Science, University of Galway | <a href="https://statsbeneath.com">statsbeneath.com</a></p>
 
 
 </section>

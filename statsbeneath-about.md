@@ -1,0 +1,39 @@
+# About
+
+I'm Godwil — an MSc Health Data Science student at the University of Galway, Ireland Fellows Programme Scholar, and the person behind Stats Beneath.
+
+I grew up in Zimbabwe and spent several years working as a Monitoring & Evaluation Specialist in the health sector — HIV, SRHR, public health programmes — where I learned that the distance between a well-designed analysis and a poorly-designed one isn't technical. It's conceptual. It's whether the person running the model actually understands what it's doing, and why.
+
+That conviction followed me to Ireland, and it's why I created this blog.
+
+I hold a First Class Honours degree in Operations Research and Statistics, but the credential I'm proudest of is harder to put on a CV: I insist on understanding things from the ground up. When I fit Bayesian spatial models for my MSc thesis — currently estimating district-level malaria prevalence across Ghana using BYM2 and ICAR models in Stan — I want to be able to derive the posterior by hand. I want to argue from first principles why the likelihood should be Binomial and not Poisson. I want to know, not just do.
+
+Stats Beneath exists because I've worked alongside talented engineers and data scientists who could implement almost anything but struggled to explain what was happening underneath. This blog is my attempt to close that gap — one statistical concept at a time, starting with intuition, building to mathematics, and ending with something you can actually use.
+
+---
+
+## What I'm Working On
+
+**MSc Thesis** — Small area estimation for malaria prevalence in Ghana using Bayesian hierarchical spatial models (ICAR, BYM2) implemented in Stan. The goal is district-level prevalence estimates from DHS survey data that are both statistically rigorous and policy-relevant.
+
+**Stats Beneath** — Weekly deep dives into the statistical foundations of machine learning and AI. If you've ever used a method without fully understanding it, this is for you.
+
+**Bayesian Explorer** — An interactive Shiny app I built to help students develop intuition for Bayesian inference. Visualises prior-likelihood-posterior relationships in real time. [Try it here →]
+
+---
+
+## Technical Skills
+
+R is my primary language for statistical analysis and modelling. I use Stan and JAGS for Bayesian inference, Shiny for interactive tools, Quarto for technical publishing, and Python for machine learning workflows. I also work with geospatial data — spatial statistics, mapping, GIS.
+
+My approach: principles first, tools second. The foundations don't just make you better at statistics. They make you harder to fool.
+
+---
+
+## Connect
+
+I'm always glad to hear from people working at the intersection of statistics, public health, and machine learning — whether you're a student, a researcher, or someone who's been quietly suspicious that there's more going on under the hood than the tutorials show.
+
+- [GitHub](#) — code, projects, and open-source contributions
+- [LinkedIn](#) — professional background and updates
+- [Email](#) — reach out directly

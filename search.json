@@ -207,35 +207,28 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "G\n\n\n\n\nMSc Health Data Science · Bayesian Modelling · Statistical Foundations for ML"
-  },
-  {
-    "objectID": "about.html#about-me",
-    "href": "about.html#about-me",
-    "title": "About",
-    "section": "About me",
-    "text": "About me\nI’m a Health Data Science MSc student at the University of Galway, originally from Zimbabwe. I hold a First Class Honours degree in Operations Research and Statistics, and have spent years working as a Monitoring & Evaluation Specialist in the health sector, where I developed a deep appreciation for rigorous data analysis and evidence-based decision making.\nIn 2025, I was selected for the Ireland Fellows Programme, which brought me to Ireland to pursue advanced studies in health data science. My journey through operations research, public health program evaluation, and now Bayesian statistical modelling has taught me that the real power of data science lies not in knowing which algorithm to run, but in understanding why it works.\nI created Stats Beneath because I’ve seen too many talented engineers and data scientists skip over the statistical foundations that make machine learning actually work. This blog is my attempt to bridge that gap, explaining one statistical concept at a time, with clarity, intuition, and real-world context."
+    "text": "G\n\n\n\n\nMSc Health Data Science · Bayesian Modelling · Statistical Foundations for ML\nI’m Godwill, an MSc Health Data Science student at the University of Galway, Ireland Fellows Programme Scholar, and the person behind Stats Beneath.\nI grew up in Zimbabwe and spent several years working as a Monitoring & Evaluation Specialist in the health sector: HIV, SRHR, and public health programmes. There I learned that the distance between a well-designed analysis and a poorly-designed one isn’t technical. It’s conceptual. It’s whether the person running the model actually understands what it’s doing, and why.\nThat conviction followed me to Ireland, and it’s why I created this blog.\nI hold a First Class Honours degree in Operations Research and Statistics, but the credential I’m proudest of is harder to put on a CV: I insist on understanding things from the ground up. When I fit Bayesian spatial models for my MSc thesis, currently estimating district-level malaria prevalence across Ghana using BYM2 and ICAR models in Stan, I want to be able to derive the posterior by hand. I want to argue from first principles why the likelihood should be Binomial and not Poisson. I want to know, not just do.\nStats Beneath exists because I’ve worked alongside talented engineers and data scientists who could implement almost anything but struggled to explain what was happening underneath. This blog is my attempt to close that gap: one statistical concept at a time, starting with intuition, building to mathematics, and ending with something you can actually use."
   },
   {
     "objectID": "about.html#what-im-working-on",
     "href": "about.html#what-im-working-on",
     "title": "About",
     "section": "What I’m working on",
-    "text": "What I’m working on\nMSc Thesis: I’m currently working on small area estimation for malaria prevalence in Ghana using Bayesian hierarchical models. Specifically, I’m implementing BYM2 and ICAR spatial models in Stan to produce district-level prevalence estimates from survey data. This work combines my interests in public health, spatial statistics, and Bayesian inference.\nStats Beneath: This blog, where I publish weekly deep dives into the statistical concepts that power machine learning and AI. Each article starts with intuition, builds to mathematical understanding, and ends with practical takeaways.\nBayesian Explorer: An interactive Shiny application I built to help students and practitioners develop intuition for Bayesian concepts. It visualizes prior-likelihood-posterior relationships and lets you explore how different priors affect inference in real-time. Try it here →"
+    "text": "What I’m working on\nMSc Thesis — Small area estimation for malaria prevalence in Ghana using Bayesian hierarchical spatial models (ICAR, BYM2) implemented in Stan. The goal is district-level prevalence estimates from DHS survey data that are both statistically rigorous and policy-relevant.\nStats Beneath — Weekly deep dives into the statistical foundations of machine learning and AI. If you’ve ever used a method without fully understanding it, this is for you.\nBayesian Explorer — An interactive Shiny app I built to help students develop intuition for Bayesian inference. Visualises prior-likelihood-posterior relationships in real time. Try it here →"
   },
   {
     "objectID": "about.html#technical-skills",
     "href": "about.html#technical-skills",
     "title": "About",
     "section": "Technical skills",
-    "text": "Technical skills\nI work primarily in R for statistical analysis and modeling, using Stan and JAGS for Bayesian inference. I build interactive tools with Shiny, write and publish technical content with Quarto, and handle version control with Git. I also use Python for machine learning workflows and have experience with geospatial analysis (spatial statistics, mapping, GIS workflows).\nMy approach is tool-agnostic but principles-first: I believe understanding the statistical foundations makes you better at choosing the right tool for the job."
+    "text": "Technical skills\nR is my primary language for statistical analysis and modelling. I use Stan and JAGS for Bayesian inference, Shiny for interactive tools, Quarto for technical publishing, and Python for machine learning workflows. I also work with geospatial data: spatial statistics, mapping, and GIS.\nMy approach: principles first, tools second. The foundations don’t just make you better at statistics. They make you harder to fool."
   },
   {
     "objectID": "about.html#connect",
     "href": "about.html#connect",
     "title": "About",
     "section": "Connect",
-    "text": "Connect\nI’m always interested in connecting with people working at the intersection of statistics, machine learning, and public health.\n\n\nGitHub, code, projects, and open-source contributions\nLinkedIn, professional background and updates\nEmail, reach out directly\n\n\n\nThis site is built with Quarto and deployed on GitHub Pages. All content is written in R Markdown and rendered to HTML. The source code is available on GitHub."
+    "text": "Connect\nI’m always glad to hear from people working at the intersection of statistics, public health, and machine learning, whether you’re a student, a researcher, or someone who’s been quietly suspicious that there’s more going on under the hood than the tutorials show.\n\n\nGitHub, code, projects, and open-source contributions\nLinkedIn, professional background and updates\nEmail, reach out directly\n\n\n\nThis site is built with Quarto and deployed on GitHub Pages. The source code is available on GitHub."
   },
   {
     "objectID": "archive.html",

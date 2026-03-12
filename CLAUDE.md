@@ -20,7 +20,7 @@ statsblog/
     03-expected-value-loss-functions/
     04-likelihood-mle/            # published 2026-03-06
   notes/                          # general personal blog
-    01-ai-laptops-2026/           # first note (draft)
+    ai-higher-education-part1/    # published 2026-03-12
   _quarto.yml
   index.qmd
   notes.qmd                       # notes listing page
@@ -33,11 +33,16 @@ statsblog/
 
 ---
 
-## Weekly Monday Workflow
+## Weekly Publish Workflow
 
-Every Monday, Claude should run the following routine automatically when
-invoked, or when the user says anything like "check posts", "check notes",
-"what's new", or "what needs publishing":
+Run automatically when invoked on any Monday, or when the user says anything
+like "check posts", "check notes", "what's new", or "what needs publishing".
+
+**The pipeline runs end-to-end without stopping unless a BLOCKER is found.**
+A blocker is anything Claude cannot fix with certainty (see Step 2).
+Everything else is auto-fixed and the pipeline continues.
+
+---
 
 ### Step 1 — Scan for unpublished content (BOTH sections)
 
@@ -50,45 +55,139 @@ invoked, or when the user says anything like "check posts", "check notes",
 - Has a modified `index.qmd` more recent than its rendered HTML, OR
 - Has `draft: true` in its YAML frontmatter
 
-Flag everything found. Example output:
-```
-Found 1 unpublished stats post:
-  posts/05-bayesian-inference/  (not yet rendered)
+If nothing is found in either section, say so and stop.
 
-Found 1 unpublished note:
-  notes/01-ai-laptops-2026/  (draft: true)
+---
 
-Proceed with review? [yes/no]
-```
+### Step 2 — Evaluation and auto-fix
 
-If nothing is found, say so and stop.
+Run the full evaluation checklist (see **Evaluation Framework** below) for
+each item found. Classify every issue as either:
 
-### Step 2 — Review against the relevant writing rules
+- **AUTO-FIX:** Clear rule violation Claude can correct without judgment.
+  Fix it silently and continue. Log each fix in the publish report.
+- **BLOCKER:** Requires the author's judgment before proceeding.
+  Stop the pipeline, list all blockers, and wait for instruction.
 
-Apply **Stats Writing Rules** to posts in `posts/`.
-Apply **Notes Writing Rules** to posts in `notes/`.
-These are different rule sets — see both sections below.
+**Auto-fixable issues (fix without asking):**
+- Em dashes (`—`) and en dashes (`–`) used as em dashes
+- Unicode ellipsis (`…`) → `...`
+- Obvious typos where the correction is unambiguous
+- `draft: true` → `draft: false` when ready to publish
+- Missing trailing newline in QMD files
 
-### Step 3 — Report issues, wait for approval before fixing
+**Blockers (stop and ask):**
+- Any sentence exceeding 40 words
+- Any paragraph exceeding 150 words
+- A statistical claim that could be contested
+- A note that has no clear point of view
+- Series continuity broken in a stats post
+- More than 3 equations in a row without explanatory prose
+- Any structural issue Claude cannot confidently resolve
 
-### Step 4 — After approval, render and confirm
+If there are no blockers: proceed directly to Step 3 without asking.
+If there are blockers: list them clearly, wait for instruction, then resume.
 
-For a stats post:
+---
+
+### Step 3 — Render
+
+For each stats post:
 ```bash
 quarto render posts/<folder-name>/index.qmd
 ```
-Confirm output appears in `_site/posts/<folder-name>/index.html`.
 
-For a note:
+For each note:
 ```bash
 quarto render notes/<folder-name>/index.qmd
 ```
-Confirm output appears in `_site/notes/<folder-name>/index.html`.
 
-### Step 5 — Update listings and site index
+Then render the full site to update all listings:
 ```bash
 quarto render
 ```
+
+Confirm the output HTML exists before continuing.
+
+---
+
+### Step 4 — Commit and push
+
+Stage only the relevant files (never `.claude/`, never `.Rhistory`, never
+anything matching the gitignore rules):
+
+```bash
+git add <specific files only>
+git commit -m "Publish <type>: <title>"
+git push origin main
+```
+
+Commit message format:
+- Stats post: `Publish article N: <title>`
+- Note: `Publish note: <title>`
+
+---
+
+### Step 5 — Deploy to live site
+
+```bash
+cmd.exe /c "quarto publish gh-pages --no-prompt"
+```
+
+---
+
+### Step 6 — Publish report
+
+After the pipeline completes, print a short report:
+
+```
+Published: notes/ai-higher-education-part1/
+  Auto-fixed: 4 em dashes, 1 typo ("bieng" → "being")
+  Deployed to: https://statsbeneath.com/notes/ai-higher-education-part1/
+```
+
+---
+
+## Evaluation Framework
+
+Run this checklist on every piece of content before publishing.
+Apply the Stats checklist to `posts/`, the Notes checklist to `notes/`.
+
+### Universal checks (both sections)
+
+| Check | Pass condition | On fail |
+|-------|---------------|---------|
+| No em dashes (`—`) | Zero instances | AUTO-FIX |
+| No en dashes (`–`) used as em dashes | Zero instances | AUTO-FIX |
+| No Unicode ellipsis (`…`) | Zero instances | AUTO-FIX |
+| No smart/curly quotes in code blocks | Zero instances | AUTO-FIX |
+| YAML has title, date, categories, description | All present | BLOCKER |
+| `draft` field is present in notes | Present | AUTO-FIX (add `draft: false`) |
+| Sentences ≤ 40 words | All sentences | BLOCKER (flag offenders) |
+| Paragraphs ≤ 150 words | All paragraphs | BLOCKER (flag offenders) |
+
+### Stats post additional checks
+
+| Check | Pass condition | On fail |
+|-------|---------------|---------|
+| Hook section present | Yes | BLOCKER |
+| Key Takeaways section present | Yes | BLOCKER |
+| Every equation has a prose explanation | Yes | BLOCKER |
+| Every symbol defined before use | Yes | BLOCKER |
+| Series continuity maintained | Yes | BLOCKER |
+| No `#` headings in post body (only `##`, `###`) | Zero `#` headings | AUTO-FIX → `##` |
+| Code blocks are self-contained | All have `library()` calls | BLOCKER |
+
+### Notes additional checks
+
+| Check | Pass condition | On fail |
+|-------|---------------|---------|
+| Opens with concrete observation (not abstract thesis) | Yes | BLOCKER |
+| No equations or math notation | Zero | BLOCKER |
+| No R/Python code blocks | Zero | BLOCKER |
+| No "In conclusion" or equivalent closing phrase | Zero | AUTO-FIX (remove phrase) |
+| One clear point of view present | Yes | BLOCKER |
+| No `#` h1 heading in body (YAML handles title) | Zero `#` headings | AUTO-FIX → remove |
 
 ---
 
@@ -287,7 +386,6 @@ Applies to both stats posts and notes:
 - Rewrite the author's core argument or restructure sections
 - Add new content not in the original draft
 - Change YAML categories or the post date
-- Push or deploy anything — only render locally and report
 
 Stats posts only:
 - Remove equations (flag for clarity review instead)

@@ -4,6 +4,7 @@ project:
   render:
     - "*.qmd"
     - "posts/**/*.qmd"
+    - "notes/**/*.qmd"
 
 website:
   title: "Stats Beneath"
@@ -23,6 +24,8 @@ website:
         text: Home
       - href: archive.qmd
         text: Articles
+      - href: notes.qmd
+        text: Notes
       - href: about.qmd
         text: About
       - href: "#newsletter"

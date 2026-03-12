@@ -1,0 +1,19 @@
+---
+pagetitle: "Notes — Stats Beneath"
+title: "Notes"
+listing:
+  id: notes-listing
+  contents: notes
+  sort: "date desc"
+  type: default
+  max-items: 50
+  categories: false
+  fields: [date, title, description, categories]
+  date-format: "MMM D, YYYY"
+toc: false
+sidebar: false
+---
+
+::: {.notes-page-header}
+Observations on AI, learning, academia, and whatever else I notice at the intersection of technology and everyday life. Not always stats. Not always serious. Always honest.
+:::

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://statsbeneath.com/posts/evaluating-ai-in-education/index.html</loc>
-    <lastmod>2026-10-28T10:52:27.643Z</lastmod>
-  </url>
-  <url>
-    <loc>https://statsbeneath.com/posts/03-expected-value-loss-functions/index.html</loc>
+    <loc>https://statsbeneath.com/posts/04-likelihood-mle/index.html</loc>
     <lastmod>2026-10-13T11:34:24.744Z</lastmod>
   </url>
   <url>
-    <loc>https://statsbeneath.com/posts/01-why-stats-matter/index.html</loc>
-    <lastmod>2026-10-13T11:34:24.742Z</lastmod>
+    <loc>https://statsbeneath.com/posts/02-random-variables-distributions/index.html</loc>
+    <lastmod>2026-10-13T11:34:24.743Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/notes/evaluating-ai-in-education/index.html</loc>
+    <lastmod>2026-10-28T10:52:27.643Z</lastmod>
   </url>
   <url>
     <loc>https://statsbeneath.com/notes.html</loc>
@@ -33,11 +33,11 @@
     <lastmod>2026-10-13T11:34:24.742Z</lastmod>
   </url>
   <url>
-    <loc>https://statsbeneath.com/posts/02-random-variables-distributions/index.html</loc>
-    <lastmod>2026-10-13T11:34:24.743Z</lastmod>
+    <loc>https://statsbeneath.com/posts/01-why-stats-matter/index.html</loc>
+    <lastmod>2026-10-13T11:34:24.742Z</lastmod>
   </url>
   <url>
-    <loc>https://statsbeneath.com/posts/04-likelihood-mle/index.html</loc>
+    <loc>https://statsbeneath.com/posts/03-expected-value-loss-functions/index.html</loc>
     <lastmod>2026-10-13T11:34:24.744Z</lastmod>
   </url>
 </urlset>

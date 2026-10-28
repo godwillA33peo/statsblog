@@ -2,13 +2,13 @@
   {
     "listing": "/notes.html",
     "items": [
+      "/notes/evaluating-ai-in-education/index.html",
       "/notes/ai-higher-education-part1/index.html"
     ]
   },
   {
     "listing": "/archive.html",
     "items": [
-      "/posts/evaluating-ai-in-education/index.html",
       "/posts/04-likelihood-mle/index.html",
       "/posts/03-expected-value-loss-functions/index.html",
       "/posts/02-random-variables-distributions/index.html",
@@ -18,7 +18,6 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/evaluating-ai-in-education/index.html",
       "/posts/04-likelihood-mle/index.html",
       "/posts/03-expected-value-loss-functions/index.html",
       "/posts/02-random-variables-distributions/index.html",

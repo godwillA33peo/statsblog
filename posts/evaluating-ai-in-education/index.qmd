@@ -1,0 +1,165 @@
+---
+title: "Is It That Simple? Evaluating the Impact of AI in Education"
+description: "Give half the class AI, ban it for the other half, and compare marks. It sounds like the cleanest way to find out what AI does to learning, but is it that simple?"
+author: "Godwill"
+date: "2026-10-13"
+categories: [causal-inference, experimental-design]
+draft: false
+---
+
+"So what's your research about?"
+
+"Whether AI helps or hurts how much students actually learn."
+
+"Oh, that's easy. Give half the class AI, ban it for the other half, and compare the marks."
+
+I have had some version of this conversation more times than I can count since I started. Every time, the answer sounds right. And every time, I find myself wondering: is it really that simple?
+
+## Where this question started for me
+
+My career began in evaluation. I worked as a Monitoring and Evaluation specialist on a humanitarian programme. In practice, that meant building the tools that told us whether a project was on track, what we could do better, and what we were learning along the way. Later the same data fed into the formal evaluation.
+
+Those evaluations came at set points: halfway through the project, at the end, and definitely a while after the project was completed. They were usually done by an external evaluator, who arrived with their own tools, spent a short time in the field and reported back to donors.
+
+Looking back, I think the external evaluator was the field's rough version of blinding. In a clinical trial, the person measuring outcomes ideally doesn't know who got the treatment, so their hopes can't tint the result. Our evaluators weren't blind: they knew exactly which communities had received the project. But they hadn't designed it, delivered it or staked their job on it working, so they had less riding on the answer. That protected us from marking our own homework. What it could not do was deal with everything else going on.
+
+And that was what didn't sit right with me. In a humanitarian setting, so many things move an outcome besides your project: the rainy season, the political environment, another organisation handing out food two villages over. Claiming an improvement was down to us, with no comparison group and often no proper baseline, was mostly an act of faith. The field's own guidance acknowledges this, steering evaluators towards asking whether a project contributed to change, rather than claiming it caused it ([Cosgrave, Buchanan-Smith & Warner, 2016, ALNAP](https://alnap.org/help-library/resources/evaluation-of-humanitarian-action-eha-guide/)).
+
+It took a causal inference course for me to put a name to the discomfort. A clinical research design module during my MSc, and an industry placement curating clinical trial data for network meta-analysis, sharpened it further. Reading trial after trial, I saw how much machinery goes into protecting one simple comparison from everything that might muddy it.
+
+Now I study a very different kind of intervention: does using generative AI help or hurt how much university students learn? And the question that followed me out of humanitarian work has followed me here too. Can we actually answer it properly in education?
+
+## The things you can't put in a spreadsheet
+
+Think about everything that shapes how a student learns, and how they use AI, long before they ever walk into your course:
+
+- **How they were taught at school:** learning by memorising, or by wrestling with problems.
+- **Their family background:** what their parents studied, whether university was always expected.
+- **What they believe about themselves:** maths anxiety, confidence, mindset.
+- **What they're aiming for:** to understand the material, or to get through the exam.
+- **Their life right now:** part-time work, caring for someone, sleep, studying in a second language, and, well, worrying about accommodation and whether they will get a job after the degree.
+- **Who they study with:** their friends' habits, shared notes and the group chat.
+
+Nearly everything on that list could shape both how a student uses AI and how much they learn. Scientists call that a confounder, and most of it is hard to measure, or something a researcher would never think to ask about.
+
+A hidden trait only distorts the comparison if it does two things at once: it affects learning, and it's more common among AI users than non-users (or the opposite). A trait that does only one of those is harmless. "How a student learned to learn" plausibly does both. There is only one tool that, by design, spreads every one of these hidden traits evenly between groups on average, including the ones we have never thought of: random assignment.
+
+That is why the fix from the opening conversation sounds so right, and why I reached for it too: toss a coin for every student, give AI to the heads, compare the marks. But if it were that simple, why would so few education researchers actually run this study in a course that counts?
+
+## Why is a coin toss so powerful, and how does a classroom spoil it?
+
+Here is the idea in plain terms. Imagine every student has two versions of their final module mark: the one they would get with AI and the one they would get without it. In reality we only ever get to see one of them. If a coin decides which group each student lands in, the coin can't know anything about those two marks. So on average, the two groups are alike in every way except AI, and any difference in their average marks is down to AI itself.
+
+But that argument quietly relies on a few things being true:
+
+1. **The coin decides who uses AI.** Everyone told to use AI does use it, and nobody told not to use it does. They are all compliant.
+2. **Students don't affect each other's results.**
+3. **We are actually allowed, ethically and practically, to hand out the treatment this way.**
+
+A university course breaks all three.
+
+## Problem 1: You can't keep AI out of the control group
+
+In a drug trial, people in the control group usually can't get the drug anywhere else. In a classroom, the "drug" is free and sitting in every student's browser. So what you are really randomising isn't the AI use; it's the instruction about AI use. Some students told not to use it will use it anyway, and some students told to use it won't bother.
+
+That dilutes whatever you measure. Suppose 90% of the AI group uses it, but so does 40% of the "no AI" group. Your comparison then picks up only about half of the true effect, and you would need roughly four times as many students to spot it. The tempting fix is to just compare the students who actually used AI with those who didn't. But that throws the coin toss away, because the students who used AI despite being told not to are not a random bunch. In a world where most students already use AI, a "no AI" group can end up measuring who follows rules more than anything else.
+
+## Problem 2: Students talk to each other
+
+Even if everyone did exactly as told, students share. They pass around prompts and AI-generated notes, so a student in the "no AI" group can benefit from AI without ever opening a chatbot. The usual fix is to randomise groups instead of individuals; the Harvard trial I come back to below randomised small peer-instruction groups of two or three students. But students in the same group share a tutor and each other, so the twentieth student in a tutorial tells you much less that's new than the first. With 120 students in tutorials of 20, even a little similarity within tutorials means your class behaves more like 60 students than 120.
+
+## Problem 3: Grades count, and everyone knows which group they are in
+
+Clinical trials rely on what is called equipoise: genuine uncertainty about which option is better, so nobody is knowingly short-changed. Classrooms have a version of this, but two things make it harder to argue. First, grades count. If AI changes performance, one group gets an advantage on marks towards their degree. Second, policy may simply not allow it: permitting AI for some students and banning it for others can clash with course regulations before you even reach the ethics form.
+
+You also cannot hide from students which group they are in. Everyone knows, and that can breed resentment, or make the "no AI" group work extra hard to prove a point. The person analysing the data can be kept in the dark, though. In my own work I won't know which students took part; I will only see the data for modelling. It's the same kind of separation the external evaluator offered, with the same limit: it keeps my expectations out of the analysis, but can't change what happens in the classroom.
+
+And then there's the question of what we are even measuring. A mark on an assignment done with AI tells you how well a student performed with help. Learning only shows up later, when the help is gone, and AI can push the first up while pulling the second down.
+
+## What close randomised controlled trials have done
+
+Two recent trials come close to the obvious design. Between them, they run into most of the problems above.
+
+### Hungary: when students said no
+
+In spring 2025, two instructors at Corvinus University of Budapest ran exactly the experiment from my opening conversation, in an operations research course ([Benedek & Sziklai, 2025](https://arxiv.org/abs/2510.16019)). About 95 students were randomly split into a group that could use AI in classes and exams and a group that couldn't. They did everything by the book: the study was pre-registered, and approved by the ethics board, senior university staff and the student council. To keep things fair, after every test the lower-scoring group had its marks topped up by the gap between the group averages.
+
+It still didn't survive. Students complained from week two, argued over how the top-up was calculated, and appealed to the programme director. About a dozen went to the national media, and one wrote to Hungary's State Secretary for Higher Education, whose written opinion said the experiment could harm students' equal chances. A week before exams, the groups were merged. The authors' own reflection is the bit that stays with me: the students' reaction told them more than the data did, because it showed AI had already become something students see as essential.
+
+They say they learned a few things. They focused on making the study fair in fact, and underestimated how fair it would feel to students. Telling students earlier, checking in with them regularly, and offering a way to opt out might all have helped.
+
+That struck a chord. In an [earlier note](../../notes/ai-higher-education-part1/index.qmd), I wrote about my years designing HIV and SRHR programmes, where the mistake we kept making was designing *for* young people rather than *with* them. Here, students were represented through the student council's approval. But signing off on a design isn't the same as helping to shape it.
+
+### A crossover trial at Harvard
+
+A Harvard physics trial took a different route ([Kestin et al., 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/)): a crossover, where everyone gets both conditions and the order is what's randomised. In weeks 9 and 10 of the course, each student had one lesson with an AI tutor at home and one 75-minute active-learning class, with the groups swapping between weeks. About 194 students were included, and the AI tutor came out ahead by roughly 0.73 to 1.3 standard deviations on a test taken straight after each lesson. That's a big effect by education standards.
+
+It's one of the most cited results in this area, and the crossover is a clever answer to the fairness problem: nobody misses out. Reading it with my trial-curator hat on, though, a few questions kept nagging at me. The two lessons, surface tension and then fluid flow, were chosen to be separate topics, with no break between them. But both are about fluids and pressure. Could a student who learned in week 9 to work through problems step by step with a tutor carry that habit into week 10, whichever condition they were in? The analysis adjusts for topic and prior scores, but I couldn't find a direct check for whether the order mattered.
+
+The two conditions also differed in more than just AI. One was self-paced at home; the other was a scheduled class with friends. Students in the same course study together, so did anything from an AI lesson find its way to classmates before their own AI week? Did anyone in the class week use other AI tools at home anyway? Since nobody could be blinded, might the novelty of a shiny new tool lift effort all on its own? And with a test before and after each lesson, back to back, might test fatigue have worn effort down by the second week? None of this undoes the result. But it does make me wonder what exactly was being compared, and what it tells us about what students still know at the end of term.
+
+### Could a crossover work across a whole course?
+
+The Hungarian authors arrive at the same idea from the other direction. Looking back, they suggest it would have been better to "reverse the roles of the students (AI vs. offline) midway through the semester." The catch, they note, is that if one half of the material is harder, whoever had AI for that half looks like they are getting the bigger boost.
+
+Reading the two trials side by side, I kept coming back to something clinical crossovers rely on: the washout. That's the gap between the two treatments that lets the first one wear off before the second starts. Harvard didn't use one. To be fair to the team, that was probably not a choice: a course can't pause teaching for a week so students can forget a strategy, and the syllabus has to move on.
+
+I'm honestly not sure a classroom can ever have a washout. A washout works when an effect fades, like a drug clearing the bloodstream. But learning is supposed to stick, and that lasting effect is exactly what we want to measure. Habits stick too, and the topic changes along with the period.
+
+Harvard's short cycle and immediate tests keep spillover small, which is also why the result speaks to performance rather than lasting learning. Taking turns with AI by week or by topic, with a later test done without AI for each, might balance the two. It might also be a nightmare to run.
+
+## What the rest of the evidence looks like
+
+Beyond these two trials, most of what we "know" about AI and learning comes from weaker designs, and three patterns kept coming back.
+
+### Most studies measure AI use by asking students, and they are shy about it
+
+The typical study asks students about their AI use in a survey, then relates their answers to grades or, more often, to how much they feel they learned. In one study of 210 programming students, five different AI-use profiles differed in how hard students found the course and how well they felt they understood it, but not in how they actually performed on assessments ([Lepp, 2026](https://arxiv.org/abs/2607.24755)).
+
+I remember this from my own MSc. When a lecturer asked whether anyone had used AI, most of us were shy to raise our hands, sometimes until the question was asked a different way. The research points the same way: there is a stigma around using AI, so what students tell us is a shaky thing to lean on.
+
+In a University of Chicago study, about 60% of students said they used AI, while about 90% said their peers did, a gap students put down to shame ([Kale et al., 2026](https://datascience.uchicago.edu/insights/are-students-hiding-their-ai-use-the-social-stigma-behind-ai-use-in-the-classroom/)). Among 863 undergraduates in Vietnam, students rated classmates' AI-assisted cheating as more frequent than their own for all ten behaviours asked about ([Nguyen & Duong, 2026](https://www.mdpi.com/2813-4346/5/3/83)). If students' answers were just randomly off, the effect we find would only shrink. But if the students who use AI most are also the ones most likely to downplay it, the error could push the result either way, and nothing in the data tells you which.
+
+### Logs show what students do, not what it does to them
+
+Usage logs get around the honesty problem. Anthropic analysed 574,740 academic conversations on Claude.ai and sorted them into four groups: whether students were getting answers directly or working with the AI collaboratively, and whether they were solving problems or creating something ([Anthropic, 2025](https://www.anthropic.com/news/anthropic-education-report-how-university-students-use-claude)). Each group held 23% to 29% of conversations, and about 47% were the direct kind.
+
+But the report is upfront about what it can't tell us. It has no data on how students did, its sample probably leans towards early adopters, and it covers one tool over 18 days. However precisely we describe how students use AI, that's a picture of the exposure, not of its effect. Logs fix the measurement problem but not the confounding one, and a student's AI use is spread across tools that no single company can see.
+
+### We test too soon
+
+Most experiments run for a few lessons or weeks and test straight away, as Harvard did. With AI available, performance goes up almost by definition. Whether learning goes up only shows when the AI is taken away. In a field experiment with nearly a thousand high school maths students, GPT-4 access improved practice grades by 48%. But once it was removed, those students did 17% worse on the exam than students who never had it ([Bastani et al., 2025](https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html)).
+
+Studies of real grades tell a quieter story. One study of more than 138,000 university students, comparing courses more and less exposed to AI before and after it arrived, found no difference in grades ([Dumlao et al., 2026](https://arxiv.org/abs/2607.21534)). Another found A grades rose by 13 percentage points in courses more exposed to AI, mostly in unsupervised homework rather than in-person exams ([Chirikov, 2026](https://www.timeshighereducation.com/news/grade-inflation-much-higher-ai-exposed-degrees)). That looks more like AI doing the work than students learning more, though it's still early days to be sure.
+
+## A lesson from drug trials
+
+This is where my trial curation work changed how I see the whole problem. In a drug trial, real life gets in the way: patients take rescue medication, or stop taking the drug. Trialists have a framework for this (ICH E9(R1), if you want to look it up) that makes them decide up front how each of these events will be handled. That is because "what happens if you're prescribed this drug" and "what would happen if nobody ever needed rescue medication" are two different questions with two different answers.
+
+Classrooms have their own versions. A student in the "no AI" group who uses ChatGPT anyway is the classroom's rescue medication. A student in the AI group who never opens the tool has, in effect, stopped treatment. Seen this way, students not sticking to their group stops being "the study failed" and becomes something you plan for from the start. So the first design question isn't "AI or no AI?" It's "which question am I actually trying to answer?" For a university deciding on AI policy, the effect of allowing or encouraging AI is arguably the one that matters. A clean "AI versus no AI at all" comparison describes a world no student lives in any more.
+
+## So, is it that simple?
+
+No. Every design I've looked at solves part of the problem and leaves another part open. I think the honest thing to do is to say out loud which part each design leaves open.
+
+If you're working on this too, I'd genuinely love to hear how you're approaching it. What design did you go for, what did you have to give up, and what would you do differently next time?
+
+## Key Takeaways
+
+- A hidden trait only skews a comparison if it both affects learning and is uneven between groups. Random assignment is the only design that balances all of them at once, including the ones nobody thought to measure.
+- The Hungarian trial shows that ethics can sink a study even with every approval in place. How fair a design feels to students matters as much as how fair it is on paper.
+- The Harvard crossover solves the fairness problem, but with no washout and tests straight after each lesson, it tells us more about performance after one lesson than about lasting learning.
+- Surveys and logs describe how students use AI, not what it does to their learning. And "what happens when we allow AI" and "what happens when students use it" are different questions, so it's worth deciding which one you're asking before you start.
+
+## References
+
+- Anthropic. (2025). *Anthropic Education Report: How university students use Claude.* [Link](https://www.anthropic.com/news/anthropic-education-report-how-university-students-use-claude)
+- Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakcı, Ö., & Mariman, R. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. *PNAS*, 122. [Link](https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html)
+- Benedek, M., & Sziklai, B. R. (2025). Impact of AI tools on learning outcomes: Decreasing knowledge and over-reliance. arXiv:2510.16019. [Link](https://arxiv.org/abs/2510.16019)
+- Chirikov, I. (2026). *Artificial Intelligence and Grade Inflation.* CSHE Working Paper 26-3, UC Berkeley. [Link](https://cshe.berkeley.edu/node/1875)
+- Cosgrave, J., Buchanan-Smith, M., & Warner, A. (2016). *Evaluation of Humanitarian Action Guide.* ALNAP/ODI. [Link](https://alnap.org/help-library/resources/evaluation-of-humanitarian-action-eha-guide/)
+- Dumlao, J. M. Z., Wang, M., Xie, Z., Hu, J., Bar, I., Chaney, G., Gold, H., & Teplitskiy, M. (2026). Generative AI availability, grades, and student satisfaction at a large university. arXiv:2607.21534. [Link](https://arxiv.org/abs/2607.21534)
+- Kale, A., Ling, Y., & Imas, A. (2026). Underreporting of AI use: The role of social desirability bias. *CHI 2026*. [Summary](https://datascience.uchicago.edu/insights/are-students-hiding-their-ai-use-the-social-stigma-behind-ai-use-in-the-classroom/)
+- Kestin, G., Miller, K., Klales, A., Milbourne, T., & Ponti, G. (2025). AI tutoring outperforms in-class active learning. *Scientific Reports*. [Link](https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/)
+- Lepp, M. (2026). Patterns of learner-AI interaction and academic performance in an object-oriented programming course. arXiv:2607.24755. [Link](https://arxiv.org/abs/2607.24755)
+- Nguyen, H. V., & Duong, M. T. T. (2026). Discrepancies between self-reported and peer-attributed frequencies of AI-assisted academic cheating among undergraduate students. *Trends in Higher Education*, 5(3), 83. [Link](https://www.mdpi.com/2813-4346/5/3/83)

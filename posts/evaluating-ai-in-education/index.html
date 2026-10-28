@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Godwill">
+<meta name="dcterms.date" content="2026-10-13">
+<meta name="description" content="Give half the class AI, ban it for the other half, and compare marks. It sounds like the cleanest way to find out what AI does to learning, but is it that simple?">
+
+<title>Is It That Simple? Evaluating the Impact of AI in Education – Stats Beneath</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c4e1171eb4281116019c604a711c5128.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-c4e1171eb4281116019c604a711c5128.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c4e1171eb4281116019c604a711c5128.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-2ee43d534d4061fb0806245a688bb200.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-26da0f2bbcf9d3f33eadb5abc53fad44.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-2ee43d534d4061fb0806245a688bb200.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PZV1Y6DP51"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PZV1Y6DP51');
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../homepage.css">
+<meta property="og:title" content="Is It That Simple? Evaluating the Impact of AI in Education – Stats Beneath">
+<meta property="og:description" content="Give half the class AI, ban it for the other half, and compare marks. It sounds like the cleanest way to find out what AI does to learning, but is it that simple?">
+<meta property="og:site_name" content="Stats Beneath">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Stats Beneath</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../archive.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../notes.html"> 
+<span class="menu-text">Notes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../#newsletter"> 
+<span class="menu-text">Subscribe</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/godwillA33peo"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/godwill-zulu/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Is It That Simple? Evaluating the Impact of AI in Education</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#where-this-question-started-for-me" id="toc-where-this-question-started-for-me" class="nav-link active" data-scroll-target="#where-this-question-started-for-me">Where this question started for me</a></li>
+  <li><a href="#the-things-you-cant-put-in-a-spreadsheet" id="toc-the-things-you-cant-put-in-a-spreadsheet" class="nav-link" data-scroll-target="#the-things-you-cant-put-in-a-spreadsheet">The things you can’t put in a spreadsheet</a></li>
+  <li><a href="#why-is-a-coin-toss-so-powerful-and-how-does-a-classroom-spoil-it" id="toc-why-is-a-coin-toss-so-powerful-and-how-does-a-classroom-spoil-it" class="nav-link" data-scroll-target="#why-is-a-coin-toss-so-powerful-and-how-does-a-classroom-spoil-it">Why is a coin toss so powerful, and how does a classroom spoil it?</a></li>
+  <li><a href="#problem-1-you-cant-keep-ai-out-of-the-control-group" id="toc-problem-1-you-cant-keep-ai-out-of-the-control-group" class="nav-link" data-scroll-target="#problem-1-you-cant-keep-ai-out-of-the-control-group">Problem 1: You can’t keep AI out of the control group</a></li>
+  <li><a href="#problem-2-students-talk-to-each-other" id="toc-problem-2-students-talk-to-each-other" class="nav-link" data-scroll-target="#problem-2-students-talk-to-each-other">Problem 2: Students talk to each other</a></li>
+  <li><a href="#problem-3-grades-count-and-everyone-knows-which-group-they-are-in" id="toc-problem-3-grades-count-and-everyone-knows-which-group-they-are-in" class="nav-link" data-scroll-target="#problem-3-grades-count-and-everyone-knows-which-group-they-are-in">Problem 3: Grades count, and everyone knows which group they are in</a></li>
+  <li><a href="#what-close-randomised-controlled-trials-have-done" id="toc-what-close-randomised-controlled-trials-have-done" class="nav-link" data-scroll-target="#what-close-randomised-controlled-trials-have-done">What close randomised controlled trials have done</a>
+  <ul class="collapse">
+  <li><a href="#hungary-when-students-said-no" id="toc-hungary-when-students-said-no" class="nav-link" data-scroll-target="#hungary-when-students-said-no">Hungary: when students said no</a></li>
+  <li><a href="#a-crossover-trial-at-harvard" id="toc-a-crossover-trial-at-harvard" class="nav-link" data-scroll-target="#a-crossover-trial-at-harvard">A crossover trial at Harvard</a></li>
+  <li><a href="#could-a-crossover-work-across-a-whole-course" id="toc-could-a-crossover-work-across-a-whole-course" class="nav-link" data-scroll-target="#could-a-crossover-work-across-a-whole-course">Could a crossover work across a whole course?</a></li>
+  </ul></li>
+  <li><a href="#what-the-rest-of-the-evidence-looks-like" id="toc-what-the-rest-of-the-evidence-looks-like" class="nav-link" data-scroll-target="#what-the-rest-of-the-evidence-looks-like">What the rest of the evidence looks like</a>
+  <ul class="collapse">
+  <li><a href="#most-studies-measure-ai-use-by-asking-students-and-they-are-shy-about-it" id="toc-most-studies-measure-ai-use-by-asking-students-and-they-are-shy-about-it" class="nav-link" data-scroll-target="#most-studies-measure-ai-use-by-asking-students-and-they-are-shy-about-it">Most studies measure AI use by asking students, and they are shy about it</a></li>
+  <li><a href="#logs-show-what-students-do-not-what-it-does-to-them" id="toc-logs-show-what-students-do-not-what-it-does-to-them" class="nav-link" data-scroll-target="#logs-show-what-students-do-not-what-it-does-to-them">Logs show what students do, not what it does to them</a></li>
+  <li><a href="#we-test-too-soon" id="toc-we-test-too-soon" class="nav-link" data-scroll-target="#we-test-too-soon">We test too soon</a></li>
+  </ul></li>
+  <li><a href="#a-lesson-from-drug-trials" id="toc-a-lesson-from-drug-trials" class="nav-link" data-scroll-target="#a-lesson-from-drug-trials">A lesson from drug trials</a></li>
+  <li><a href="#so-is-it-that-simple" id="toc-so-is-it-that-simple" class="nav-link" data-scroll-target="#so-is-it-that-simple">So, is it that simple?</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Is It That Simple? Evaluating the Impact of AI in Education</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">causal-inference</div>
+    <div class="quarto-category">experimental-design</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Give half the class AI, ban it for the other half, and compare marks. It sounds like the cleanest way to find out what AI does to learning, but is it that simple?
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Godwill </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 13, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>“So what’s your research about?”</p>
+<p>“Whether AI helps or hurts how much students actually learn.”</p>
+<p>“Oh, that’s easy. Give half the class AI, ban it for the other half, and compare the marks.”</p>
+<p>I have had some version of this conversation more times than I can count since I started. Every time, the answer sounds right. And every time, I find myself wondering: is it really that simple?</p>
+<section id="where-this-question-started-for-me" class="level2">
+<h2 class="anchored" data-anchor-id="where-this-question-started-for-me">Where this question started for me</h2>
+<p>My career began in evaluation. I worked as a Monitoring and Evaluation specialist on a humanitarian programme. In practice, that meant building the tools that told us whether a project was on track, what we could do better, and what we were learning along the way. Later the same data fed into the formal evaluation.</p>
+<p>Those evaluations came at set points: halfway through the project, at the end, and definitely a while after the project was completed. They were usually done by an external evaluator, who arrived with their own tools, spent a short time in the field and reported back to donors.</p>
+<p>Looking back, I think the external evaluator was the field’s rough version of blinding. In a clinical trial, the person measuring outcomes ideally doesn’t know who got the treatment, so their hopes can’t tint the result. Our evaluators weren’t blind: they knew exactly which communities had received the project. But they hadn’t designed it, delivered it or staked their job on it working, so they had less riding on the answer. That protected us from marking our own homework. What it could not do was deal with everything else going on.</p>
+<p>And that was what didn’t sit right with me. In a humanitarian setting, so many things move an outcome besides your project: the rainy season, the political environment, another organisation handing out food two villages over. Claiming an improvement was down to us, with no comparison group and often no proper baseline, was mostly an act of faith. The field’s own guidance acknowledges this, steering evaluators towards asking whether a project contributed to change, rather than claiming it caused it (<a href="https://alnap.org/help-library/resources/evaluation-of-humanitarian-action-eha-guide/">Cosgrave, Buchanan-Smith &amp; Warner, 2016, ALNAP</a>).</p>
+<p>It took a causal inference course for me to put a name to the discomfort. A clinical research design module during my MSc, and an industry placement curating clinical trial data for network meta-analysis, sharpened it further. Reading trial after trial, I saw how much machinery goes into protecting one simple comparison from everything that might muddy it.</p>
+<p>Now I study a very different kind of intervention: does using generative AI help or hurt how much university students learn? And the question that followed me out of humanitarian work has followed me here too. Can we actually answer it properly in education?</p>
+</section>
+<section id="the-things-you-cant-put-in-a-spreadsheet" class="level2">
+<h2 class="anchored" data-anchor-id="the-things-you-cant-put-in-a-spreadsheet">The things you can’t put in a spreadsheet</h2>
+<p>Think about everything that shapes how a student learns, and how they use AI, long before they ever walk into your course:</p>
+<ul>
+<li><strong>How they were taught at school:</strong> learning by memorising, or by wrestling with problems.</li>
+<li><strong>Their family background:</strong> what their parents studied, whether university was always expected.</li>
+<li><strong>What they believe about themselves:</strong> maths anxiety, confidence, mindset.</li>
+<li><strong>What they’re aiming for:</strong> to understand the material, or to get through the exam.</li>
+<li><strong>Their life right now:</strong> part-time work, caring for someone, sleep, studying in a second language, and, well, worrying about accommodation and whether they will get a job after the degree.</li>
+<li><strong>Who they study with:</strong> their friends’ habits, shared notes and the group chat.</li>
+</ul>
+<p>Nearly everything on that list could shape both how a student uses AI and how much they learn. Scientists call that a confounder, and most of it is hard to measure, or something a researcher would never think to ask about.</p>
+<p>A hidden trait only distorts the comparison if it does two things at once: it affects learning, and it’s more common among AI users than non-users (or the opposite). A trait that does only one of those is harmless. “How a student learned to learn” plausibly does both. There is only one tool that, by design, spreads every one of these hidden traits evenly between groups on average, including the ones we have never thought of: random assignment.</p>
+<p>That is why the fix from the opening conversation sounds so right, and why I reached for it too: toss a coin for every student, give AI to the heads, compare the marks. But if it were that simple, why would so few education researchers actually run this study in a course that counts?</p>
+</section>
+<section id="why-is-a-coin-toss-so-powerful-and-how-does-a-classroom-spoil-it" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-a-coin-toss-so-powerful-and-how-does-a-classroom-spoil-it">Why is a coin toss so powerful, and how does a classroom spoil it?</h2>
+<p>Here is the idea in plain terms. Imagine every student has two versions of their final module mark: the one they would get with AI and the one they would get without it. In reality we only ever get to see one of them. If a coin decides which group each student lands in, the coin can’t know anything about those two marks. So on average, the two groups are alike in every way except AI, and any difference in their average marks is down to AI itself.</p>
+<p>But that argument quietly relies on a few things being true:</p>
+<ol type="1">
+<li><strong>The coin decides who uses AI.</strong> Everyone told to use AI does use it, and nobody told not to use it does. They are all compliant.</li>
+<li><strong>Students don’t affect each other’s results.</strong></li>
+<li><strong>We are actually allowed, ethically and practically, to hand out the treatment this way.</strong></li>
+</ol>
+<p>A university course breaks all three.</p>
+</section>
+<section id="problem-1-you-cant-keep-ai-out-of-the-control-group" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1-you-cant-keep-ai-out-of-the-control-group">Problem 1: You can’t keep AI out of the control group</h2>
+<p>In a drug trial, people in the control group usually can’t get the drug anywhere else. In a classroom, the “drug” is free and sitting in every student’s browser. So what you are really randomising isn’t the AI use; it’s the instruction about AI use. Some students told not to use it will use it anyway, and some students told to use it won’t bother.</p>
+<p>That dilutes whatever you measure. Suppose 90% of the AI group uses it, but so does 40% of the “no AI” group. Your comparison then picks up only about half of the true effect, and you would need roughly four times as many students to spot it. The tempting fix is to just compare the students who actually used AI with those who didn’t. But that throws the coin toss away, because the students who used AI despite being told not to are not a random bunch. In a world where most students already use AI, a “no AI” group can end up measuring who follows rules more than anything else.</p>
+</section>
+<section id="problem-2-students-talk-to-each-other" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2-students-talk-to-each-other">Problem 2: Students talk to each other</h2>
+<p>Even if everyone did exactly as told, students share. They pass around prompts and AI-generated notes, so a student in the “no AI” group can benefit from AI without ever opening a chatbot. The usual fix is to randomise groups instead of individuals; the Harvard trial I come back to below randomised small peer-instruction groups of two or three students. But students in the same group share a tutor and each other, so the twentieth student in a tutorial tells you much less that’s new than the first. With 120 students in tutorials of 20, even a little similarity within tutorials means your class behaves more like 60 students than 120.</p>
+</section>
+<section id="problem-3-grades-count-and-everyone-knows-which-group-they-are-in" class="level2">
+<h2 class="anchored" data-anchor-id="problem-3-grades-count-and-everyone-knows-which-group-they-are-in">Problem 3: Grades count, and everyone knows which group they are in</h2>
+<p>Clinical trials rely on what is called equipoise: genuine uncertainty about which option is better, so nobody is knowingly short-changed. Classrooms have a version of this, but two things make it harder to argue. First, grades count. If AI changes performance, one group gets an advantage on marks towards their degree. Second, policy may simply not allow it: permitting AI for some students and banning it for others can clash with course regulations before you even reach the ethics form.</p>
+<p>You also cannot hide from students which group they are in. Everyone knows, and that can breed resentment, or make the “no AI” group work extra hard to prove a point. The person analysing the data can be kept in the dark, though. In my own work I won’t know which students took part; I will only see the data for modelling. It’s the same kind of separation the external evaluator offered, with the same limit: it keeps my expectations out of the analysis, but can’t change what happens in the classroom.</p>
+<p>And then there’s the question of what we are even measuring. A mark on an assignment done with AI tells you how well a student performed with help. Learning only shows up later, when the help is gone, and AI can push the first up while pulling the second down.</p>
+</section>
+<section id="what-close-randomised-controlled-trials-have-done" class="level2">
+<h2 class="anchored" data-anchor-id="what-close-randomised-controlled-trials-have-done">What close randomised controlled trials have done</h2>
+<p>Two recent trials come close to the obvious design. Between them, they run into most of the problems above.</p>
+<section id="hungary-when-students-said-no" class="level3">
+<h3 class="anchored" data-anchor-id="hungary-when-students-said-no">Hungary: when students said no</h3>
+<p>In spring 2025, two instructors at Corvinus University of Budapest ran exactly the experiment from my opening conversation, in an operations research course (<a href="https://arxiv.org/abs/2510.16019">Benedek &amp; Sziklai, 2025</a>). About 95 students were randomly split into a group that could use AI in classes and exams and a group that couldn’t. They did everything by the book: the study was pre-registered, and approved by the ethics board, senior university staff and the student council. To keep things fair, after every test the lower-scoring group had its marks topped up by the gap between the group averages.</p>
+<p>It still didn’t survive. Students complained from week two, argued over how the top-up was calculated, and appealed to the programme director. About a dozen went to the national media, and one wrote to Hungary’s State Secretary for Higher Education, whose written opinion said the experiment could harm students’ equal chances. A week before exams, the groups were merged. The authors’ own reflection is the bit that stays with me: the students’ reaction told them more than the data did, because it showed AI had already become something students see as essential.</p>
+<p>They say they learned a few things. They focused on making the study fair in fact, and underestimated how fair it would feel to students. Telling students earlier, checking in with them regularly, and offering a way to opt out might all have helped.</p>
+<p>That struck a chord. In an <a href="../../notes/ai-higher-education-part1/index.html">earlier note</a>, I wrote about my years designing HIV and SRHR programmes, where the mistake we kept making was designing <em>for</em> young people rather than <em>with</em> them. Here, students were represented through the student council’s approval. But signing off on a design isn’t the same as helping to shape it.</p>
+</section>
+<section id="a-crossover-trial-at-harvard" class="level3">
+<h3 class="anchored" data-anchor-id="a-crossover-trial-at-harvard">A crossover trial at Harvard</h3>
+<p>A Harvard physics trial took a different route (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/">Kestin et al., 2025</a>): a crossover, where everyone gets both conditions and the order is what’s randomised. In weeks 9 and 10 of the course, each student had one lesson with an AI tutor at home and one 75-minute active-learning class, with the groups swapping between weeks. About 194 students were included, and the AI tutor came out ahead by roughly 0.73 to 1.3 standard deviations on a test taken straight after each lesson. That’s a big effect by education standards.</p>
+<p>It’s one of the most cited results in this area, and the crossover is a clever answer to the fairness problem: nobody misses out. Reading it with my trial-curator hat on, though, a few questions kept nagging at me. The two lessons, surface tension and then fluid flow, were chosen to be separate topics, with no break between them. But both are about fluids and pressure. Could a student who learned in week 9 to work through problems step by step with a tutor carry that habit into week 10, whichever condition they were in? The analysis adjusts for topic and prior scores, but I couldn’t find a direct check for whether the order mattered.</p>
+<p>The two conditions also differed in more than just AI. One was self-paced at home; the other was a scheduled class with friends. Students in the same course study together, so did anything from an AI lesson find its way to classmates before their own AI week? Did anyone in the class week use other AI tools at home anyway? Since nobody could be blinded, might the novelty of a shiny new tool lift effort all on its own? And with a test before and after each lesson, back to back, might test fatigue have worn effort down by the second week? None of this undoes the result. But it does make me wonder what exactly was being compared, and what it tells us about what students still know at the end of term.</p>
+</section>
+<section id="could-a-crossover-work-across-a-whole-course" class="level3">
+<h3 class="anchored" data-anchor-id="could-a-crossover-work-across-a-whole-course">Could a crossover work across a whole course?</h3>
+<p>The Hungarian authors arrive at the same idea from the other direction. Looking back, they suggest it would have been better to “reverse the roles of the students (AI vs.&nbsp;offline) midway through the semester.” The catch, they note, is that if one half of the material is harder, whoever had AI for that half looks like they are getting the bigger boost.</p>
+<p>Reading the two trials side by side, I kept coming back to something clinical crossovers rely on: the washout. That’s the gap between the two treatments that lets the first one wear off before the second starts. Harvard didn’t use one. To be fair to the team, that was probably not a choice: a course can’t pause teaching for a week so students can forget a strategy, and the syllabus has to move on.</p>
+<p>I’m honestly not sure a classroom can ever have a washout. A washout works when an effect fades, like a drug clearing the bloodstream. But learning is supposed to stick, and that lasting effect is exactly what we want to measure. Habits stick too, and the topic changes along with the period.</p>
+<p>Harvard’s short cycle and immediate tests keep spillover small, which is also why the result speaks to performance rather than lasting learning. Taking turns with AI by week or by topic, with a later test done without AI for each, might balance the two. It might also be a nightmare to run.</p>
+</section>
+</section>
+<section id="what-the-rest-of-the-evidence-looks-like" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-rest-of-the-evidence-looks-like">What the rest of the evidence looks like</h2>
+<p>Beyond these two trials, most of what we “know” about AI and learning comes from weaker designs, and three patterns kept coming back.</p>
+<section id="most-studies-measure-ai-use-by-asking-students-and-they-are-shy-about-it" class="level3">
+<h3 class="anchored" data-anchor-id="most-studies-measure-ai-use-by-asking-students-and-they-are-shy-about-it">Most studies measure AI use by asking students, and they are shy about it</h3>
+<p>The typical study asks students about their AI use in a survey, then relates their answers to grades or, more often, to how much they feel they learned. In one study of 210 programming students, five different AI-use profiles differed in how hard students found the course and how well they felt they understood it, but not in how they actually performed on assessments (<a href="https://arxiv.org/abs/2607.24755">Lepp, 2026</a>).</p>
+<p>I remember this from my own MSc. When a lecturer asked whether anyone had used AI, most of us were shy to raise our hands, sometimes until the question was asked a different way. The research points the same way: there is a stigma around using AI, so what students tell us is a shaky thing to lean on.</p>
+<p>In a University of Chicago study, about 60% of students said they used AI, while about 90% said their peers did, a gap students put down to shame (<a href="https://datascience.uchicago.edu/insights/are-students-hiding-their-ai-use-the-social-stigma-behind-ai-use-in-the-classroom/">Kale et al., 2026</a>). Among 863 undergraduates in Vietnam, students rated classmates’ AI-assisted cheating as more frequent than their own for all ten behaviours asked about (<a href="https://www.mdpi.com/2813-4346/5/3/83">Nguyen &amp; Duong, 2026</a>). If students’ answers were just randomly off, the effect we find would only shrink. But if the students who use AI most are also the ones most likely to downplay it, the error could push the result either way, and nothing in the data tells you which.</p>
+</section>
+<section id="logs-show-what-students-do-not-what-it-does-to-them" class="level3">
+<h3 class="anchored" data-anchor-id="logs-show-what-students-do-not-what-it-does-to-them">Logs show what students do, not what it does to them</h3>
+<p>Usage logs get around the honesty problem. Anthropic analysed 574,740 academic conversations on Claude.ai and sorted them into four groups: whether students were getting answers directly or working with the AI collaboratively, and whether they were solving problems or creating something (<a href="https://www.anthropic.com/news/anthropic-education-report-how-university-students-use-claude">Anthropic, 2025</a>). Each group held 23% to 29% of conversations, and about 47% were the direct kind.</p>
+<p>But the report is upfront about what it can’t tell us. It has no data on how students did, its sample probably leans towards early adopters, and it covers one tool over 18 days. However precisely we describe how students use AI, that’s a picture of the exposure, not of its effect. Logs fix the measurement problem but not the confounding one, and a student’s AI use is spread across tools that no single company can see.</p>
+</section>
+<section id="we-test-too-soon" class="level3">
+<h3 class="anchored" data-anchor-id="we-test-too-soon">We test too soon</h3>
+<p>Most experiments run for a few lessons or weeks and test straight away, as Harvard did. With AI available, performance goes up almost by definition. Whether learning goes up only shows when the AI is taken away. In a field experiment with nearly a thousand high school maths students, GPT-4 access improved practice grades by 48%. But once it was removed, those students did 17% worse on the exam than students who never had it (<a href="https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html">Bastani et al., 2025</a>).</p>
+<p>Studies of real grades tell a quieter story. One study of more than 138,000 university students, comparing courses more and less exposed to AI before and after it arrived, found no difference in grades (<a href="https://arxiv.org/abs/2607.21534">Dumlao et al., 2026</a>). Another found A grades rose by 13 percentage points in courses more exposed to AI, mostly in unsupervised homework rather than in-person exams (<a href="https://www.timeshighereducation.com/news/grade-inflation-much-higher-ai-exposed-degrees">Chirikov, 2026</a>). That looks more like AI doing the work than students learning more, though it’s still early days to be sure.</p>
+</section>
+</section>
+<section id="a-lesson-from-drug-trials" class="level2">
+<h2 class="anchored" data-anchor-id="a-lesson-from-drug-trials">A lesson from drug trials</h2>
+<p>This is where my trial curation work changed how I see the whole problem. In a drug trial, real life gets in the way: patients take rescue medication, or stop taking the drug. Trialists have a framework for this (ICH E9(R1), if you want to look it up) that makes them decide up front how each of these events will be handled. That is because “what happens if you’re prescribed this drug” and “what would happen if nobody ever needed rescue medication” are two different questions with two different answers.</p>
+<p>Classrooms have their own versions. A student in the “no AI” group who uses ChatGPT anyway is the classroom’s rescue medication. A student in the AI group who never opens the tool has, in effect, stopped treatment. Seen this way, students not sticking to their group stops being “the study failed” and becomes something you plan for from the start. So the first design question isn’t “AI or no AI?” It’s “which question am I actually trying to answer?” For a university deciding on AI policy, the effect of allowing or encouraging AI is arguably the one that matters. A clean “AI versus no AI at all” comparison describes a world no student lives in any more.</p>
+</section>
+<section id="so-is-it-that-simple" class="level2">
+<h2 class="anchored" data-anchor-id="so-is-it-that-simple">So, is it that simple?</h2>
+<p>No.&nbsp;Every design I’ve looked at solves part of the problem and leaves another part open. I think the honest thing to do is to say out loud which part each design leaves open.</p>
+<p>If you’re working on this too, I’d genuinely love to hear how you’re approaching it. What design did you go for, what did you have to give up, and what would you do differently next time?</p>
+</section>
+<section id="key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>A hidden trait only skews a comparison if it both affects learning and is uneven between groups. Random assignment is the only design that balances all of them at once, including the ones nobody thought to measure.</li>
+<li>The Hungarian trial shows that ethics can sink a study even with every approval in place. How fair a design feels to students matters as much as how fair it is on paper.</li>
+<li>The Harvard crossover solves the fairness problem, but with no washout and tests straight after each lesson, it tells us more about performance after one lesson than about lasting learning.</li>
+<li>Surveys and logs describe how students use AI, not what it does to their learning. And “what happens when we allow AI” and “what happens when students use it” are different questions, so it’s worth deciding which one you’re asking before you start.</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>Anthropic. (2025). <em>Anthropic Education Report: How university students use Claude.</em> <a href="https://www.anthropic.com/news/anthropic-education-report-how-university-students-use-claude">Link</a></li>
+<li>Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakcı, Ö., &amp; Mariman, R. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. <em>PNAS</em>, 122. <a href="https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html">Link</a></li>
+<li>Benedek, M., &amp; Sziklai, B. R. (2025). Impact of AI tools on learning outcomes: Decreasing knowledge and over-reliance. arXiv:2510.16019. <a href="https://arxiv.org/abs/2510.16019">Link</a></li>
+<li>Chirikov, I. (2026). <em>Artificial Intelligence and Grade Inflation.</em> CSHE Working Paper 26-3, UC Berkeley. <a href="https://cshe.berkeley.edu/node/1875">Link</a></li>
+<li>Cosgrave, J., Buchanan-Smith, M., &amp; Warner, A. (2016). <em>Evaluation of Humanitarian Action Guide.</em> ALNAP/ODI. <a href="https://alnap.org/help-library/resources/evaluation-of-humanitarian-action-eha-guide/">Link</a></li>
+<li>Dumlao, J. M. Z., Wang, M., Xie, Z., Hu, J., Bar, I., Chaney, G., Gold, H., &amp; Teplitskiy, M. (2026). Generative AI availability, grades, and student satisfaction at a large university. arXiv:2607.21534. <a href="https://arxiv.org/abs/2607.21534">Link</a></li>
+<li>Kale, A., Ling, Y., &amp; Imas, A. (2026). Underreporting of AI use: The role of social desirability bias. <em>CHI 2026</em>. <a href="https://datascience.uchicago.edu/insights/are-students-hiding-their-ai-use-the-social-stigma-behind-ai-use-in-the-classroom/">Summary</a></li>
+<li>Kestin, G., Miller, K., Klales, A., Milbourne, T., &amp; Ponti, G. (2025). AI tutoring outperforms in-class active learning. <em>Scientific Reports</em>. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/">Link</a></li>
+<li>Lepp, M. (2026). Patterns of learner-AI interaction and academic performance in an object-oriented programming course. arXiv:2607.24755. <a href="https://arxiv.org/abs/2607.24755">Link</a></li>
+<li>Nguyen, H. V., &amp; Duong, M. T. T. (2026). Discrepancies between self-reported and peer-attributed frequencies of AI-assisted academic cheating among undergraduate students. <em>Trends in Higher Education</em>, 5(3), 83. <a href="https://www.mdpi.com/2813-4346/5/3/83">Link</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/statsbeneath\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Stats Beneath</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Built with <a href="https://quarto.org">Quarto</a> &amp; R</p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:godwillzulu51@gmail.com">
+      <i class="bi bi-envelope" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

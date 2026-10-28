@@ -1,16 +1,14 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/notes.html",
     "items": [
-      "/posts/04-likelihood-mle/index.html",
-      "/posts/03-expected-value-loss-functions/index.html",
-      "/posts/02-random-variables-distributions/index.html",
-      "/posts/01-why-stats-matter/index.html"
+      "/notes/ai-higher-education-part1/index.html"
     ]
   },
   {
     "listing": "/archive.html",
     "items": [
+      "/posts/evaluating-ai-in-education/index.html",
       "/posts/04-likelihood-mle/index.html",
       "/posts/03-expected-value-loss-functions/index.html",
       "/posts/02-random-variables-distributions/index.html",
@@ -18,9 +16,13 @@
     ]
   },
   {
-    "listing": "/notes.html",
+    "listing": "/index.html",
     "items": [
-      "/notes/ai-higher-education-part1/index.html"
+      "/posts/evaluating-ai-in-education/index.html",
+      "/posts/04-likelihood-mle/index.html",
+      "/posts/03-expected-value-loss-functions/index.html",
+      "/posts/02-random-variables-distributions/index.html",
+      "/posts/01-why-stats-matter/index.html"
     ]
   }
 ]

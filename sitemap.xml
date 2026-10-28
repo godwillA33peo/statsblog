@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://statsbeneath.com/posts/04-likelihood-mle/index.html</loc>
-    <lastmod>2026-03-08T22:15:27.080Z</lastmod>
-  </url>
-  <url>
-    <loc>https://statsbeneath.com/posts/02-random-variables-distributions/index.html</loc>
-    <lastmod>2026-02-13T20:11:33.761Z</lastmod>
-  </url>
-  <url>
-    <loc>https://statsbeneath.com/notes/ai-higher-education-part1/index.html</loc>
-    <lastmod>2026-03-12T21:38:42.660Z</lastmod>
-  </url>
-  <url>
-    <loc>https://statsbeneath.com/index.html</loc>
-    <lastmod>2026-02-13T20:52:43.738Z</lastmod>
-  </url>
-  <url>
-    <loc>https://statsbeneath.com/about.html</loc>
-    <lastmod>2026-03-12T21:53:34.004Z</lastmod>
-  </url>
-  <url>
-    <loc>https://statsbeneath.com/archive.html</loc>
-    <lastmod>2026-02-11T00:36:21.148Z</lastmod>
-  </url>
-  <url>
-    <loc>https://statsbeneath.com/notes.html</loc>
-    <lastmod>2026-03-12T21:08:31.070Z</lastmod>
-  </url>
-  <url>
-    <loc>https://statsbeneath.com/posts/01-why-stats-matter/index.html</loc>
-    <lastmod>2026-02-13T20:52:47.708Z</lastmod>
+    <loc>https://statsbeneath.com/posts/evaluating-ai-in-education/index.html</loc>
+    <lastmod>2026-10-28T10:52:27.643Z</lastmod>
   </url>
   <url>
     <loc>https://statsbeneath.com/posts/03-expected-value-loss-functions/index.html</loc>
-    <lastmod>2026-02-16T10:26:39.845Z</lastmod>
+    <lastmod>2026-10-13T11:34:24.744Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/posts/01-why-stats-matter/index.html</loc>
+    <lastmod>2026-10-13T11:34:24.742Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/notes.html</loc>
+    <lastmod>2026-10-13T11:34:24.741Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/archive.html</loc>
+    <lastmod>2026-10-13T11:34:24.741Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/about.html</loc>
+    <lastmod>2026-10-13T11:34:24.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/index.html</loc>
+    <lastmod>2026-10-13T11:34:24.741Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/notes/ai-higher-education-part1/index.html</loc>
+    <lastmod>2026-10-13T11:34:24.742Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/posts/02-random-variables-distributions/index.html</loc>
+    <lastmod>2026-10-13T11:34:24.743Z</lastmod>
+  </url>
+  <url>
+    <loc>https://statsbeneath.com/posts/04-likelihood-mle/index.html</loc>
+    <lastmod>2026-10-13T11:34:24.744Z</lastmod>
   </url>
 </urlset>

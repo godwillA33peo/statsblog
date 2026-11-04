@@ -66,6 +66,7 @@ format:
     highlight-style: monokai
     smooth-scroll: true
     include-in-header: google-analytics.html
+    include-after-body: chatbase.html
 
 author: "Godwill"
 date-format: "MMMM D, YYYY"

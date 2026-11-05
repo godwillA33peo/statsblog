@@ -263,28 +263,42 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "G\n\n\n\n\nMSc Health Data Science · Bayesian Modelling · Statistical Foundations for ML\nI’m Godwill, an MSc Health Data Science student at the University of Galway, Ireland Fellows Programme Scholar, and the person behind Stats Beneath.\nI grew up in Zimbabwe and spent several years working as a Monitoring & Evaluation Specialist in the health sector: HIV, SRHR, and public health programmes. There I learned that the distance between a well-designed analysis and a poorly-designed one isn’t technical. It’s conceptual. It’s whether the person running the model actually understands what it’s doing, and why.\nThat conviction followed me to Ireland, and it’s why I created this blog.\nI hold a First Class Honours degree in Operations Research and Statistics, but the credential I’m proudest of is harder to put on a CV: I insist on understanding things from the ground up. When I fit Bayesian spatial models for my MSc thesis, currently estimating district-level malaria prevalence across Ghana using BYM2 and ICAR models in Stan, I want to be able to derive the posterior by hand. I want to argue from first principles why the likelihood should be Binomial and not Poisson. I want to know, not just do.\nStats Beneath exists because I’ve worked alongside talented engineers and data scientists who could implement almost anything but struggled to explain what was happening underneath. This blog is my attempt to close that gap: one statistical concept at a time, starting with intuition, building to mathematics, and ending with something you can actually use."
+    "text": "G\n\n\n\n\nPhD Researcher in Statistics, Trinity College Dublin · Bayesian Evaluation · Generative AI in Higher Education\nDid it work, for whom, and how sure can we be? As a PhD researcher in Statistics at Trinity College Dublin, I ask those questions about generative AI in higher education.\nI started in monitoring and evaluation in Zimbabwe, with a first-class degree in Operations Research and Statistics, designing M&E systems and baseline studies for community health, water, sanitation and hygiene (WASH), and young people’s sexual and reproductive health programmes. That work taught me that an evaluation is only as good as its data and its design: how outcomes are measured, who gets counted, and what a comparison can and cannot tell you.\nMy MSc in Health Data Science at the University of Galway specialised in Bayesian hierarchical modelling, with a thesis on spatio-temporal small area estimation of under-five malaria prevalence in West Africa. During a co-op with Eli Lilly’s Competitive Intelligence Statistics team, I curated and quality-checked clinical trial efficacy data.\nMy PhD uses Bayesian methods to evaluate how students’ use of generative AI affects their learning and assessment. It moves from a scoping review, to observational studies linking self-reported AI use with learning-platform and assessment data, and, where feasible, to randomised experiments. The problems are the ones I met in the field: exposure that is hard to measure, confounding, and outcomes observed over short windows."
+  },
+  {
+    "objectID": "about.html#what-youll-find-here",
+    "href": "about.html#what-youll-find-here",
+    "title": "About",
+    "section": "What you’ll find here",
+    "text": "What you’ll find here\n\nArticles: the statistical foundations beneath machine learning, from random variables to likelihood. Intuition first, then the mathematics, then something you can actually use.\nNotes: shorter, more personal writing on AI, learning, and higher education."
   },
   {
     "objectID": "about.html#what-im-working-on",
     "href": "about.html#what-im-working-on",
     "title": "About",
     "section": "What I’m working on",
-    "text": "What I’m working on\nMSc Thesis — Small area estimation for malaria prevalence in Ghana using Bayesian hierarchical spatial models (ICAR, BYM2) implemented in Stan. The goal is district-level prevalence estimates from DHS survey data that are both statistically rigorous and policy-relevant.\nStats Beneath — Weekly deep dives into the statistical foundations of machine learning and AI. If you’ve ever used a method without fully understanding it, this is for you.\nBayesian Explorer — An interactive Shiny app I built to help students develop intuition for Bayesian inference. Visualises prior-likelihood-posterior relationships in real time. Try it here →"
+    "text": "What I’m working on\nPhD, Trinity College Dublin: Bayesian evaluation of how students’ use of generative AI affects their learning and assessment.\nBayesian Explorer: An interactive Shiny app I built to help students develop intuition for Bayesian inference. Visualises prior-likelihood-posterior relationships in real time. Try it here →"
   },
   {
-    "objectID": "about.html#technical-skills",
-    "href": "about.html#technical-skills",
+    "objectID": "about.html#background",
+    "href": "about.html#background",
     "title": "About",
-    "section": "Technical skills",
-    "text": "Technical skills\nR is my primary language for statistical analysis and modelling. I use Stan and JAGS for Bayesian inference, Shiny for interactive tools, Quarto for technical publishing, and Python for machine learning workflows. I also work with geospatial data: spatial statistics, mapping, and GIS.\nMy approach: principles first, tools second. The foundations don’t just make you better at statistics. They make you harder to fool."
+    "section": "Background",
+    "text": "Background\n\nPhD in Statistics, Trinity College Dublin (2026 to present)\nMSc Health Data Science, First Class, University of Galway\nBSc (Hons) Operations Research and Statistics, First Class, NUST, Zimbabwe\nCo-op, Competitive Intelligence Statistics, Eli Lilly and Company, Cork\nMonitoring, Evaluation and Research Specialist, Katswe Sistahood, Zimbabwe\nMonitoring and Evaluation Officer, Bekezela Home Based Care, Zimbabwe\nIreland Fellows Programme Scholar (Irish Aid), 2025\nNIH Gender & Health Summer Scholar, Johns Hopkins Bloomberg School of Public Health, 2024\nYALI Regional Fellow, 2024"
+  },
+  {
+    "objectID": "about.html#tools",
+    "href": "about.html#tools",
+    "title": "About",
+    "section": "Tools",
+    "text": "Tools\nR, Stan and JAGS for Bayesian modelling; Shiny and Quarto for interactive tools and writing; Python for machine learning workflows.\nMy approach: principles first, tools second. The foundations don’t just make you better at statistics. They make you harder to fool."
   },
   {
     "objectID": "about.html#connect",
     "href": "about.html#connect",
     "title": "About",
     "section": "Connect",
-    "text": "Connect\nI’m always glad to hear from people working at the intersection of statistics, public health, and machine learning, whether you’re a student, a researcher, or someone who’s been quietly suspicious that there’s more going on under the hood than the tutorials show.\n\n\nGitHub, code, projects, and open-source contributions\nLinkedIn, professional background and updates\nEmail, reach out directly\n\n\n\nThis site is built with Quarto and deployed on GitHub Pages. The source code is available on GitHub."
+    "text": "Connect\nI write about AI in higher education at statsbeneath.com, and I’m open to conversations with researchers, policymakers and teams working on evaluation.\n\n\nGitHub, code, projects, and open-source contributions\nLinkedIn, professional background and updates\nEmail, reach out directly\n\n\n\nThis site is built with Quarto and deployed on GitHub Pages. The source code is available on GitHub."
   },
   {
     "objectID": "index.html",
